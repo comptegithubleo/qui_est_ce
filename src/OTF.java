@@ -1,27 +1,40 @@
-
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class OTF {
 
-    private String nom;
-    private String age;
+    private String id;
+    private String source;
+    private ArrayList<String> attribute;
 
     public OTF(){}
 
-    public OTF(String nom, String age){
-        this.nom = nom;
-        this.age = age;
-    }
+    /*public OTF(String id, String source, ArrayList<String> attribute){
+        this.id = id;
+        this.source = source;
+        this.attribute = attribute;
+    } commented but usable to manually create an instance*/
 
     public String toString(){
-        return "je suis " + this.nom + " j'ai " + this.age + " ans, je lance le test"; 
+        return "je suis " + this.id + " je lance le test"; 
     }
     
-    public void setnom(String nom){
-        this.nom = nom;
+    public void setid(String id){
+        this.id = id;
     }
 
-    public void setage(String age){
-        this.age = age;
+    public void setsource(String source){
+        this.source = source;
+    }
+
+    public void setattribute(ArrayList<String> attribute){
+        this.attribute = attribute;
+    }
+
+    public void showAttribute(){
+        attribute.forEach(System.out::println);
     }
 
 }

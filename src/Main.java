@@ -1,4 +1,6 @@
 import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.databind.*;
@@ -28,9 +30,13 @@ public class Main extends Application {
 
 		ObjectMapper mapper = new ObjectMapper();
 
-		OTF premier = mapper.readValue(Paths.get("bin/sheet/test.json").toFile(), OTF.class);
+		List<OTF> plateau = Arrays.asList(mapper.readValue(Paths.get("src/sheet/test.json").toFile(), OTF[].class));
 
-		System.out.println(premier);
+		for(OTF o : plateau)
+		{
+			System.out.println(o);
+			o.showAttribute();
+		}
 		launch(args);
 	}
 
