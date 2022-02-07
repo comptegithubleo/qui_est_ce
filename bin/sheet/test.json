@@ -1,4 +1,170 @@
-{
-    "nom" : "jackson",
-    "age" : "15"
-}
+[
+    { "id" : "alfred",
+        "source" : "src/personnages/Alfred.png ",
+        "attribute" : [
+        "long","roux","homme","non","oui","non","non"
+    ]
+    },
+
+    { "id" : "anita",
+        "source" : "src/personnages/Anita.png ",
+        "attribute" : [
+            "long","blond","femme","non","non","non","non"
+        ]
+    },
+
+    { "id" : "anna",
+        "source" : "src/personnages/Anna.png ",
+        "attribute" : [
+            "court","brun","femme","non","non","non","non"
+        ]
+    },
+
+    { "id" : "charlie",
+        "source" : "src/personnages/Charlie.png ",
+        "attribute" : [
+            "court","blond","homme","non","oui","non","non"
+        ]
+    },
+
+    { "id" : "clara",
+        "source" : "src/personnages/Clara.png ",
+        "attribute" : [
+            "court","roux","femme","non","non","oui","oui"
+        ]
+    },
+
+    { "id" : "eric",
+        "source" : "src/personnages/Eric.png ",
+        "attribute" : [
+            "court","blanc","homme","non","non","non","non"
+        ]
+    },
+
+    { "id" : "felix",
+        "source" : "src/personnages/Felix.png ",
+        "attribute" : [
+            "court","blond","homme","non","non","non","oui"
+        ]
+    },
+
+    { "id" : "jeremie",
+        "source" : "src/personnages/Jeremie.png ",
+        "attribute" : [
+            "court","chatain","homme","non","non","non","oui"
+        ]
+    },
+
+    { "id" : "leon",
+        "source" : "src/personnages/Leon.png ",
+        "attribute" : [
+            "court","blond","homme","non","non","oui","non"
+        ]
+    },
+
+    { "id" : "luc",
+        "source" : "src/personnages/Luc.png ",
+        "attribute" : [
+            "court","brun","homme","oui","non","non","non"
+        ]
+    },
+
+    { "id" : "lucas",
+        "source" : "src/personnages/Lucas.png ",
+        "attribute" : [
+            "calvitie","roux","homme","non","non","non","non"
+        ]
+    },
+
+    { "id" : "manu",
+        "source" : "src/personnages/Manu.png ",
+        "attribute" : [
+            "court","chatain","homme","non","oui","non","non"
+        ]
+    },
+    
+    { "id" : "maria",
+        "source" : "src/personnages/Maria.png ",
+        "attribute" : [
+            "long","chatain","femme","non","non","non","oui"
+        ]
+    },
+
+    { "id" : "mario",
+        "source" : "src/personnages/Mario.png",
+        "attribute" : [
+            "court","blond","homme","oui","non","non","non"
+        ]
+    },
+
+    { "id" : "martin",
+        "source" : "src/personnages/Martin.png ",
+        "attribute" : [
+            "court","blanc","homme","non","non","non","oui"
+        ]
+    },
+
+    { "id" : "max",
+        "source" : "src/personnages/Max.png ",
+        "attribute" : [
+            "court","brun","homme","non","oui","non","non"
+        ]
+    },
+
+    { "id" : "omar",
+        "source" : "src/personnages/Omar.png ",
+        "attribute" : [
+            "court","roux","homme","non","non","non","non"
+        ]
+    },
+
+    { "id" : "oscar",
+        "source" : "src/personnages/Oscar.png ",
+        "attribute" : [
+            "court","chatain","homme","non","non","non","non"
+        ]
+    },
+
+    { "id" : "romeo",
+        "source" : "src/personnages/Romeo.png ",
+        "attribute" : [
+            "calvitie","chatain","homme","oui","oui","non","non"
+        ]
+    },
+
+    { "id" : "samuel",
+        "source" : "src/personnages/Samuel.png ",
+        "attribute" : [
+            "calvitie","blanc","homme","non","non","oui","non"
+        ]
+    },
+
+    { "id" : "simon",
+        "source" : "src/personnages/Simon.png ",
+        "attribute" : [
+            "court","blanc","homme","non","non","oui","non"
+        ]
+    },
+
+    { "id" : "suzanne",
+        "source" : "src/personnages/Suzanne.png ",
+        "attribute" : [
+            "long","blanc","femme","non","non","non","non"
+        ]
+    },
+
+    { "id" : "timeo",
+        "source" : "src/personnages/Timeo.png ",
+        "attribute" : [
+            "calvitie","brun","homme","non","non","oui","non"
+        ]
+    },
+
+    { "id" : "tony",
+        "source" : "src/personnages/Tony.png ",
+        "attribute" : [
+            "calvitie","roux","homme","oui","non","non","non"
+        ]
+    }
+    
+]
