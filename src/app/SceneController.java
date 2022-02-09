@@ -44,6 +44,15 @@ public class SceneController {
 		stage.show();
 	}
 
+	public void switchScene_NewGameMenu(ActionEvent event) throws IOException
+	{
+		Parent root = FXMLLoader.load(getClass().getResource("NewGameMenu.fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.show();
+	}
+
 	public void quitGame(ActionEvent event)
 	{
 		Platform.exit();
