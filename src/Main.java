@@ -27,16 +27,31 @@ public class Main extends Application {
 	}
 	public static void main(String[] args) throws Exception {
 		System.out.println("main launched");
-
 		ObjectMapper mapper = new ObjectMapper();
 
-		List<OTF> plateau = Arrays.asList(mapper.readValue(Paths.get("src/sheet/test.json").toFile(), OTF[].class));
 
-		for(OTF o : plateau)
+		//create entire JSON tree
+		//useful to load everything : creating / removing theme easier
+		JsonNode json = mapper.readTree(Paths.get("files/sheet/gameset.json").toFile());
+		
+		//after THEME select, get Theme Tree
+		JsonNode theme_json = json.at("/theme/human");
+
+		//populate game board with "objects" from theme_json tree
+		List<OTF> board = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
+
+		for (OTF otf : board)
 		{
-			System.out.println(o);
-			o.showAttribute();
+			System.out.println(otf);
 		}
+
+
+
+
+		//load save
+		JsonNode save = mapper.readTree(Paths.get("files/saves/save1_sample.json").toFile());
+		
+
 		launch(args);
 	}
 

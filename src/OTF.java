@@ -1,40 +1,34 @@
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import com.fasterxml.jackson.databind.JsonNode;
 
 public class OTF {
 
-    private String id;
-    private String src;
-    private ArrayList<String> attribute;
+	private String id;
+	private String src;
 
-    public OTF(){}
+	private JsonNode attributes;
 
-    /*public OTF(String id, String src, ArrayList<String> attribute){
-        this.id = id;
-        this.src = src;
-        this.attribute = attribute;
-    } commented but usable to manually create an instance*/
+	public OTF(){}
 
-    public String toString(){
-        return "je suis " + this.id + " je lance le test"; 
-    }
-    
-    public void setid(String id){
-        this.id = id;
-    }
+	/*public OTF(String id, String src, ArrayList<String> attributes){
+		this.id = id;
+		this.src = src;
+		this.attribute = attributes;
+	} commented but usable to manually create an instance*/
 
-    public void setsrc(String src){
-        this.src = src;
-    }
+	public String toString(){
+		return "id : " + this.id + "\nattributes : " + attributes + "\n";
+	}
 
-    public void setattribute(ArrayList<String> attribute){
-        this.attribute = attribute;
-    }
+	public void setid(String id){
+		this.id = id;
+	}
 
-    public void showAttribute(){
-        attribute.forEach(System.out::println);
-    }
+	public void setsrc(String src){
+		this.src = src;
+	}
+
+	public void setattributes(JsonNode attributes){
+		this.attributes = attributes;
+	}
 
 }
