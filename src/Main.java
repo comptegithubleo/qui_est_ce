@@ -3,6 +3,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.event.SwingPropertyChangeSupport;
+
 import com.fasterxml.jackson.databind.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -40,17 +42,35 @@ public class Main extends Application {
 		//populate game board with "objects" from theme_json tree
 		List<OTF> board = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
+		//get all themes
+		json.at("/theme").fieldNames().forEachRemaining(System.out::println);
+		
 		for (OTF otf : board)
 		{
 			System.out.println(otf);
 		}
 
-
-
-
-		//load save
-		JsonNode save = mapper.readTree(Paths.get("files/saves/save1_sample.json").toFile());
+		//test user guess (boolean)
+		for (OTF otf : board) {
+			otf.guess("question", "supposed answer");
+		}
 		
+		
+		//===== SAVE HANDLING =====//
+		//load
+		JsonNode save_json = mapper.readTree(Paths.get("files/saves/save1_sample.json").toFile());
+
+		//get theme
+		save_json.at("/theme");
+
+		//get answer
+		save_json.at("/answer");
+
+		//get size
+		save_json.at("/size");
+
+		//json save to board
+		List<OTF> board2 = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
 		launch(args);
 	}

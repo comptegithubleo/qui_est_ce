@@ -1,11 +1,15 @@
+import java.util.HashMap;
+
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class OTF {
 
 	private String id;
 	private String src;
 
-	private JsonNode attributes;
+	private HashMap<String, String> attributes = new HashMap<String, String>();
 
 	public OTF(){}
 
@@ -28,7 +32,19 @@ public class OTF {
 	}
 
 	public void setattributes(JsonNode attributes){
-		this.attributes = attributes;
+		ObjectMapper mapper = new ObjectMapper();
+		this.attributes = mapper.convertValue(attributes, new TypeReference<HashMap<String, String>>(){});
 	}
 
+	public boolean guess(String question, String guess)
+	{
+		if (this.attributes.containsKey(question))
+		{
+			if(this.attributes.get(question).equals(guess))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 }
