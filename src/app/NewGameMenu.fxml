@@ -13,7 +13,7 @@
             <Font size="49.0" />
          </font>
       </Text>
-      <Button defaultButton="true" layoutX="200.0" layoutY="448.0" mnemonicParsing="false" onAction="#switchScene_Game" prefHeight="38.0" prefWidth="89.0" text="Play">
+      <Button defaultButton="true" layoutX="200.0" layoutY="448.0" mnemonicParsing="false" onAction="#switchScene_Board" prefHeight="38.0" prefWidth="89.0" text="Play">
          <font>
             <Font size="15.0" />
          </font>
