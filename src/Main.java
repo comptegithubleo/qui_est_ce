@@ -87,7 +87,8 @@ public class Main extends Application {
 
 		try 
 		{
-			//for now a save overwrite another... to uptdate. (-> maybe with a file coutning system ?)
+			//Method need to be implemented elsewhere...
+			//for now a save overwrite another : to uptdate. (-> maybe with a file coutning system ?)
 
 			ObjectMapper mapper3 = new ObjectMapper();
 			JsonNode jsonNode = mapper.createObjectNode();
