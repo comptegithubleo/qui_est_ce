@@ -87,12 +87,12 @@ public class Main extends Application {
 
 		try 
 		{
-			//for now a save overwrite another... to uptdate.
+			//for now a save overwrite another... to uptdate. (-> maybe with a file coutning system ?)
 
 			ObjectMapper mapper3 = new ObjectMapper();
 			JsonNode jsonNode = mapper.createObjectNode();
 			
-			//saving theme and answer to JSON as (--> "key" : "value")
+			//saving theme and answer to JSON as (-> "key" : "value")
 			((ObjectNode)jsonNode).put("theme" , save_json.at("/theme").asText());
 			((ObjectNode)jsonNode).put("answer" , save_json.at("/answer").asText());
 
