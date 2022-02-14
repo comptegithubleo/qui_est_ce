@@ -1,13 +1,18 @@
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.swing.event.SwingPropertyChangeSupport;
 
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -80,11 +85,21 @@ public class Main extends Application {
 		//Save objects in json
 		//
 
-		try {
+		try 
+		{
 			ObjectMapper mapper3= new ObjectMapper();
-			mapper3.writeValue(Paths.get("src/save1.json").toFile(), board2);
-			System.out.println("Créé !");
+			JsonNode jsonNode = mapper.createObjectNode();
+			((ObjectNode)jsonNode).put("theme",save_json.at("/theme").asText());
+			((ObjectNode)jsonNode).put("answer",save_json.at("/answer").asText());
+			ArrayNode size = (ArrayNode)save_json.at("/size");
+			((ObjectNode)jsonNode).putArray("size").addAll(size);
 
+			JsonNode jsonNode2 = mapper3.valueToTree(board2);
+			((ObjectNode)jsonNode).put("objects",jsonNode2);
+
+			mapper3.writeValue(Paths.get("src/save1.json").toFile(), jsonNode);
+			
+			System.out.println("Créé !");
 		}
 		catch(Exception e) {
 			e.printStackTrace();
