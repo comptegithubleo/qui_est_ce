@@ -95,7 +95,7 @@ public class Main extends Application {
 			((ObjectNode)jsonNode).putArray("size").addAll(size);
 
 			JsonNode jsonNode2 = mapper3.valueToTree(board2);
-			((ObjectNode)jsonNode).put("objects",jsonNode2);
+			((ObjectNode)jsonNode).set("objects",jsonNode2);
 
 			mapper3.writeValue(Paths.get("src/save1.json").toFile(), jsonNode);
 			
