@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.event.SwingPropertyChangeSupport;
 
 import com.fasterxml.jackson.databind.*;
@@ -101,12 +104,16 @@ public class Main extends Application {
 			ArrayNode size = (ArrayNode)save_json.at("/size");
 			((ObjectNode)jsonNode).putArray("size").addAll(size);
 
+			//Saving date and time
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss yyyy/MM/dd"); //Time format
+			((ObjectNode)jsonNode).put("date" , dtf.format(LocalDateTime.now()));
+
 			//save all the present object in the JSON file
 			JsonNode jsonNode2 = mapper3.valueToTree(board2);
 			((ObjectNode)jsonNode).set("objects",jsonNode2);
 
 			//save all modifications in the file
-			mapper3.writeValue(Paths.get("src/save1.json").toFile(), jsonNode);
+			mapper3.writeValue(Paths.get("files/saves/save1.json").toFile(), jsonNode);
 		}
 		catch(Exception e) {
 			e.printStackTrace();
