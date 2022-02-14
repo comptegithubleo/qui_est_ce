@@ -6,19 +6,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class OTF {
 
-	private String id;
-	private String src;
+	public Boolean eliminated=false;
+	public String id;
+	public String src;
 
-	private HashMap<String, String> attributes = new HashMap<String, String>();
+	public HashMap<String, String> attributes = new HashMap<String, String>();
+
+
+	public OTF(Boolean eliminated, String id, String src){
+		this.eliminated=false;
+		this.id=id;
+		this.src=src;
+	}
 
 	public OTF(){}
-
-	/*public OTF(String id, String src, ArrayList<String> attributes){
-		this.id = id;
-		this.src = src;
-		this.attribute = attributes;
-	} commented but usable to manually create an instance*/
-
+	
 	public String toString(){
 		return "id : " + this.id + "\nattributes : " + attributes + "\n";
 	}
@@ -47,4 +49,5 @@ public class OTF {
 		}
 		return false;
 	}
+
 }

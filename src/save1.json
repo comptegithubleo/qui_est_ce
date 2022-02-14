@@ -1,0 +1,19 @@
+[{
+    "eliminated": false,
+    "id": "Thomas",
+    "src": "image/HumanTheme/Thomas.png",
+    "attributes": {
+        "glasses": "true",
+        "hair": "blond",
+        "eyes color": "black"
+    }
+}, {
+    "eliminated": false,
+    "id": "Mathilde",
+    "src": "image/HumanTheme/Mathilde.png",
+    "attributes": {
+        "glasses": "true",
+        "hair": "brown",
+        "eyes color": "blue"
+    }
+}]

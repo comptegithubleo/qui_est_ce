@@ -75,5 +75,22 @@ public class Main extends Application {
 		List<OTF> board2 = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
 		launch(args);
+
+		//
+		//Save objects in json
+		//
+
+		try {
+			ObjectMapper mapper3= new ObjectMapper();
+			mapper3.writeValue(Paths.get("src/save1.json").toFile(), board2);
+			System.out.println("Créé !");
+
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+
+		}
+		
+
 	}
 }
