@@ -15,19 +15,21 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	@Override
-	public void start(Stage primaryStage)
+	public void start(Stage stage)
 	{
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("app/Menu.fxml"));
-			Scene scene = new Scene(root, 600, 400);
-			primaryStage.setScene(scene);
-			primaryStage.show();
+			Scene scene = new Scene(root, 700, 400);
+			stage.setScene(scene);
+			stage.setResizable(false);
+			stage.show();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 	public static void main(String[] args) throws Exception {
+		
 		System.out.println("main launched");
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -74,7 +76,4 @@ public class Main extends Application {
 
 		launch(args);
 	}
-
-
-
 }
