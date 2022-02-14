@@ -1,0 +1,31 @@
+{
+	"theme": "human",
+	"answer": "Thomas",
+	"size": [0,1],
+
+	"objects" : [
+		{
+			"id" : "Thomas",
+			"src" : "image/HumanTheme/Thomas.png",
+
+			"attributes" :
+			{
+				"hair" : "blond",
+				"eyes color" : "black",
+				"glasses" : "true"
+			}
+		},
+
+		{
+			"id" : "Mathilde",
+			"src" : "image/HumanTheme/Mathilde.png",
+
+			"attributes" :
+			{
+				"hair" : "brown",
+				"eyes color" : "blue",
+				"glasses" : "true"
+			}
+		}
+	]
+}

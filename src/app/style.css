@@ -1,0 +1,10 @@
+#btn_play, #btn_menu, #btn_quit {
+	-fx-border-color: transparent;
+	-fx-border-width: 0;
+	-fx-background-radius: 0;
+	-fx-background-color: transparent;
+}
+
+#board_grid {
+	-fx-background-color: red;
+}

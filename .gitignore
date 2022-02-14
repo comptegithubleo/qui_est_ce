@@ -2,7 +2,9 @@
 **/.vscode
 
 # ignore lib / dependencies
+# ignore bin compiled files
 **/lib
+**/bin
 
 #ignore MacOS / Eclipse files
 .DS_Store

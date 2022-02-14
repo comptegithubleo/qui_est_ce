@@ -1,0 +1,61 @@
+{
+	"theme": {
+
+		"human" : {
+			"objects" : [
+				{
+					"id" : "Thomas",
+					"src" : "image/HumanTheme/Thomas.png",
+
+					"attributes" :
+					{
+						"hair" : "blond",
+						"eyes color" : "black",
+						"glasses" : "true"
+					}
+				},
+
+				{
+					"id" : "Mathilde",
+					"src" : "image/HumanTheme/Mathilde.png",
+
+					"attributes" :
+					{
+						"hair" : "brown",
+						"eyes color" : "blue",
+						"glasses" : "true"
+					}
+				}
+			]
+		},
+
+		"animals" : {
+			"objects" : [
+				{
+					"id" : "Cat",
+					"src" : "image/AnimalsTheme/Cat.png",
+
+					"attributes" :
+					{
+						"eyes-color" : "green",
+						"fur color" : "white",
+						"fur" : "long"
+					}
+
+				},
+
+				{
+					"id" : "Dog",
+					"src" : "image/AnimalsTheme/Dog.png",
+
+					"attributes" :
+					{
+						"eyes-color" : "brown",
+						"fur color" : "brown",
+						"fur" : "shorts"
+					}
+				}
+			]
+		}
+	}
+}
