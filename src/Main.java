@@ -87,19 +87,25 @@ public class Main extends Application {
 
 		try 
 		{
-			ObjectMapper mapper3= new ObjectMapper();
+			//for now a save overwrite another... to uptdate.
+
+			ObjectMapper mapper3 = new ObjectMapper();
 			JsonNode jsonNode = mapper.createObjectNode();
-			((ObjectNode)jsonNode).put("theme",save_json.at("/theme").asText());
-			((ObjectNode)jsonNode).put("answer",save_json.at("/answer").asText());
+			
+			//saving theme and answer to JSON as (--> "key" : "value")
+			((ObjectNode)jsonNode).put("theme" , save_json.at("/theme").asText());
+			((ObjectNode)jsonNode).put("answer" , save_json.at("/answer").asText());
+
+			//saving the size array into JSON
 			ArrayNode size = (ArrayNode)save_json.at("/size");
 			((ObjectNode)jsonNode).putArray("size").addAll(size);
 
+			//save all the present object in the JSON file
 			JsonNode jsonNode2 = mapper3.valueToTree(board2);
 			((ObjectNode)jsonNode).set("objects",jsonNode2);
 
+			//save all modifications in the file
 			mapper3.writeValue(Paths.get("src/save1.json").toFile(), jsonNode);
-			
-			System.out.println("Créé !");
 		}
 		catch(Exception e) {
 			e.printStackTrace();
