@@ -75,5 +75,46 @@ public class Main extends Application {
 		List<OTF> board2 = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
 		launch(args);
+<<<<<<< Updated upstream
+=======
+
+		//
+		//Save objects in json
+		//
+
+		try 
+		{
+			//Method need to be implemented elsewhere...
+			//for now a save overwrite another : to uptdate. (-> maybe with a file counting system ?)
+
+			ObjectMapper mapper3 = new ObjectMapper();
+			JsonNode jsonNode = mapper.createObjectNode();
+			
+			//saving theme and answer to JSON as (-> "key" : "value")
+			((ObjectNode)jsonNode).put("theme" , save_json.at("/theme").asText());
+			((ObjectNode)jsonNode).put("answer" , save_json.at("/answer").asText());
+
+			//saving the size array into JSON
+			ArrayNode size = (ArrayNode)save_json.at("/size");
+			((ObjectNode)jsonNode).putArray("size").addAll(size);
+
+			//Saving date and time
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss yyyy/MM/dd"); //Time format
+			((ObjectNode)jsonNode).put("date" , dtf.format(LocalDateTime.now()));
+
+			//save all the present object in the JSON file
+			JsonNode jsonNode2 = mapper3.valueToTree(board2);
+			((ObjectNode)jsonNode).set("objects",jsonNode2);
+
+			//save all modifications in the file
+			mapper3.writeValue(Paths.get("files/saves/save1.json").toFile(), jsonNode);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+
+		}
+		
+
+>>>>>>> Stashed changes
 	}
 }

@@ -2,30 +2,319 @@
 	"theme": {
 
 		"human" : {
-			"objects" : [
-				{
-					"id" : "Thomas",
-					"src" : "image/HumanTheme/Thomas.png",
-
-					"attributes" :
-					{
-						"hair" : "blond",
-						"eyes color" : "black",
-						"glasses" : "true"
+			"objects" :[
+				{ "id" : "alfred",
+					"src" : "files/images/personnagesbase/Alfred.png ",
+					"attribute" : {
+					"cheveux" : "long",
+					"couleurchev" : "roux",
+					"genre" : "homme",
+					"barbe" : "non",
+					"moustache" : "oui",
+					"lunettes" : "non",
+					"chapeau" : "non"
+				}
+				},
+			
+				{ "id" : "anita",
+					"src" : "files/images/personnagesbase/Anita.png ",
+					"attribute" : {
+						"cheveux" : "long",
+						"couleurchev" : "blond",
+						"genre" : "femme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
 					}
 				},
-
-				{
-					"id" : "Mathilde",
-					"src" : "image/HumanTheme/Mathilde.png",
-
-					"attributes" :
-					{
-						"hair" : "brown",
-						"eyes color" : "blue",
-						"glasses" : "true"
+			
+				{ "id" : "anna",
+					"src" : "files/images/personnagesbase/Anna.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "brun",
+						"genre" : "femme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "charlie",
+					"src" : "files/images/personnagesbase/Charlie.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "blond",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "oui",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "clara",
+					"src" : "files/images/personnagesbase/Clara.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "roux",
+						"genre" : "femme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "oui",
+						"chapeau" : "oui"
+					}
+				},
+			
+				{ "id" : "eric",
+					"src" : "files/images/personnagesbase/Eric.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "blanc",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "felix",
+					"src" : "files/images/personnagesbase/Felix.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "blond",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "oui"
+					}
+				},
+			
+				{ "id" : "jeremie",
+					"src" : "files/images/personnagesbase/Jeremie.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "chatain",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "oui"
+					}
+				},
+			
+				{ "id" : "leon",
+					"src" : "files/images/personnagesbase/Leon.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "blond",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "oui",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "luc",
+					"src" : "files/images/personnagesbase/Luc.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "brun",
+						"genre" : "homme",
+						"barbe" : "oui",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "lucas",
+					"src" : "files/images/personnagesbase/Lucas.png ",
+					"attribute" : {
+						"cheveux" : "calvitie",
+						"couleurchev" : "roux",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "manu",
+					"src" : "files/images/personnagesbase/Manu.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "chatain",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "oui",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+				
+				{ "id" : "maria",
+					"src" : "files/images/personnagesbase/Maria.png ",
+					"attribute" : {
+						"cheveux" : "long",
+						"couleurchev" : "chatain",
+						"genre" : "femme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "oui"
+					}
+				},
+			
+				{ "id" : "mario",
+					"src" : "files/images/personnagesbase/Mario.png",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "blond",
+						"genre" : "homme",
+						"barbe" : "oui",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "martin",
+					"src" : "files/images/personnagesbase/Martin.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "blanc",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "oui"
+					}
+				},
+			
+				{ "id" : "max",
+					"src" : "files/images/personnagesbase/Max.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "brun",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "oui",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "omar",
+					"src" : "files/images/personnagesbase/Omar.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "roux",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "oscar",
+					"src" : "files/images/personnagesbase/Oscar.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "chatain",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "romeo",
+					"src" : "files/images/personnagesbase/Romeo.png ",
+					"attribute" : {
+						"cheveux" : "calvitie",
+						"couleurchev" : "chatain",
+						"genre" : "homme",
+						"barbe" : "oui",
+						"moustache" : "oui",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "samuel",
+					"src" : "files/images/personnagesbase/Samuel.png ",
+					"attribute" : {
+						"cheveux" : "calvitie",
+						"couleurchev" : "blanc",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "oui",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "simon",
+					"src" : "files/images/personnagesbase/Simon.png ",
+					"attribute" : {
+						"cheveux" : "court",
+						"couleurchev" : "blanc",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "oui",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "suzanne",
+					"src" : "files/images/personnagesbase/Suzanne.png ",
+					"attribute" : {
+						"cheveux" : "long",
+						"couleurchev" : "blanc",
+						"genre" : "femme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "timeo",
+					"src" : "files/images/personnagesbase/Timeo.png ",
+					"attribute" : {
+						"cheveux" : "calvitie",
+						"couleurchev" : "brun",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "oui",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ "id" : "tony",
+					"src" : "files/images/personnagesbase/Tony.png ",
+					"attribute" : {
+						"cheveux" : "calvitie",
+						"couleurchev" : "roux",
+						"genre" : "homme",
+						"barbe" : "oui",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
 					}
 				}
+				
 			]
 		},
 
