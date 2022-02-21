@@ -17,7 +17,7 @@ public class OTF {
 		this.id = id;
 		this.src = src;
 		this.attribute = attributes;
-	} commented but usable to manually create an instance*/
+	} commented but usable to manually create an instance, mostly debug*/
 
 	public String toString(){
 		return "id : " + this.id + "\nattributes : " + attributes + "\n";
