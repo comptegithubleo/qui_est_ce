@@ -98,7 +98,7 @@ public class Main extends Application {
 
 		ObjectMapper mapper2 = new ObjectMapper();
 		mapper2.setVisibility(PropertyAccessor.FIELD,Visibility.ANY);
-		JsonNode jsonNode = mapper.createObjectNode();
+		JsonNode jsonNode = mapper2.createObjectNode();
 		
 		//saving theme and answer to JSON as (-> "key" : "value")
 		((ObjectNode)jsonNode).put("theme" , test1.getTheme());
