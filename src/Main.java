@@ -1,4 +1,6 @@
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -6,6 +8,9 @@ import java.util.Map;
 import javax.swing.event.SwingPropertyChangeSupport;
 
 import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -75,8 +80,6 @@ public class Main extends Application {
 		List<OTF> board2 = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
 		launch(args);
-<<<<<<< Updated upstream
-=======
 
 		//
 		//Save objects in json
@@ -115,6 +118,6 @@ public class Main extends Application {
 		}
 		
 
->>>>>>> Stashed changes
+
 	}
 }
