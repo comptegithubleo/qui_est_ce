@@ -27,6 +27,10 @@ public class OTF {
 		this.id = id;
 	}
 
+	public String getId(){
+		return id;
+	}
+
 	public void setsrc(String src){
 		this.src = src;
 	}

@@ -38,6 +38,8 @@ public class Main extends Application {
 	public static void main(String[] args) throws Exception {
 		
 		System.out.println("main launched");
+
+
 		ObjectMapper mapper = new ObjectMapper();
 
 
@@ -51,9 +53,10 @@ public class Main extends Application {
 		//populate game board with "objects" from theme_json tree
 		List<OTF> board = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
+		Board test1 = new Board(board, 5, 3 , 2, "human");
+		test1.printBoard();
 
-
-		//get all themes
+		/*//get all themes
 		json.at("/theme").fieldNames().forEachRemaining(System.out::println);
 		
 		for (OTF otf : board)
@@ -81,7 +84,7 @@ public class Main extends Application {
 		save_json.at("/size");
 
 		//json save to board
-		List<OTF> board2 = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
+		List<OTF> board2 = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));*/
 
 		
 
@@ -91,38 +94,39 @@ public class Main extends Application {
 
 		
 		//Method need to be implemented elsewhere...
-		//for now a save overwrite another : to uptdate. (-> maybe with a file counting system ?)
+		//for now a save overwrite another : to update. (-> maybe with a file counting system ?)
 
-		ObjectMapper mapper3 = new ObjectMapper();
-		mapper3.setVisibility(PropertyAccessor.FIELD,Visibility.ANY);
+		ObjectMapper mapper2 = new ObjectMapper();
+		mapper2.setVisibility(PropertyAccessor.FIELD,Visibility.ANY);
 		JsonNode jsonNode = mapper.createObjectNode();
 		
 		//saving theme and answer to JSON as (-> "key" : "value")
-		((ObjectNode)jsonNode).put("theme" , save_json.at("/theme").asText());
-		((ObjectNode)jsonNode).put("answer" , save_json.at("/answer").asText());
+		((ObjectNode)jsonNode).put("theme" , test1.getTheme());
+		((ObjectNode)jsonNode).put("answer" , test1.getITF().getId());
 
 		//saving the size array into JSON
-		ArrayNode size = (ArrayNode)save_json.at("/size");
-		((ObjectNode)jsonNode).putArray("size").addAll(size);
+		ArrayNode sizeConvert = mapper2.valueToTree(test1.getSize());
+		((ObjectNode)jsonNode).putArray("size").addAll(sizeConvert);
 
 		//Saving date and time
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss yyyy/MM/dd"); //Time format
 		((ObjectNode)jsonNode).put("date" , dtf.format(LocalDateTime.now()));
 
 		//save all the present object in the JSON file
-		JsonNode jsonNode2 = mapper3.valueToTree(board2);
-		((ObjectNode)jsonNode).set("objects",jsonNode2);
+		ArrayNode boardConvert = mapper2.valueToTree(test1.getBoard());
+		((ObjectNode)jsonNode).set("objects", boardConvert);
+
+		
 
 		//save all modifications in the file
-		mapper3.writeValue(Paths.get("files/save/save.json").toFile(), jsonNode);
+		mapper2.writeValue(Paths.get("files/save/save.json").toFile(), jsonNode);
 	
 		
 
 
 		System.out.println("__________________________________ \n");
 
-		Board test1 = new Board(board, 5);
-		test1.printBoard();
+		
 
 
 		launch(args);
