@@ -5,6 +5,7 @@
 # ignore bin compiled files
 **/lib
 **/bin
+*.class
 
 #ignore MacOS / Eclipse files
 .DS_Store
