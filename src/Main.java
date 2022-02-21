@@ -69,7 +69,7 @@ public class Main extends Application {
 		
 		//===== SAVE HANDLING =====//
 		//load
-		JsonNode save_json = mapper.readTree(Paths.get("files/saves/save1_sample.json").toFile());
+		JsonNode save_json = mapper.readTree(Paths.get("files/save/save_sample.json").toFile());
 
 		//get theme
 		save_json.at("/theme");
@@ -114,7 +114,7 @@ public class Main extends Application {
 		((ObjectNode)jsonNode).set("objects",jsonNode2);
 
 		//save all modifications in the file
-		mapper3.writeValue(Paths.get("files/saves/save1.json").toFile(), jsonNode);
+		mapper3.writeValue(Paths.get("files/save/save.json").toFile(), jsonNode);
 	
 		
 
