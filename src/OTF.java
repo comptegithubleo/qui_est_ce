@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -8,16 +9,15 @@ public class OTF {
 
 	private String id;
 	private String src;
-
 	private HashMap<String, String> attributes = new HashMap<String, String>();
 
 	public OTF(){}
 
-	/*public OTF(String id, String src, ArrayList<String> attributes){
+	public OTF(String id, String src, HashMap<String, String> attributes){
 		this.id = id;
 		this.src = src;
-		this.attribute = attributes;
-	} commented but usable to manually create an instance, mostly debug*/
+		this.attributes = attributes;
+	}
 
 	public String toString(){
 		return "id : " + this.id + "\nattributes : " + attributes + "\n";

@@ -7,6 +7,8 @@ import java.util.Map;
 
 import javax.swing.event.SwingPropertyChangeSupport;
 
+import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -49,6 +51,8 @@ public class Main extends Application {
 		//populate game board with "objects" from theme_json tree
 		List<OTF> board = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
+
+
 		//get all themes
 		json.at("/theme").fieldNames().forEachRemaining(System.out::println);
 		
@@ -79,45 +83,48 @@ public class Main extends Application {
 		//json save to board
 		List<OTF> board2 = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
-		launch(args);
+		
 
 		//
 		//Save objects in json
 		//
 
-		try 
-		{
-			//Method need to be implemented elsewhere...
-			//for now a save overwrite another : to uptdate. (-> maybe with a file counting system ?)
+		
+		//Method need to be implemented elsewhere...
+		//for now a save overwrite another : to uptdate. (-> maybe with a file counting system ?)
 
-			ObjectMapper mapper3 = new ObjectMapper();
-			JsonNode jsonNode = mapper.createObjectNode();
-			
-			//saving theme and answer to JSON as (-> "key" : "value")
-			((ObjectNode)jsonNode).put("theme" , save_json.at("/theme").asText());
-			((ObjectNode)jsonNode).put("answer" , save_json.at("/answer").asText());
+		ObjectMapper mapper3 = new ObjectMapper();
+		mapper3.setVisibility(PropertyAccessor.FIELD,Visibility.ANY);
+		JsonNode jsonNode = mapper.createObjectNode();
+		
+		//saving theme and answer to JSON as (-> "key" : "value")
+		((ObjectNode)jsonNode).put("theme" , save_json.at("/theme").asText());
+		((ObjectNode)jsonNode).put("answer" , save_json.at("/answer").asText());
 
-			//saving the size array into JSON
-			ArrayNode size = (ArrayNode)save_json.at("/size");
-			((ObjectNode)jsonNode).putArray("size").addAll(size);
+		//saving the size array into JSON
+		ArrayNode size = (ArrayNode)save_json.at("/size");
+		((ObjectNode)jsonNode).putArray("size").addAll(size);
 
-			//Saving date and time
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss yyyy/MM/dd"); //Time format
-			((ObjectNode)jsonNode).put("date" , dtf.format(LocalDateTime.now()));
+		//Saving date and time
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss yyyy/MM/dd"); //Time format
+		((ObjectNode)jsonNode).put("date" , dtf.format(LocalDateTime.now()));
 
-			//save all the present object in the JSON file
-			JsonNode jsonNode2 = mapper3.valueToTree(board2);
-			((ObjectNode)jsonNode).set("objects",jsonNode2);
+		//save all the present object in the JSON file
+		JsonNode jsonNode2 = mapper3.valueToTree(board2);
+		((ObjectNode)jsonNode).set("objects",jsonNode2);
 
-			//save all modifications in the file
-			mapper3.writeValue(Paths.get("files/saves/save1.json").toFile(), jsonNode);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-
-		}
+		//save all modifications in the file
+		mapper3.writeValue(Paths.get("files/saves/save1.json").toFile(), jsonNode);
+	
 		
 
 
+		System.out.println("__________________________________ \n");
+
+		Board test1 = new Board(board, 5);
+		test1.printBoard();
+
+
+		launch(args);
 	}
 }
