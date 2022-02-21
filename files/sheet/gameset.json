@@ -3,9 +3,9 @@
 
 		"human" : {
 			"objects" :[
-				{ "id" : "alfred",
+				{ 	"id" : "alfred",
 					"src" : "files/images/personnagesbase/Alfred.png ",
-					"attribute" : {
+					"attributes" : {
 					"cheveux" : "long",
 					"couleurchev" : "roux",
 					"genre" : "homme",
@@ -16,9 +16,9 @@
 				}
 				},
 			
-				{ "id" : "anita",
+				{ 	"id" : "anita",
 					"src" : "files/images/personnagesbase/Anita.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "long",
 						"couleurchev" : "blond",
 						"genre" : "femme",
@@ -29,9 +29,9 @@
 					}
 				},
 			
-				{ "id" : "anna",
+				{ 	"id" : "anna",
 					"src" : "files/images/personnagesbase/Anna.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "brun",
 						"genre" : "femme",
@@ -42,9 +42,9 @@
 					}
 				},
 			
-				{ "id" : "charlie",
+				{ 	"id" : "charlie",
 					"src" : "files/images/personnagesbase/Charlie.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blond",
 						"genre" : "homme",
@@ -55,9 +55,9 @@
 					}
 				},
 			
-				{ "id" : "clara",
+				{ 	"id" : "clara",
 					"src" : "files/images/personnagesbase/Clara.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "roux",
 						"genre" : "femme",
@@ -68,9 +68,9 @@
 					}
 				},
 			
-				{ "id" : "eric",
+				{ 	"id" : "eric",
 					"src" : "files/images/personnagesbase/Eric.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blanc",
 						"genre" : "homme",
@@ -81,9 +81,9 @@
 					}
 				},
 			
-				{ "id" : "felix",
+				{ 	"id" : "felix",
 					"src" : "files/images/personnagesbase/Felix.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blond",
 						"genre" : "homme",
@@ -94,9 +94,9 @@
 					}
 				},
 			
-				{ "id" : "jeremie",
+				{ 	"id" : "jeremie",
 					"src" : "files/images/personnagesbase/Jeremie.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "chatain",
 						"genre" : "homme",
@@ -107,9 +107,9 @@
 					}
 				},
 			
-				{ "id" : "leon",
+				{ 	"id" : "leon",
 					"src" : "files/images/personnagesbase/Leon.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blond",
 						"genre" : "homme",
@@ -120,9 +120,9 @@
 					}
 				},
 			
-				{ "id" : "luc",
+				{ 	"id" : "luc",
 					"src" : "files/images/personnagesbase/Luc.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "brun",
 						"genre" : "homme",
@@ -133,9 +133,9 @@
 					}
 				},
 			
-				{ "id" : "lucas",
+				{ 	"id" : "lucas",
 					"src" : "files/images/personnagesbase/Lucas.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "calvitie",
 						"couleurchev" : "roux",
 						"genre" : "homme",
@@ -146,9 +146,9 @@
 					}
 				},
 			
-				{ "id" : "manu",
+				{ 	"id" : "manu",
 					"src" : "files/images/personnagesbase/Manu.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "chatain",
 						"genre" : "homme",
@@ -159,9 +159,9 @@
 					}
 				},
 				
-				{ "id" : "maria",
+				{ 	"id" : "maria",
 					"src" : "files/images/personnagesbase/Maria.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "long",
 						"couleurchev" : "chatain",
 						"genre" : "femme",
@@ -172,9 +172,9 @@
 					}
 				},
 			
-				{ "id" : "mario",
+				{ 	"id" : "mario",
 					"src" : "files/images/personnagesbase/Mario.png",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blond",
 						"genre" : "homme",
@@ -185,9 +185,9 @@
 					}
 				},
 			
-				{ "id" : "martin",
+				{ 	"id" : "martin",
 					"src" : "files/images/personnagesbase/Martin.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blanc",
 						"genre" : "homme",
@@ -198,9 +198,9 @@
 					}
 				},
 			
-				{ "id" : "max",
+				{ 	"id" : "max",
 					"src" : "files/images/personnagesbase/Max.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "brun",
 						"genre" : "homme",
@@ -211,9 +211,9 @@
 					}
 				},
 			
-				{ "id" : "omar",
+				{ 	"id" : "omar",
 					"src" : "files/images/personnagesbase/Omar.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "roux",
 						"genre" : "homme",
@@ -224,9 +224,9 @@
 					}
 				},
 			
-				{ "id" : "oscar",
+				{ 	"id" : "oscar",
 					"src" : "files/images/personnagesbase/Oscar.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "chatain",
 						"genre" : "homme",
@@ -237,9 +237,9 @@
 					}
 				},
 			
-				{ "id" : "romeo",
+				{ 	"id" : "romeo",
 					"src" : "files/images/personnagesbase/Romeo.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "calvitie",
 						"couleurchev" : "chatain",
 						"genre" : "homme",
@@ -250,9 +250,9 @@
 					}
 				},
 			
-				{ "id" : "samuel",
+				{ 	"id" : "samuel",
 					"src" : "files/images/personnagesbase/Samuel.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "calvitie",
 						"couleurchev" : "blanc",
 						"genre" : "homme",
@@ -263,9 +263,9 @@
 					}
 				},
 			
-				{ "id" : "simon",
+				{ 	"id" : "simon",
 					"src" : "files/images/personnagesbase/Simon.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blanc",
 						"genre" : "homme",
@@ -276,9 +276,9 @@
 					}
 				},
 			
-				{ "id" : "suzanne",
+				{ 	"id" : "suzanne",
 					"src" : "files/images/personnagesbase/Suzanne.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "long",
 						"couleurchev" : "blanc",
 						"genre" : "femme",
@@ -289,9 +289,9 @@
 					}
 				},
 			
-				{ "id" : "timeo",
+				{ 	"id" : "timeo",
 					"src" : "files/images/personnagesbase/Timeo.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "calvitie",
 						"couleurchev" : "brun",
 						"genre" : "homme",
@@ -302,9 +302,9 @@
 					}
 				},
 			
-				{ "id" : "tony",
+				{ 	"id" : "tony",
 					"src" : "files/images/personnagesbase/Tony.png ",
-					"attribute" : {
+					"attributes" : {
 						"cheveux" : "calvitie",
 						"couleurchev" : "roux",
 						"genre" : "homme",
