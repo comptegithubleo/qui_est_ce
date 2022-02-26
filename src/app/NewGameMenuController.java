@@ -12,7 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
-public class NewGameMenuController implements Initializable, IGlobalFunctions {
+public class NewGameMenuController implements IGlobalFunctions {
 	
 	private Stage stage;
 	private Scene scene;
@@ -21,8 +21,7 @@ public class NewGameMenuController implements Initializable, IGlobalFunctions {
 	@FXML
 	private ChoiceBox<String> choiceTheme;
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize() {
 
 		choiceTheme.getItems().setAll("theme1", "theme2");
 	}

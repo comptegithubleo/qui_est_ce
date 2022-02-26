@@ -40,22 +40,14 @@ public class MenuController implements Initializable, IGlobalFunctions {
 	@FXML
 	Button btn_quit = new Button();
 
-
-	private void setImageView(String imagePath, int width, int height, ImageView imageView)
-	{
-		Image newImage = new Image("file:files/images/" + imagePath, width, height, true, false);
-		imageView.setImage(newImage);
-		imageView.setSmooth(false);
-	}
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		setImageView("UI/menu/background.png", 700, 400, img_background);
-		setImageView("UI/menu/flame_gif.gif", 700, 400, img_flame);
-		setImageView("UI/menu/play.png", 400, 40, img_play);
-		setImageView("UI/menu/menu.png", 50, 60, img_menu);
-		setImageView("UI/menu/quit.png", 50, 60, img_quit);
+		setImageView("files/images/UI/menu/background.png", 700, 400, img_background);
+		setImageView("files/images/UI/menu/flame_gif.gif", 700, 400, img_flame);
+		setImageView("files/images/UI/menu/play.png", 400, 40, img_play);
+		setImageView("files/images/UI/menu/menu.png", 50, 60, img_menu);
+		setImageView("files/images/UI/menu/quit.png", 50, 60, img_quit);
 
 	}
 

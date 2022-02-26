@@ -5,8 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.event.SwingPropertyChangeSupport;
-
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.databind.*;
@@ -18,6 +16,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import main.Board;
+import main.OTF;
 
 public class Main extends Application {
 
@@ -39,10 +39,8 @@ public class Main extends Application {
 		
 		System.out.println("main launched");
 
-
+		//==============================================================================> CREATED IN BOARDCONTROLLER.JAVA
 		ObjectMapper mapper = new ObjectMapper();
-
-
 		//create entire JSON tree
 		//useful to load everything : creating / removing theme easier
 		JsonNode json = mapper.readTree(Paths.get("files/sheet/gameset.json").toFile());
@@ -54,7 +52,11 @@ public class Main extends Application {
 		List<OTF> board = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
 		Board test1 = new Board(board, 5, 3 , 2, "human");
-		test1.printBoard();
+
+
+
+
+
 
 		/*//get all themes
 		json.at("/theme").fieldNames().forEachRemaining(System.out::println);
@@ -102,7 +104,7 @@ public class Main extends Application {
 		
 		//saving theme and answer to JSON as (-> "key" : "value")
 		((ObjectNode)jsonNode).put("theme" , test1.getTheme());
-		((ObjectNode)jsonNode).put("answer" , test1.getITF().getId());
+		((ObjectNode)jsonNode).put("answer" , test1.getITF().getid());
 
 		//saving the size array into JSON
 		ArrayNode sizeConvert = mapper2.valueToTree(test1.getSize());
