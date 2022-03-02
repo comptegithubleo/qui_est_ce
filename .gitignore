@@ -6,7 +6,7 @@
 **/lib
 **/bin
 *.class
-
+**/files/save
 #ignore MacOS / Eclipse files
 .DS_Store
 .classpath
