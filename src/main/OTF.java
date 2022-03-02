@@ -11,6 +11,7 @@ public class OTF {
 
 	private String id;
 	private String src;
+	private Boolean eliminated;
 	private HashMap<String, String> attributes = new HashMap<String, String>();
 
 	public OTF(){}
@@ -35,6 +36,15 @@ public class OTF {
 		this.src = src;
 	}
 
+	public boolean geteliminated()
+	{
+		return eliminated;
+	}
+	public void setEliminated(boolean eliminated)
+	{
+		this.eliminated = eliminated;
+	}
+
 	public HashMap<String, String> getattributes()
 	{
 		return attributes;
@@ -45,7 +55,7 @@ public class OTF {
 	}
 
 
-	public boolean guess(String question, String guess)
+	public boolean guessEasy(String question, String guess)
 	{
 		if (this.attributes.containsKey(question))
 		{

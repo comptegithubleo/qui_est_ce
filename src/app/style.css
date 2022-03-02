@@ -8,3 +8,12 @@
 .board_grid {
 	-fx-background-color: red;
 }
+
+.eliminated {
+	-fx-opacity: 0.5;
+}
+
+.final_hover {
+	-fx-opacity: 1;
+	
+}

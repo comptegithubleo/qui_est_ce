@@ -67,6 +67,18 @@ public class Board {
 		return global_attributes;
 	}
 
+	public boolean guess(String question, String guess)
+	{
+		if (this.ITF.getattributes().containsKey(question))
+		{
+			if(this.ITF.getattributes().get(question).equals(guess))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public void populateGlobalAttributes()
 	{
 		for (OTF o : this.board)

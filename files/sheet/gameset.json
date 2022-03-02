@@ -5,6 +5,7 @@
 			"objects" :[
 				{ 	"id" : "alfred",
 					"src" : "files/images/personnagesbase/Alfred.png ",
+					"eliminated" : false,
 					"attributes" : {
 					"cheveux" : "long",
 					"couleurchev" : "roux",
@@ -18,6 +19,7 @@
 			
 				{ 	"id" : "anita",
 					"src" : "files/images/personnagesbase/Anita.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "long",
 						"couleurchev" : "blond",
@@ -31,6 +33,7 @@
 			
 				{ 	"id" : "anna",
 					"src" : "files/images/personnagesbase/Anna.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "brun",
@@ -44,6 +47,7 @@
 			
 				{ 	"id" : "charlie",
 					"src" : "files/images/personnagesbase/Charlie.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blond",
@@ -57,6 +61,7 @@
 			
 				{ 	"id" : "clara",
 					"src" : "files/images/personnagesbase/Clara.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "roux",
@@ -70,6 +75,7 @@
 			
 				{ 	"id" : "eric",
 					"src" : "files/images/personnagesbase/Eric.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blanc",
@@ -83,6 +89,7 @@
 			
 				{ 	"id" : "felix",
 					"src" : "files/images/personnagesbase/Felix.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blond",
@@ -96,6 +103,7 @@
 			
 				{ 	"id" : "jeremie",
 					"src" : "files/images/personnagesbase/Jeremie.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "chatain",
@@ -109,6 +117,7 @@
 			
 				{ 	"id" : "leon",
 					"src" : "files/images/personnagesbase/Leon.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blond",
@@ -122,6 +131,7 @@
 			
 				{ 	"id" : "luc",
 					"src" : "files/images/personnagesbase/Luc.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "brun",
@@ -135,6 +145,7 @@
 			
 				{ 	"id" : "lucas",
 					"src" : "files/images/personnagesbase/Lucas.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "calvitie",
 						"couleurchev" : "roux",
@@ -148,6 +159,7 @@
 			
 				{ 	"id" : "manu",
 					"src" : "files/images/personnagesbase/Manu.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "chatain",
@@ -161,6 +173,7 @@
 				
 				{ 	"id" : "maria",
 					"src" : "files/images/personnagesbase/Maria.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "long",
 						"couleurchev" : "chatain",
@@ -174,6 +187,7 @@
 			
 				{ 	"id" : "mario",
 					"src" : "files/images/personnagesbase/Mario.png",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blond",
@@ -187,6 +201,7 @@
 			
 				{ 	"id" : "martin",
 					"src" : "files/images/personnagesbase/Martin.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blanc",
@@ -200,6 +215,7 @@
 			
 				{ 	"id" : "max",
 					"src" : "files/images/personnagesbase/Max.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "brun",
@@ -213,6 +229,7 @@
 			
 				{ 	"id" : "omar",
 					"src" : "files/images/personnagesbase/Omar.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "roux",
@@ -226,6 +243,7 @@
 			
 				{ 	"id" : "oscar",
 					"src" : "files/images/personnagesbase/Oscar.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "chatain",
@@ -239,6 +257,7 @@
 			
 				{ 	"id" : "romeo",
 					"src" : "files/images/personnagesbase/Romeo.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "calvitie",
 						"couleurchev" : "chatain",
@@ -252,6 +271,7 @@
 			
 				{ 	"id" : "samuel",
 					"src" : "files/images/personnagesbase/Samuel.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "calvitie",
 						"couleurchev" : "blanc",
@@ -265,6 +285,7 @@
 			
 				{ 	"id" : "simon",
 					"src" : "files/images/personnagesbase/Simon.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "court",
 						"couleurchev" : "blanc",
@@ -278,6 +299,7 @@
 			
 				{ 	"id" : "suzanne",
 					"src" : "files/images/personnagesbase/Suzanne.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "long",
 						"couleurchev" : "blanc",
@@ -291,6 +313,7 @@
 			
 				{ 	"id" : "timeo",
 					"src" : "files/images/personnagesbase/Timeo.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "calvitie",
 						"couleurchev" : "brun",
@@ -304,6 +327,7 @@
 			
 				{ 	"id" : "tony",
 					"src" : "files/images/personnagesbase/Tony.png ",
+					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "calvitie",
 						"couleurchev" : "roux",
@@ -323,7 +347,7 @@
 				{
 					"id" : "Cat",
 					"src" : "image/AnimalsTheme/Cat.png",
-
+					"eliminated" : false,
 					"attributes" :
 					{
 						"eyes-color" : "green",
@@ -336,7 +360,7 @@
 				{
 					"id" : "Dog",
 					"src" : "image/AnimalsTheme/Dog.png",
-
+					"eliminated" : false,
 					"attributes" :
 					{
 						"eyes-color" : "brown",

@@ -22,19 +22,15 @@ import main.OTF;
 public class Main extends Application {
 
 	@Override
-	public void start(Stage stage)
+	public void start(Stage stage) throws Exception
 	{
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("app/Menu.fxml"));
-			Scene scene = new Scene(root, 700, 400);
-			stage.setScene(scene);
-			stage.setResizable(false);
-			stage.show();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
+		Parent root = FXMLLoader.load(getClass().getResource("app/Menu.fxml"));
+		Scene scene = new Scene(root, 700, 400);
+		stage.setScene(scene);
+		stage.setResizable(false);
+		stage.show();
 	}
+
 	public static void main(String[] args) throws Exception {
 		
 		System.out.println("main launched");
