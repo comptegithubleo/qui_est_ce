@@ -1,7 +1,10 @@
 package app;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -9,8 +12,13 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.PropertyAccessor;
+import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -56,26 +64,26 @@ public class BoardController implements IGlobalFunctions {
 	@FXML
 	private Text guess_text;
 	
+	ObjectMapper mapper = new ObjectMapper();
+	
 	public void initialize() throws Exception {
 
-		ObjectMapper mapper = new ObjectMapper();
 
 		JsonNode json = mapper.readTree(Paths.get("files/sheet/gameset.json").toFile());
-		//+ transfer.getTheme()
-		JsonNode theme_json = json.at("/theme/human");
+
+		JsonNode theme_json = json.at("/theme/" + transfer.getTheme());
 		List<OTF> all_obj = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
 		if (transfer.getIsNewGame())
 		{
-			//all_obj.size(),(int)(Math.sqrt(all_obj.size())),(int)(Math.sqrt(all_obj.size()))
-			gameset = new Board(all_obj, 6, 2, 3, "human");
+			gameset = new Board(all_obj,all_obj.size(), (int)(Math.sqrt(all_obj.size())),(int)(Math.sqrt(all_obj.size())), transfer.getTheme());
 		}
 		else {
 			gameset = new Board(transfer.getSave());
 		}
 
 		//NEED TO PASS SIZE ARGS (saved & newgame)
-		grid_anchor.setContent(createGrid(2,2, gameset));
+		grid_anchor.setContent(createGrid((int)(Math.sqrt(gameset.getBoard().size()))+1,(int)(Math.sqrt(gameset.getBoard().size())), gameset));
 
 		populateChoicebox(gameset.getGlobalAttributes());
 
@@ -93,9 +101,12 @@ public class BoardController implements IGlobalFunctions {
 		{
 			for (int j = 0; j < rows; j++)
 			{
-				OTF o = gameset.board.get(index);
-				addImg(i, j, o, tmp_grid);
-				index++;
+				if(index<gameset.getBoard().size()){
+					System.out.println("oui" + index + gameset.getBoard().size() + "\n");
+					OTF o = gameset.getBoard().get(index);
+					addImg(i, j, o, tmp_grid);
+					index++;
+				}
 			}
 		}
 
@@ -113,19 +124,17 @@ public class BoardController implements IGlobalFunctions {
 	{
 		Image image = new Image("file:" + o.getsrc());
 		ImageView img = new ImageView(image);
-		//img.setPreserveRatio(false);
 
 		tmp_grid.add(img, column, row);
+		if (o.geteliminated()) { img.getStyleClass().add("eliminated"); }
 
 		img.setOnMouseClicked(e -> {
-			/*Node source = (Node) e.getTarget();
-			int columnIndex = GridPane.getColumnIndex(source);
-			int rowIndex = GridPane.getRowIndex(source);*/
+
 			System.out.println("Row : " + row + ", Col : " + column + ", Name : " + o.getid());
 
 			if (finalGuessOngoing)
 			{
-				if (o.getid() == gameset.getITF().getid())
+				if (o.getid() == gameset.board.get(gameset.getITF()).getid())
 				{
 					win();
 				}
@@ -135,6 +144,12 @@ public class BoardController implements IGlobalFunctions {
 			}
 			else {
 				eliminate(o, img);
+			}
+
+			try {
+				save();
+			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 		});
 		
@@ -200,7 +215,7 @@ public class BoardController implements IGlobalFunctions {
 			guess_text.setText("FALSE");
 			guess_text.setFill(Color.RED);
 		}
-		System.out.println(gameset.getITF().getid());
+		System.out.println("ITF : " + gameset.board.get(gameset.getITF()).getid());
 	}
 
 	public void finalGuess()
@@ -229,6 +244,37 @@ public class BoardController implements IGlobalFunctions {
 	public void loose()
 	{
 		System.out.println("you loose");
+	}
+
+	public void save() throws IOException
+	{
+		mapper.setVisibility(PropertyAccessor.FIELD,Visibility.ANY);
+		
+		File file = new File("files/save/" + gameset.getTheme() + ".json");
+		file.delete();
+
+		JsonNode jsonNode = mapper.createObjectNode();
+		
+
+		
+		//saving theme and answer to JSON as (-> "key" : "value")
+		((ObjectNode)jsonNode).put("theme" , gameset.getTheme());
+		((ObjectNode)jsonNode).put("answer" , gameset.getITF());
+
+		//saving the size array into JSON
+		ArrayNode sizeConvert = mapper.valueToTree(gameset.getSize());
+		((ObjectNode)jsonNode).putArray("size").addAll(sizeConvert);
+
+		//Saving date and time
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss yyyy/MM/dd"); //Time format
+		((ObjectNode)jsonNode).put("date" , dtf.format(LocalDateTime.now()));
+
+		//save all the present object in the JSON file
+		ArrayNode boardConvert = mapper.valueToTree(gameset.getBoard());
+		((ObjectNode)jsonNode).set("objects", boardConvert);
+
+		//save all modifications in the file
+		mapper.writeValue(Paths.get("files/save/" + gameset.getTheme() + ".json").toFile(), jsonNode);
 	}
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {

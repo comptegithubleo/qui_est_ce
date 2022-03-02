@@ -100,7 +100,7 @@ public class Main extends Application {
 		
 		//saving theme and answer to JSON as (-> "key" : "value")
 		((ObjectNode)jsonNode).put("theme" , test1.getTheme());
-		((ObjectNode)jsonNode).put("answer" , test1.getITF().getid());
+		((ObjectNode)jsonNode).put("answer" , test1.getITF());
 
 		//saving the size array into JSON
 		ArrayNode sizeConvert = mapper2.valueToTree(test1.getSize());

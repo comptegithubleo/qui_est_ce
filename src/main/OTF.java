@@ -12,10 +12,11 @@ public class OTF {
 	private String id;
 	private String src;
 	private Boolean eliminated;
+	
 	private HashMap<String, String> attributes = new HashMap<String, String>();
-
+	
 	public OTF(){}
-
+	
 	public OTF(String id, String src, HashMap<String, String> attributes){
 		this.id = id;
 		this.src = src;
@@ -28,7 +29,7 @@ public class OTF {
 	public void setid(String id){
 		this.id = id;
 	}
-
+	
 	public String getsrc(){
 		return src;
 	}

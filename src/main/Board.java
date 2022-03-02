@@ -19,7 +19,7 @@ public class Board {
 
 	public ArrayList<OTF> board = new ArrayList<OTF>();
 	private String theme;
-	private OTF ITF;
+	private int ITF;
 	private int nbrofOTF;
 	private List<Integer> size;
 	private HashMap<String, ArrayList<String>> global_attributes = new HashMap<String, ArrayList<String>>();
@@ -35,10 +35,11 @@ public class Board {
 		for(OTF i : tmp){
 			this.board.add(i);
 		}
-
-		this.ITF = mapper.treeToValue(json.get("/answer"), OTF.class);
+		
 		this.size = (List<Integer>) Arrays.asList(mapper.treeToValue(json.get("size"), Integer[].class));
 		this.nbrofOTF = this.size.get(0) * this.size.get(1);
+		this.theme = mapper.treeToValue(json.get("theme"), String.class);
+		this.ITF = mapper.treeToValue(json.get("answer"), Integer.class);
 
 		populateGlobalAttributes();
 	}
@@ -62,7 +63,7 @@ public class Board {
 		}
 
 		Random rand = new Random();
-		this.ITF = board.get(rand.nextInt(board.size()));
+		this.ITF = rand.nextInt(board.size());
 
 		populateGlobalAttributes();
 	}
@@ -71,7 +72,12 @@ public class Board {
 		return theme;
 	}
 
-	public OTF getITF(){
+
+	public void setITF(int ITF){
+		this.ITF = ITF;
+	}
+
+	public int getITF(){
 		return ITF;
 	}
 
@@ -93,9 +99,9 @@ public class Board {
 
 	public boolean guess(String question, String guess)
 	{
-		if (this.ITF.getattributes().containsKey(question))
+		if (this.board.get(ITF).getattributes().containsKey(question))
 		{
-			if(this.ITF.getattributes().get(question).equals(guess))
+			if(this.board.get(ITF).getattributes().get(question).equals(guess))
 			{
 				return true;
 			}
