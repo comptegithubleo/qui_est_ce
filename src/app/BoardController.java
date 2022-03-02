@@ -68,6 +68,8 @@ public class BoardController implements IGlobalFunctions {
 		grid_anchor.setContent(createGrid(3, 2, gameset));
 
 		populateChoicebox(gameset.getGlobalAttributes());
+
+
 		
 	}
 	

@@ -11,9 +11,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
+
 import javafx.stage.Stage;
 
 public class MenuController implements Initializable, IGlobalFunctions {
@@ -55,9 +57,14 @@ public class MenuController implements Initializable, IGlobalFunctions {
 
 
 	public void switchScene_NewGameMenu(ActionEvent event) throws IOException {
-		this.difficulty = option.getOption();
+		this.difficulty = transfer.getDifficulty();
 		if (difficulty == null){
-			System.out.println("aie");
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Error.");
+				alert.setHeaderText(null);
+				alert.setContentText("Please, select a difficulty before starting the game.\n(Go to option, select difficulty and Apply !)");
+		
+				alert.showAndWait();
 		}
 		else{
 			System.out.println(difficulty);

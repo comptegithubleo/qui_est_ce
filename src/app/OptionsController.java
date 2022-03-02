@@ -34,7 +34,7 @@ public class OptionsController implements IGlobalFunctions{
         {
             this.difficulty = choice_difficulty.getValue();
         }
-		option.setOption(difficulty);
+		transfer.setDifficulty(difficulty);
     }
 
     public String getDifficulty()
