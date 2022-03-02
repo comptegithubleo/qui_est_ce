@@ -13,6 +13,10 @@ import javafx.stage.Stage;
 
 public interface IGlobalFunctions {
 	
+
+
+	final Optiontransfer option = new Optiontransfer();
+
 	public default void switch_scene(ActionEvent event, String scene_name, Stage stage, Scene scene) throws IOException
 	{
 		Parent root = FXMLLoader.load(getClass().getResource(scene_name + ".fxml"));
