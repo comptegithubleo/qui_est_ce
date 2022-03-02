@@ -298,7 +298,7 @@
 				},
 			
 				{ 	"id" : "suzanne",
-					"src" : "files/images/personnagesbase/Suzanne.png ",
+					"src" : "files/images/personnagesbase/Suzane.png",
 					"eliminated" : false,
 					"attributes" : {
 						"cheveux" : "long",
