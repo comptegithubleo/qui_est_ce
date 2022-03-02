@@ -22,6 +22,8 @@ public class MenuController implements Initializable, IGlobalFunctions {
 	private Scene scene;
 	private Parent root;
 
+	private String difficulty;
+
 	@FXML
 	private ImageView img_background = new ImageView();
 	@FXML
@@ -53,7 +55,13 @@ public class MenuController implements Initializable, IGlobalFunctions {
 
 
 	public void switchScene_NewGameMenu(ActionEvent event) throws IOException {
-		switch_scene(event, "NewGameMenu", stage, scene);
+		this.difficulty = option.getOption();
+		if (difficulty == null){
+			System.out.println("aie");
+		}
+		else{
+			System.out.println(difficulty);
+		switch_scene(event, "NewGameMenu", stage, scene);}
 	}
 	public void switchScene_Options(ActionEvent event) throws IOException {
 		switch_scene(event, "Options", stage, scene);
