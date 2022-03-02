@@ -1,6 +1,8 @@
 package main;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,6 +10,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class Board {
@@ -19,7 +24,26 @@ public class Board {
 	private List<Integer> size;
 	private HashMap<String, ArrayList<String>> global_attributes = new HashMap<String, ArrayList<String>>();
 
-	public Board(List<OTF> givenboard, int nbrofOTF, int sizex, int sizey, String theme){
+	ObjectMapper mapper = new ObjectMapper();
+
+	public Board(String savedboard) throws IOException, Exception
+	{
+		JsonNode json = mapper.readTree(Paths.get("files/save/" + savedboard).toFile());
+		
+		List<OTF> tmp = Arrays.asList(mapper.treeToValue(json.get("objects"), OTF[].class));
+	
+		for(OTF i : tmp){
+			this.board.add(i);
+		}
+
+		this.ITF = mapper.treeToValue(json.get("/answer"), OTF.class);
+		this.size = (List<Integer>) Arrays.asList(mapper.treeToValue(json.get("size"), Integer[].class));
+		this.nbrofOTF = this.size.get(0) * this.size.get(1);
+
+		populateGlobalAttributes();
+	}
+
+	public Board(List<OTF> givenboard, int nbrofOTF, int sizex, int sizey, String theme) {
 
 		this.nbrofOTF = nbrofOTF;
 		this.theme = theme;

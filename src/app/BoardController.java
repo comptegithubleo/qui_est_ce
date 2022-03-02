@@ -33,13 +33,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import main.Board;
 import main.OTF;
+import java.lang.Math;
 
 public class BoardController implements IGlobalFunctions {
 
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	Board gameset;
+	private Board gameset;
 	private boolean finalGuessOngoing = false;
 	
 	@FXML
@@ -55,17 +56,26 @@ public class BoardController implements IGlobalFunctions {
 	@FXML
 	private Text guess_text;
 	
-	public void initialize() throws IOException {
+	public void initialize() throws Exception {
 
 		ObjectMapper mapper = new ObjectMapper();
+
 		JsonNode json = mapper.readTree(Paths.get("files/sheet/gameset.json").toFile());
+		//+ transfer.getTheme()
 		JsonNode theme_json = json.at("/theme/human");
 		List<OTF> all_obj = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
-		int board_size = 6;
-		gameset = new Board(all_obj, board_size, 5, 5, "human");
-		
-		grid_anchor.setContent(createGrid(3, 2, gameset));
+		if (transfer.getIsNewGame())
+		{
+			//all_obj.size(),(int)(Math.sqrt(all_obj.size())),(int)(Math.sqrt(all_obj.size()))
+			gameset = new Board(all_obj, 6, 2, 3, "human");
+		}
+		else {
+			gameset = new Board(transfer.getSave());
+		}
+
+		//NEED TO PASS SIZE ARGS (saved & newgame)
+		grid_anchor.setContent(createGrid(2,2, gameset));
 
 		populateChoicebox(gameset.getGlobalAttributes());
 

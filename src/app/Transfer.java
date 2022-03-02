@@ -5,6 +5,7 @@ public class Transfer {
     private String difficulty;
     private String theme;
     private String save;
+    private boolean newGame;
     
     public Transfer(String difficulty){
         this.difficulty = difficulty;
@@ -16,6 +17,15 @@ public class Transfer {
 
     public void setDifficulty(String difficulty) {
         this.difficulty = difficulty;
+    }
+    
+    public boolean getIsNewGame()
+    {
+        return this.newGame;
+    }
+    public void setIsNewGame(boolean newGame)
+    {
+        this.newGame = newGame;
     }
 
     public String getTheme() {
