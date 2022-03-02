@@ -1,29 +1,49 @@
 package app;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
+import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
-public class OptionsController implements Initializable, IGlobalFunctions {
+public class OptionsController implements IGlobalFunctions{
 
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+    private String difficulty;
 
-	}
+    @FXML
+    ChoiceBox<String> choice_difficulty;
+    @FXML
+    Button apply;
 
-	public void switchScene_Menu(ActionEvent event) throws IOException {
-		switch_scene(event, "Menu", stage, scene);
-	}
+
+    public void initialize() {
+        choice_difficulty.getItems().setAll("Easy", "Normal", "Advanced");
+    }
+
+    public void setDifficulty()
+    {
+        if (choice_difficulty.getValue() != null)
+        {
+            this.difficulty = choice_difficulty.getValue();
+        }
+		option.setOption(difficulty);
+    }
+
+    public String getDifficulty()
+    {
+        return this.difficulty;
+    }
+
+    public void switchScene_Menu(ActionEvent event) throws IOException {
+        switch_scene(event, "Menu", stage, scene);
+    }
 
 }
