@@ -41,5 +41,21 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Text fx:id="easy_text" fill="#545454" layoutX="435.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="120.0" AnchorPane.bottomAnchor="63.2392578125" AnchorPane.rightAnchor="145.0">
+         <font>
+            <Font size="11.0" />
+         </font>
+      </Text>
+      <HBox fx:id="advanced_hbox" alignment="TOP_CENTER" layoutX="26.0" layoutY="319.0" prefHeight="34.0" prefWidth="374.0" spacing="10.0" visible="false" AnchorPane.bottomAnchor="47.0" AnchorPane.leftAnchor="26.0" AnchorPane.rightAnchor="300.0">
+         <children>
+            <ChoiceBox fx:id="choice_question2" prefHeight="25.0" prefWidth="197.0" HBox.hgrow="ALWAYS" />
+            <ChoiceBox fx:id="choice_answer2" prefHeight="25.0" prefWidth="147.0" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </ChoiceBox>
+            <ChoiceBox fx:id="operator" prefHeight="25.0" prefWidth="53.0" />
+         </children>
+      </HBox>
 	</children>
 </AnchorPane>

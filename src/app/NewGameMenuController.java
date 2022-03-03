@@ -63,7 +63,9 @@ public class NewGameMenuController implements IGlobalFunctions {
 
     public void switchScene_BoardSave(ActionEvent event) throws IOException {
 		transfer.setSave(list.getSelectionModel().getSelectedItem());
-		System.out.println(transfer.getSave());
+        String save_name = list.getSelectionModel().getSelectedItem().split("\\.")[0];
+        transfer.setTheme(save_name);
+
         transfer.setIsNewGame(false);
         switch_scene(event, "Board", stage, scene);
     }

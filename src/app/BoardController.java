@@ -1,7 +1,9 @@
 package app;
 
+import java.beans.EventHandler;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,6 +12,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
@@ -21,19 +24,25 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
@@ -58,11 +67,21 @@ public class BoardController implements IGlobalFunctions {
 	@FXML
 	private ChoiceBox<String> choice_answer;
 	@FXML
+	private ChoiceBox<String> choice_question2;
+	@FXML
+	private ChoiceBox<String> choice_answer2;
+	@FXML
+	private ChoiceBox<String> operator;
+	@FXML
 	private Button guess_btn;
 	@FXML
 	private Button finalguess_btn;
 	@FXML
 	private Text guess_text;
+	@FXML
+	private Text easy_text;
+	@FXML
+	private HBox advanced_hbox;
 	
 	ObjectMapper mapper = new ObjectMapper();
 	
@@ -72,6 +91,7 @@ public class BoardController implements IGlobalFunctions {
 		JsonNode json = mapper.readTree(Paths.get("files/sheet/gameset.json").toFile());
 
 		JsonNode theme_json = json.at("/theme/" + transfer.getTheme());
+		System.out.println(transfer.getTheme());
 		List<OTF> all_obj = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
 
 		if (transfer.getIsNewGame())
@@ -81,14 +101,19 @@ public class BoardController implements IGlobalFunctions {
 		else {
 			gameset = new Board(transfer.getSave());
 		}
+		gameset.save();
+		
+		grid_anchor.setContent(createGrid((int)(Math.sqrt(gameset.getBoard().size()))+1,(int)(Math.sqrt(gameset.getBoard().size()))+1, gameset));
 
-		//NEED TO PASS SIZE ARGS (saved & newgame)
-		grid_anchor.setContent(createGrid((int)(Math.sqrt(gameset.getBoard().size()))+1,(int)(Math.sqrt(gameset.getBoard().size())), gameset));
+		if (transfer.getDifficulty().equals("Advanced"))
+		{
+			advanced_hbox.setVisible(true);
+			choice_question2.setDisable(true);
+			choice_answer2.setDisable(true);
+			operator.getItems().addAll("or", "and");
+		}
 
 		populateChoicebox(gameset.getGlobalAttributes());
-
-
-		
 	}
 	
 	private GridPane createGrid(int rows, int columns, Board gameset)
@@ -102,7 +127,6 @@ public class BoardController implements IGlobalFunctions {
 			for (int j = 0; j < rows; j++)
 			{
 				if(index<gameset.getBoard().size()){
-					System.out.println("oui" + index + gameset.getBoard().size() + "\n");
 					OTF o = gameset.getBoard().get(index);
 					addImg(i, j, o, tmp_grid);
 					index++;
@@ -134,23 +158,50 @@ public class BoardController implements IGlobalFunctions {
 
 			if (finalGuessOngoing)
 			{
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				
 				if (o.getid() == gameset.board.get(gameset.getITF()).getid())
 				{
-					win();
+					alert.setTitle("Congratulation !");
+					alert.setHeaderText("You won ! Great job !");
 				}
-				else {
-					loose();
+				else
+				{
+					alert.setTitle("Uh Oh !");
+					alert.setHeaderText("You lost... Try again next time !");
+				}
+				
+				ButtonType reset = new ButtonType("Delete save file.");
+
+				alert.getButtonTypes().clear();
+				alert.getButtonTypes().addAll(reset);
+
+				Optional<ButtonType> result = alert.showAndWait();
+				if (result.get() == reset)
+				{
+					File f = new File("files\\save\\" + transfer.getTheme() +".json");
+					f.delete();
+					try {
+						root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+						stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+						scene = new Scene(root);
+						stage.setScene(scene);
+						stage.setResizable(true);
+						stage.show();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 			else {
 				eliminate(o, img);
+				try {
+					gameset.save();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 
-			try {
-				save();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
 		});
 		
 		img.setOnMouseEntered(e -> {
@@ -187,6 +238,7 @@ public class BoardController implements IGlobalFunctions {
 		for (String key : attributes.keySet())
 		{
 			choice_question.getItems().add(key);
+			choice_question2.getItems().add(key);
 		}
 
 		choice_question.setOnAction(e -> {
@@ -200,22 +252,100 @@ public class BoardController implements IGlobalFunctions {
 			guess_btn.setDisable(true);
 		});
 
+		choice_question2.setOnAction(e -> {
+			choice_answer2.getItems().clear();
+			
+			for (String value : attributes.get(choice_question2.getValue()))
+			{
+				choice_answer2.getItems().add(value);
+			}
+
+			guess_btn.setDisable(true);
+		});
+
 		choice_answer.setOnAction(e -> {
+			if (transfer.getDifficulty().equals("Easy"))
+			{
+				easy_text.setText(gameset.getCompatibleList(choice_question.getValue(), choice_answer.getValue(), gameset.guess(choice_question.getValue(), choice_answer.getValue())).size() + " will be eliminated");
+			}
+			if (transfer.getDifficulty().equals("Advanced"))
+			{
+				if (choice_answer2.getValue() != null)
+				{
+					guess_btn.setDisable(false);
+				}
+			}
 			guess_btn.setDisable(false);
+
+		});
+		choice_answer2.setOnAction(e -> {
+			if (transfer.getDifficulty().equals("Easy"))
+			{
+				easy_text.setText(gameset.getCompatibleList(choice_question.getValue(), choice_answer.getValue(), gameset.guess(choice_question.getValue(), choice_answer.getValue())).size() + " will be eliminated");
+			}
+			if (transfer.getDifficulty().equals("Advanced"))
+			{
+				if (choice_answer.getValue() != null)
+				{
+					guess_btn.setDisable(false);
+				}
+			}
+			guess_btn.setDisable(false);
+		});
+
+		operator.setOnAction(e -> {
+			choice_question2.setDisable(false);
+			choice_answer2.setDisable(false);
 		});
 	}
 
+
 	public void guess()
 	{
-		if (gameset.guess(choice_question.getValue(), choice_answer.getValue()))
-		{
-			guess_text.setText("TRUE");
-			guess_text.setFill(Color.GREEN);
-		} else {
-			guess_text.setText("FALSE");
-			guess_text.setFill(Color.RED);
+		if (transfer.getDifficulty().equals("Easy")){
+			ArrayList<Integer> ListOfCompatible = new ArrayList<Integer>();
+			ListOfCompatible = gameset.getCompatibleList(choice_question.getValue(), choice_answer.getValue(), gameset.guess(choice_question.getValue(), choice_answer.getValue()) );
+			for(int i : ListOfCompatible){
+				gameset.setBoardEliminated(i);
+			}
+
+			grid_anchor.setContent(null);
+			grid_anchor.setContent(createGrid((int)(Math.sqrt(gameset.getBoard().size()))+1,(int)(Math.sqrt(gameset.getBoard().size()))+1, gameset));
 		}
-		System.out.println("ITF : " + gameset.board.get(gameset.getITF()).getid());
+		else if (transfer.getDifficulty().equals("Advanced"))
+		{
+			if(operator.getValue() == null || choice_question2.getValue() == null || choice_answer2.getValue() == null){
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Error.");
+				alert.setHeaderText(null);
+				alert.setContentText("You're playing in advanced mode ! \n please choose a comparative operator and two questions...");
+		
+				alert.showAndWait();
+			}
+			else{
+				if (gameset.guessAdvanced(choice_question.getValue(), choice_answer.getValue(), choice_question2.getValue(), choice_answer2.getValue(), operator.getValue()))
+				{
+					guess_text.setText("TRUE");
+					guess_text.setFill(Color.GREEN);
+				} else {
+					guess_text.setText("FALSE");
+					guess_text.setFill(Color.RED);
+				}
+				System.out.println("ITF : " + gameset.board.get(gameset.getITF()).getid());
+			}
+		}
+		else
+		{
+			if (gameset.guess(choice_question.getValue(), choice_answer.getValue()))
+			{
+				guess_text.setText("TRUE");
+				guess_text.setFill(Color.GREEN);
+			} else {
+				guess_text.setText("FALSE");
+				guess_text.setFill(Color.RED);
+			}
+			System.out.println("ITF : " + gameset.board.get(gameset.getITF()).getid());
+		}
 	}
 
 	public void finalGuess()
@@ -235,46 +365,6 @@ public class BoardController implements IGlobalFunctions {
 			finalguess_btn.setText("Back");
 			finalGuessOngoing = true;
 		}
-	}
-
-	public void win()
-	{
-		System.out.println("you win");
-	}
-	public void loose()
-	{
-		System.out.println("you loose");
-	}
-
-	public void save() throws IOException
-	{
-		mapper.setVisibility(PropertyAccessor.FIELD,Visibility.ANY);
-		
-		File file = new File("files/save/" + gameset.getTheme() + ".json");
-		file.delete();
-
-		JsonNode jsonNode = mapper.createObjectNode();
-		
-
-		
-		//saving theme and answer to JSON as (-> "key" : "value")
-		((ObjectNode)jsonNode).put("theme" , gameset.getTheme());
-		((ObjectNode)jsonNode).put("answer" , gameset.getITF());
-
-		//saving the size array into JSON
-		ArrayNode sizeConvert = mapper.valueToTree(gameset.getSize());
-		((ObjectNode)jsonNode).putArray("size").addAll(sizeConvert);
-
-		//Saving date and time
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss yyyy/MM/dd"); //Time format
-		((ObjectNode)jsonNode).put("date" , dtf.format(LocalDateTime.now()));
-
-		//save all the present object in the JSON file
-		ArrayNode boardConvert = mapper.valueToTree(gameset.getBoard());
-		((ObjectNode)jsonNode).set("objects", boardConvert);
-
-		//save all modifications in the file
-		mapper.writeValue(Paths.get("files/save/" + gameset.getTheme() + ".json").toFile(), jsonNode);
 	}
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
