@@ -2,22 +2,17 @@ package main;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
-import com.fasterxml.jackson.core.exc.StreamWriteException;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -108,7 +103,7 @@ public class Board {
 
 	public boolean guessAdvanced(String question1, String answer1, String question2, String answer2, String operator)
 	{
-		if (operator.equals("and")){
+		if (operator.equals("and")) {
 			if (this.board.get(ITF).getattributes().containsKey(question1) && this.board.get(ITF).getattributes().containsKey(question2))
 			{
 				if(this.board.get(ITF).getattributes().get(question1).equals(answer1) && this.board.get(ITF).getattributes().get(question2).equals(answer2))
@@ -139,10 +134,11 @@ public class Board {
 	}
 
 	public ArrayList<Integer> getCompatibleList(String question, String answer, boolean check){
+
 		ArrayList<Integer> cmpt = new ArrayList<Integer>();
 		int compteur = 0;
 	
-		for (OTF o : board)
+		for (OTF o : this.board)
 		{
 			if (o.getattributes().containsKey(question))
 			{
@@ -150,14 +146,20 @@ public class Board {
 				{
 					if(!o.getattributes().get(question).equals(answer))
 					{
-						cmpt.add(compteur);
+						if (!o.geteliminated())
+						{
+							cmpt.add(compteur);
+						}
 					}
 				}
 				else 
 				{
 					if(o.getattributes().get(question).equals(answer))
 					{
-						cmpt.add(compteur);
+						if (!o.geteliminated())
+						{
+							cmpt.add(compteur);
+						}
 					}
 				}
 			}
@@ -194,7 +196,6 @@ public class Board {
 
 	public void printBoard(){
 		System.out.println(board);
-
 	}
 
 	public void save()

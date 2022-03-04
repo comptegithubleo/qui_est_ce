@@ -2,17 +2,10 @@ package app;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Paths;
 import java.util.Optional;
-import java.util.ResourceBundle;
-
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -23,7 +16,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class SelectionController extends Game implements IGlobalFunctions {
@@ -47,7 +39,7 @@ public class SelectionController extends Game implements IGlobalFunctions {
 
 	public void initialize() throws IOException {
 
-		File folder = new File("files\\save");
+		File folder = new File("files/save");
 		File[] files = folder.listFiles();
 		for (File file : files)
 		{
@@ -63,8 +55,6 @@ public class SelectionController extends Game implements IGlobalFunctions {
 
 		choice_theme.setOnAction(e -> {
 			if (choice_theme.getValue() != null) {
-				choice_sizex.setText("");
-				choice_sizey.setText("");
 				newgame_btn.setDisable(false);
 			}
 		});
@@ -93,9 +83,7 @@ public class SelectionController extends Game implements IGlobalFunctions {
 				}
 			}
 			else {
-				game.setIsNewGame(true);
-				game.setTheme(choice_theme.getValue());
-				switch_scene(event, "Board", stage, scene);
+				launchNewGame(event);
 			}
 		}
 	}
@@ -120,8 +108,23 @@ public class SelectionController extends Game implements IGlobalFunctions {
 	public void launchNewGame(ActionEvent event) throws IOException
 	{
 		game.setTheme(choice_theme.getValue());
-		game.createNewBoard();
-		switch_scene(event, "Board", stage, scene);
+
+		if(game.createNewBoard(Integer.parseInt(choice_sizex.getText()), Integer.parseInt(choice_sizey.getText())))
+		{
+			switch_scene(event, "Board", stage, scene);
+		}
+		else {
+			alertWrongSize();
+		}
+	}
+
+	public void alertWrongSize()
+	{
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Error");
+		alert.setHeaderText(null);
+		alert.setContentText("Incorrect board size (probably too high).\nSet "+ game.getTheme() + " has " + game.board.getNbrofOTF() + " elements.");
+		alert.showAndWait();
 	}
 
 	public void alertEmpty()

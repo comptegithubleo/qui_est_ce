@@ -2,7 +2,6 @@ package app;
 
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -37,7 +36,7 @@ public class Game {
 		}
 	}
 
-	public Board createExistingBoard(String theme_name) throws IOException, Exception
+	public void createExistingBoard(String theme_name) throws IOException, Exception
 	{
 		JsonNode save_json = mapper.readTree(Paths.get("files/save/" + theme_name + ".json").toFile());
 		List<OTF> saved_board = Arrays.asList(mapper.treeToValue(save_json.get("objects"), OTF[].class));
@@ -46,16 +45,19 @@ public class Game {
 		String theme = mapper.treeToValue(save_json.get("theme"), String.class);
 
 		board = new Board(save_json, saved_board, theme, size, ITF);
-
-		return board;
 	}
-	public Board createNewBoard() throws JsonProcessingException
+	public boolean createNewBoard(int sizex, int sizey) throws JsonProcessingException
 	{
 		List<OTF> all_OTF = new LinkedList<OTF>(Arrays.asList(mapper.treeToValue(game.getThemeJson().get("objects"), OTF[].class)));
-		
-		board = new Board(all_OTF, (int)(Math.sqrt(all_OTF.size())),(int)(Math.sqrt(all_OTF.size())), game.getTheme());
 
-		return board;
+		if ((sizex * sizey) > all_OTF.size())
+		{
+			return false;
+		}
+
+		board = new Board(all_OTF, sizex, sizey, game.getTheme());
+
+		return true;
 	}
 
 
