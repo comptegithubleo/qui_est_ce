@@ -33,6 +33,7 @@ public class Board {
 	private int[] size;
 	private HashMap<String, ArrayList<String>> global_attributes = new HashMap<String, ArrayList<String>>();
 
+	public Board(){}
 	public Board(JsonNode save_json, List<OTF> saved_board, String theme, int[] size, int ITF) throws IOException, Exception
 	{
 		this.board = saved_board;

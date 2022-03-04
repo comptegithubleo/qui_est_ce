@@ -18,7 +18,6 @@ public class Game {
 
 	private String difficulty;
 	private String theme;
-	private String save;
 	private boolean newGame;
 	private JsonNode gameset_json;
 	private JsonNode theme_json;
@@ -38,9 +37,9 @@ public class Game {
 		}
 	}
 
-	public Board createExistingBoard() throws IOException, Exception
+	public Board createExistingBoard(String theme_name) throws IOException, Exception
 	{
-		JsonNode save_json = mapper.readTree(Paths.get("files/save/" + game.getSave()).toFile());
+		JsonNode save_json = mapper.readTree(Paths.get("files/save/" + theme_name + ".json").toFile());
 		List<OTF> saved_board = Arrays.asList(mapper.treeToValue(save_json.get("objects"), OTF[].class));
 		int[] size = mapper.treeToValue(save_json.get("size"), int[].class);
 		int ITF = mapper.treeToValue(save_json.get("answer"), Integer.class);
@@ -92,14 +91,5 @@ public class Game {
 		this.theme = theme;
 		theme_json = gameset_json.at("/theme/" + theme);
 	}
-
-	public String getSave() {
-		return save;
-	}
-	public void setSave(String save) {
-		this.save = save;
-	}
-
-
 }
 

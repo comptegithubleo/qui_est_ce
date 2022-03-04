@@ -87,20 +87,15 @@ public class BoardController extends Game implements IGlobalFunctions {
 	
 	public void initialize() throws Exception {
 
-		System.out.println(game.getTheme());
-
-		if (game.getIsNewGame()) {
-			createNewBoard();
-		}
-		else {
-			createExistingBoard();
-		}
-		
 		board.save();
-		
-		grid_anchor.setContent(createGrid((int)(Math.sqrt(board.getBoard().size()))+1,(int)(Math.sqrt(board.getBoard().size()))+1, board));
 
-		populateChoicebox(board.getGlobalAttributes());
+		game.board.printBoard();
+		System.out.println("==");
+		game.board.printBoard();
+		
+		grid_anchor.setContent(createGrid((int)(Math.sqrt(game.board.getNbrofOTF()))+1,(int)(Math.sqrt(game.board.getNbrofOTF()))+1, board));
+
+		populateChoicebox(game.board.getGlobalAttributes());
 	}
 	
 	private GridPane createGrid(int rows, int columns, Board board)
@@ -113,8 +108,8 @@ public class BoardController extends Game implements IGlobalFunctions {
 		{
 			for (int j = 0; j < rows; j++)
 			{
-				if(index<board.getBoard().size()){
-					OTF o = board.getBoard().get(index);
+				if(index < game.board.getNbrofOTF()){
+					OTF o = game.board.getBoard().get(index);
 					addImg(i, j, o, tmp_grid);
 					index++;
 				}
@@ -148,7 +143,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 			}
 			else {
 				eliminate(o, img);
-				board.save();
+				game.board.save();
 			}
 
 		});
@@ -171,7 +166,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 	{
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 
-		if (o.getid() == board.board.get(board.getITF()).getid())
+		if (o.getid() == game.board.getBoard().get(game.board.getITF()).getid())
 		{
 			alert.setTitle("Congratulation !");
 			alert.setHeaderText("You won ! Great job !");
@@ -306,7 +301,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 			}
 
 			grid_anchor.setContent(null);
-			grid_anchor.setContent(createGrid((int)(Math.sqrt(board.getBoard().size()))+1,(int)(Math.sqrt(board.getBoard().size()))+1, board));
+			grid_anchor.setContent(createGrid((int)(Math.sqrt(game.board.getNbrofOTF()))+1,(int)(Math.sqrt(game.board.getNbrofOTF()))+1, board));
 		}
 		else if (game.getDifficulty().equals("Advanced"))
 		{
