@@ -12,10 +12,6 @@ import javafx.scene.Node;
 import javafx.stage.Stage;
 
 public interface IGlobalFunctions {
-	
-
-
-	final Transfer transfer = new Transfer("Normal");
 
 	public default void switch_scene(ActionEvent event, String scene_name, Stage stage, Scene scene) throws IOException
 	{

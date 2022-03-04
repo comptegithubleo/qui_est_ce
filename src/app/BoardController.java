@@ -40,6 +40,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -52,12 +53,11 @@ import main.Board;
 import main.OTF;
 import java.lang.Math;
 
-public class BoardController implements IGlobalFunctions {
+public class BoardController extends Game implements IGlobalFunctions {
 
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-	private Board gameset;
 	private boolean finalGuessOngoing = false;
 	
 	@FXML
@@ -87,36 +87,23 @@ public class BoardController implements IGlobalFunctions {
 	
 	public void initialize() throws Exception {
 
+		System.out.println(game.getTheme());
 
-		JsonNode json = mapper.readTree(Paths.get("files/sheet/gameset.json").toFile());
-
-		JsonNode theme_json = json.at("/theme/" + transfer.getTheme());
-		System.out.println(transfer.getTheme());
-		List<OTF> all_obj = Arrays.asList(mapper.treeToValue(theme_json.get("objects"), OTF[].class));
-
-		if (transfer.getIsNewGame())
-		{
-			gameset = new Board(all_obj,all_obj.size(), (int)(Math.sqrt(all_obj.size())),(int)(Math.sqrt(all_obj.size())), transfer.getTheme());
+		if (game.getIsNewGame()) {
+			createNewBoard();
 		}
 		else {
-			gameset = new Board(transfer.getSave());
+			createExistingBoard();
 		}
-		gameset.save();
 		
-		grid_anchor.setContent(createGrid((int)(Math.sqrt(gameset.getBoard().size()))+1,(int)(Math.sqrt(gameset.getBoard().size()))+1, gameset));
+		board.save();
+		
+		grid_anchor.setContent(createGrid((int)(Math.sqrt(board.getBoard().size()))+1,(int)(Math.sqrt(board.getBoard().size()))+1, board));
 
-		if (transfer.getDifficulty().equals("Advanced"))
-		{
-			advanced_hbox.setVisible(true);
-			choice_question2.setDisable(true);
-			choice_answer2.setDisable(true);
-			operator.getItems().addAll("or", "and");
-		}
-
-		populateChoicebox(gameset.getGlobalAttributes());
+		populateChoicebox(board.getGlobalAttributes());
 	}
 	
-	private GridPane createGrid(int rows, int columns, Board gameset)
+	private GridPane createGrid(int rows, int columns, Board board)
 	{
 		GridPane tmp_grid = new GridPane();
 
@@ -126,8 +113,8 @@ public class BoardController implements IGlobalFunctions {
 		{
 			for (int j = 0; j < rows; j++)
 			{
-				if(index<gameset.getBoard().size()){
-					OTF o = gameset.getBoard().get(index);
+				if(index<board.getBoard().size()){
+					OTF o = board.getBoard().get(index);
 					addImg(i, j, o, tmp_grid);
 					index++;
 				}
@@ -150,56 +137,18 @@ public class BoardController implements IGlobalFunctions {
 		ImageView img = new ImageView(image);
 
 		tmp_grid.add(img, column, row);
+		
 		if (o.geteliminated()) { img.getStyleClass().add("eliminated"); }
 
 		img.setOnMouseClicked(e -> {
 
-			System.out.println("Row : " + row + ", Col : " + column + ", Name : " + o.getid());
-
 			if (finalGuessOngoing)
 			{
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				
-				if (o.getid() == gameset.board.get(gameset.getITF()).getid())
-				{
-					alert.setTitle("Congratulation !");
-					alert.setHeaderText("You won ! Great job !");
-				}
-				else
-				{
-					alert.setTitle("Uh Oh !");
-					alert.setHeaderText("You lost... Try again next time !");
-				}
-				
-				ButtonType reset = new ButtonType("Delete save file.");
-
-				alert.getButtonTypes().clear();
-				alert.getButtonTypes().addAll(reset);
-
-				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == reset)
-				{
-					File f = new File("files\\save\\" + transfer.getTheme() +".json");
-					f.delete();
-					try {
-						root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
-						stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-						scene = new Scene(root);
-						stage.setScene(scene);
-						stage.setResizable(true);
-						stage.show();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-				}
+				finalTry(o, e);
 			}
 			else {
 				eliminate(o, img);
-				try {
-					gameset.save();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				board.save();
 			}
 
 		});
@@ -216,6 +165,45 @@ public class BoardController implements IGlobalFunctions {
 				img.getStyleClass().remove("final_hover");
 			}
 		});
+	}
+
+	public void finalTry(OTF o, MouseEvent e)
+	{
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+
+		if (o.getid() == board.board.get(board.getITF()).getid())
+		{
+			alert.setTitle("Congratulation !");
+			alert.setHeaderText("You won ! Great job !");
+		}
+		else
+		{
+			alert.setTitle("Uh Oh !");
+			alert.setHeaderText("You lost... Try again next time !");
+		}
+		
+		ButtonType reset = new ButtonType("Delete save file.");
+
+		alert.getButtonTypes().clear();
+		alert.getButtonTypes().addAll(reset);
+
+		Optional<ButtonType> result = alert.showAndWait();
+
+		if (result.get() == reset)
+		{
+			File f = new File("files\\save\\" + game.getTheme() +".json");
+			f.delete();
+			try {
+				root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+				stage = (Stage)((Node)e.getSource()).getScene().getWindow();
+				scene = new Scene(root);
+				stage.setScene(scene);
+				stage.setResizable(true);
+				stage.show();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 	
 	public void eliminate(OTF o, ImageView img)
@@ -234,6 +222,14 @@ public class BoardController implements IGlobalFunctions {
 	public void populateChoicebox(HashMap<String, ArrayList<String>> attributes)
 	{
 		guess_btn.setDisable(true);
+		
+		if (game.getDifficulty().equals("Advanced"))
+		{
+			advanced_hbox.setVisible(true);
+			choice_question2.setDisable(true);
+			choice_answer2.setDisable(true);
+			operator.getItems().addAll("or", "and");
+		}
 
 		for (String key : attributes.keySet())
 		{
@@ -264,11 +260,11 @@ public class BoardController implements IGlobalFunctions {
 		});
 
 		choice_answer.setOnAction(e -> {
-			if (transfer.getDifficulty().equals("Easy"))
+			if (game.getDifficulty().equals("Easy"))
 			{
-				easy_text.setText(gameset.getCompatibleList(choice_question.getValue(), choice_answer.getValue(), gameset.guess(choice_question.getValue(), choice_answer.getValue())).size() + " will be eliminated");
+				easy_text.setText(board.getCompatibleList(choice_question.getValue(), choice_answer.getValue(), board.guess(choice_question.getValue(), choice_answer.getValue())).size() + " will be eliminated");
 			}
-			if (transfer.getDifficulty().equals("Advanced"))
+			if (game.getDifficulty().equals("Advanced"))
 			{
 				if (choice_answer2.getValue() != null)
 				{
@@ -279,11 +275,11 @@ public class BoardController implements IGlobalFunctions {
 
 		});
 		choice_answer2.setOnAction(e -> {
-			if (transfer.getDifficulty().equals("Easy"))
+			if (game.getDifficulty().equals("Easy"))
 			{
-				easy_text.setText(gameset.getCompatibleList(choice_question.getValue(), choice_answer.getValue(), gameset.guess(choice_question.getValue(), choice_answer.getValue())).size() + " will be eliminated");
+				easy_text.setText(board.getCompatibleList(choice_question.getValue(), choice_answer.getValue(), board.guess(choice_question.getValue(), choice_answer.getValue())).size() + " will be eliminated");
 			}
-			if (transfer.getDifficulty().equals("Advanced"))
+			if (game.getDifficulty().equals("Advanced"))
 			{
 				if (choice_answer.getValue() != null)
 				{
@@ -302,17 +298,17 @@ public class BoardController implements IGlobalFunctions {
 
 	public void guess()
 	{
-		if (transfer.getDifficulty().equals("Easy")){
+		if (game.getDifficulty().equals("Easy")){
 			ArrayList<Integer> ListOfCompatible = new ArrayList<Integer>();
-			ListOfCompatible = gameset.getCompatibleList(choice_question.getValue(), choice_answer.getValue(), gameset.guess(choice_question.getValue(), choice_answer.getValue()) );
+			ListOfCompatible = board.getCompatibleList(choice_question.getValue(), choice_answer.getValue(), board.guess(choice_question.getValue(), choice_answer.getValue()) );
 			for(int i : ListOfCompatible){
-				gameset.setBoardEliminated(i);
+				board.setBoardEliminated(i);
 			}
 
 			grid_anchor.setContent(null);
-			grid_anchor.setContent(createGrid((int)(Math.sqrt(gameset.getBoard().size()))+1,(int)(Math.sqrt(gameset.getBoard().size()))+1, gameset));
+			grid_anchor.setContent(createGrid((int)(Math.sqrt(board.getBoard().size()))+1,(int)(Math.sqrt(board.getBoard().size()))+1, board));
 		}
-		else if (transfer.getDifficulty().equals("Advanced"))
+		else if (game.getDifficulty().equals("Advanced"))
 		{
 			if(operator.getValue() == null || choice_question2.getValue() == null || choice_answer2.getValue() == null){
 				Alert alert = new Alert(AlertType.INFORMATION);
@@ -323,7 +319,7 @@ public class BoardController implements IGlobalFunctions {
 				alert.showAndWait();
 			}
 			else{
-				if (gameset.guessAdvanced(choice_question.getValue(), choice_answer.getValue(), choice_question2.getValue(), choice_answer2.getValue(), operator.getValue()))
+				if (board.guessAdvanced(choice_question.getValue(), choice_answer.getValue(), choice_question2.getValue(), choice_answer2.getValue(), operator.getValue()))
 				{
 					guess_text.setText("TRUE");
 					guess_text.setFill(Color.GREEN);
@@ -331,12 +327,12 @@ public class BoardController implements IGlobalFunctions {
 					guess_text.setText("FALSE");
 					guess_text.setFill(Color.RED);
 				}
-				System.out.println("ITF : " + gameset.board.get(gameset.getITF()).getid());
+				System.out.println("ITF : " + board.board.get(board.getITF()).getid());
 			}
 		}
 		else
 		{
-			if (gameset.guess(choice_question.getValue(), choice_answer.getValue()))
+			if (board.guess(choice_question.getValue(), choice_answer.getValue()))
 			{
 				guess_text.setText("TRUE");
 				guess_text.setFill(Color.GREEN);
@@ -344,7 +340,7 @@ public class BoardController implements IGlobalFunctions {
 				guess_text.setText("FALSE");
 				guess_text.setFill(Color.RED);
 			}
-			System.out.println("ITF : " + gameset.board.get(gameset.getITF()).getid());
+			System.out.println("ITF : " + board.board.get(board.getITF()).getid());
 		}
 	}
 

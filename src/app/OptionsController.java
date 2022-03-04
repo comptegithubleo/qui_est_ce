@@ -10,13 +10,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.stage.Stage;
 
-public class OptionsController implements IGlobalFunctions{
+public class OptionsController extends Game implements IGlobalFunctions{
 
     private Stage stage;
     private Scene scene;
     private Parent root;
-
-    private String difficulty;
 
     @FXML
     ChoiceBox<String> choice_difficulty;
@@ -26,20 +24,15 @@ public class OptionsController implements IGlobalFunctions{
 
     public void initialize() {
         choice_difficulty.getItems().setAll("Easy", "Normal", "Advanced");
+		choice_difficulty.setValue(game.getDifficulty());
     }
 
     public void setDifficulty()
     {
         if (choice_difficulty.getValue() != null)
         {
-            this.difficulty = choice_difficulty.getValue();
+        	game.setDifficulty(choice_difficulty.getValue());
         }
-		transfer.setDifficulty(difficulty);
-    }
-
-    public String getDifficulty()
-    {
-        return this.difficulty;
     }
 
     public void switchScene_Menu(ActionEvent event) throws IOException {

@@ -13,7 +13,7 @@
       <ImageView fx:id="img_play" fitHeight="40.0" fitWidth="400.0" layoutX="150.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="img_menu" fitHeight="60.0" fitWidth="50.0" layoutX="150.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="img_quit" fitHeight="60.0" fitWidth="50.0" layoutX="500.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true" />
-	<Button fx:id="btn_play" layoutX="250.0" layoutY="260.0" mnemonicParsing="false" onAction="#switchScene_NewGameMenu" prefHeight="40.0" prefWidth="200.0" text="Singleplayer" textFill="TRANSPARENT">
+	<Button fx:id="btn_play" layoutX="250.0" layoutY="260.0" mnemonicParsing="false" onAction="#switchScene_Selection" prefHeight="40.0" prefWidth="200.0" text="Singleplayer" textFill="TRANSPARENT">
          <font>
             <Font size="15.0" />
          </font>

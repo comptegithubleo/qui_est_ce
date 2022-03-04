@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,13 +17,11 @@ import javafx.scene.image.ImageView;
 
 import javafx.stage.Stage;
 
-public class MenuController implements Initializable, IGlobalFunctions {
+public class MenuController extends Game implements IGlobalFunctions {
 
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-
-	private String difficulty;
 
 	@FXML
 	private ImageView img_background = new ImageView();
@@ -44,21 +41,19 @@ public class MenuController implements Initializable, IGlobalFunctions {
 	@FXML
 	Button btn_quit = new Button();
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
+	public void initialize() {
+
+		setDifficulty("Normal");
 
 		setImageView("files/images/UI/menu/background.png", 700, 400, img_background);
 		setImageView("files/images/UI/menu/flame_gif.gif", 700, 400, img_flame);
 		setImageView("files/images/UI/menu/play.png", 400, 40, img_play);
 		setImageView("files/images/UI/menu/menu.png", 50, 60, img_menu);
 		setImageView("files/images/UI/menu/quit.png", 50, 60, img_quit);
-
 	}
 
-
-	public void switchScene_NewGameMenu(ActionEvent event) throws IOException {
-		this.difficulty = transfer.getDifficulty();
-		if (difficulty == null){
+	public void switchScene_Selection(ActionEvent event) throws IOException {
+		if (game.getDifficulty() == null) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Error.");
 				alert.setHeaderText(null);
@@ -66,9 +61,10 @@ public class MenuController implements Initializable, IGlobalFunctions {
 		
 				alert.showAndWait();
 		}
-		else{
-			System.out.println(difficulty);
-		switch_scene(event, "NewGameMenu", stage, scene);}
+		else {
+			System.out.println(game.getDifficulty());
+			switch_scene(event, "Selection", stage, scene);
+		}
 	}
 	public void switchScene_Options(ActionEvent event) throws IOException {
 		switch_scene(event, "Options", stage, scene);

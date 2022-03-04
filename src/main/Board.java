@@ -16,6 +16,8 @@ import java.util.Random;
 
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
+import com.fasterxml.jackson.core.exc.StreamWriteException;
+import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -24,59 +26,42 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 public class Board {
 
-	public ArrayList<OTF> board = new ArrayList<OTF>();
+	public List<OTF> board = new ArrayList<OTF>();
 	private String theme;
 	private int ITF;
 	private int nbrofOTF;
-	private List<Integer> size;
+	private int[] size;
 	private HashMap<String, ArrayList<String>> global_attributes = new HashMap<String, ArrayList<String>>();
 
-	ObjectMapper mapper = new ObjectMapper();
-
-	public Board(String savedboard) throws IOException, Exception
+	public Board(JsonNode save_json, List<OTF> saved_board, String theme, int[] size, int ITF) throws IOException, Exception
 	{
-		JsonNode json = mapper.readTree(Paths.get("files/save/" + savedboard).toFile());
+		this.board = saved_board;
 		
-		List<OTF> tmp = Arrays.asList(mapper.treeToValue(json.get("objects"), OTF[].class));
-	
-		for(OTF i : tmp){
-			this.board.add(i);
-		}
-		
-		this.size = (List<Integer>) Arrays.asList(mapper.treeToValue(json.get("size"), Integer[].class));
-		this.nbrofOTF = this.size.get(0) * this.size.get(1);
-		this.theme = mapper.treeToValue(json.get("theme"), String.class);
-		this.ITF = mapper.treeToValue(json.get("answer"), Integer.class);
+		this.size = size;
+		this.nbrofOTF = this.size[0] * this.size[1];
+		this.ITF = ITF;
+		this.theme = theme;
 
 		populateGlobalAttributes();
 	}
 
-	public Board(List<OTF> givenboard, int nbrofOTF, int sizex, int sizey, String theme) {
+	public Board(List<OTF> all_OTF, int sizex, int sizey, String theme) {
 
-		this.nbrofOTF = nbrofOTF;
+		this.nbrofOTF = sizex * sizey;
+		this.size = new int[] {sizex, sizey};
 		this.theme = theme;
-		this.size = Arrays.asList(sizex,sizey);
-		
-		ArrayList<OTF> save = new ArrayList<OTF>();
-		for(OTF i : givenboard){
-			save.add(i);
-		}
 
 		for(int i=0; i < nbrofOTF ; i++){
 			Random rand = new Random();
-			int nbr = rand.nextInt(save.size());
-			this.board.add(save.get(nbr));
-			save.remove(nbr);
+			int nbr = rand.nextInt(all_OTF.size());
+			this.board.add(all_OTF.get(nbr));
+			all_OTF.remove(nbr);
 		}
 
 		Random rand = new Random();
 		this.ITF = rand.nextInt(board.size());
 
 		populateGlobalAttributes();
-	}
-
-	public String getTheme(){
-		return theme;
 	}
 
 	public void setBoardEliminated(int index){
@@ -95,11 +80,11 @@ public class Board {
 		return nbrofOTF;
 	}
 
-	public List<Integer> getSize(){
+	public int[] getSize(){
 		return size;
 	}
 
-	public ArrayList<OTF> getBoard(){
+	public List<OTF> getBoard(){
 		return board;
 	}
 
@@ -211,16 +196,16 @@ public class Board {
 
 	}
 
-	public void save() throws IOException
+	public void save()
 	{
+		ObjectMapper mapper = new ObjectMapper();
+		
 		mapper.setVisibility(PropertyAccessor.FIELD,Visibility.ANY);
 		
 		File file = new File("files/save/" + this.theme + ".json");
 		file.delete();
 
 		JsonNode jsonNode = mapper.createObjectNode();
-		
-
 		
 		//saving theme and answer to JSON as (-> "key" : "value")
 		((ObjectNode)jsonNode).put("theme" , this.theme);
@@ -239,7 +224,11 @@ public class Board {
 		((ObjectNode)jsonNode).set("objects", boardConvert);
 
 		//save all modifications in the file
-		mapper.writeValue(Paths.get("files/save/" + this.theme + ".json").toFile(), jsonNode);
+		try {
+			mapper.writeValue(Paths.get("files/save/" + this.theme + ".json").toFile(), jsonNode);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 
