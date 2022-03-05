@@ -11,7 +11,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
-
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class MenuController extends Game implements IGlobalFunctions {
@@ -32,6 +33,9 @@ public class MenuController extends Game implements IGlobalFunctions {
 	private ImageView img_quit = new ImageView();
 
 	@FXML
+	Text build_text;
+
+	@FXML
 	Button btn_play = new Button();
 	@FXML
 	Button btn_menu = new Button();
@@ -39,12 +43,14 @@ public class MenuController extends Game implements IGlobalFunctions {
 	Button btn_quit = new Button();
 
 	public void initialize() {
+		Font font_retro = Font.loadFont("file:files/fonts/Retro_Gaming.ttf", 10);
+		build_text.setFont(font_retro);
 
 		setDifficulty("Normal");
 
 		setImageView("files/images/UI/menu/background.png", 700, 400, img_background);
 		setImageView("files/images/UI/menu/flame_gif.gif", 700, 400, img_flame);
-		setImageView("files/images/UI/menu/play.png", 400, 40, img_play);
+		setImageView("files/images/UI/menu/play.png", 405, 72, img_play);
 		setImageView("files/images/UI/menu/menu.png", 50, 60, img_menu);
 		setImageView("files/images/UI/menu/quit.png", 50, 60, img_quit);
 	}
@@ -59,7 +65,6 @@ public class MenuController extends Game implements IGlobalFunctions {
 				alert.showAndWait();
 		}
 		else {
-			System.out.println(game.getDifficulty());
 			switch_scene(event, "Selection", stage, scene);
 		}
 	}

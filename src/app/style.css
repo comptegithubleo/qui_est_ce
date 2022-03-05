@@ -1,10 +1,21 @@
-#btn_play, #btn_menu, #btn_quit {
+/*===== HIDING BUTTONS ====*/
+#btn_play, #btn_menu, #btn_quit, #options_apply, #options_back, #easy_toggle, #normal_toggle, #advanced_toggle {
 	-fx-border-color: transparent;
 	-fx-border-width: 0;
 	-fx-background-radius: 0;
 	-fx-background-color: transparent;
 }
 
+/*===== MENU CSS ====*/
+
+/*===== OPTIONS CSS ====*/
+#choice_difficulty {
+	-fx-background-color: red;
+	-fx-pref-width: 150;
+}
+
+
+/*===== BOARD CSS ====*/
 .board_grid {
 	-fx-background-color: red;
 }
@@ -15,5 +26,4 @@
 
 .final_hover {
 	-fx-opacity: 1;
-	
 }

@@ -1,21 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.OptionsController">
+<AnchorPane id="anchor_options" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.OptionsController">
    <children>
-      <Text layoutX="14.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Options">
-         <font>
-            <Font size="56.0" />
-         </font>
-      </Text>
-      <Button fx:id="apply" layoutX="193.0" layoutY="452.0" mnemonicParsing="false" onAction="#setDifficulty" prefHeight="25.0" prefWidth="81.0" text="Apply" />
-      <Button layoutX="289.0" layoutY="452.0" mnemonicParsing="false" onAction="#switchScene_Menu" prefHeight="25.0" prefWidth="81.0" text="Leave" />
-      <ChoiceBox fx:id="choice_difficulty" layoutX="139.0" layoutY="149.0" prefWidth="150.0" />
-      <Text layoutX="191.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Difficulty" />
+      <ImageView fx:id="options_background" fitHeight="450.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+         <image>
+            <Image url="@../../files/images/UI/options/background.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="options_checkmark_checked" fitHeight="60.0" fitWidth="60.0" layoutX="726.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="114.0" />
+      <ImageView fx:id="options_checkmark" fitHeight="60.0" fitWidth="60.0" layoutX="726.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="114.0" />
+      <ImageView fx:id="options_cross" fitHeight="60.0" fitWidth="60.0" layoutX="806.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="34.0" />
+      <Button fx:id="options_apply" layoutX="726.0" layoutY="339.0" mnemonicParsing="false" onAction="#apply" prefHeight="60.0" prefWidth="60.0" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="114.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="options_back" layoutX="806.0" layoutY="339.0" mnemonicParsing="false" onAction="#switchScene_Menu" prefHeight="60.0" prefWidth="60.0" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="34.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Text fx:id="dlc_text" layoutX="554.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No DLCs are out yet" />
+      <ImageView fx:id="options_choice_easy" fitHeight="45.0" fitWidth="283.0" layoutX="67.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+         <image>
+            <Image url="@../../files/images/UI/options/choice.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="options_choice_normal" fitHeight="45.0" fitWidth="283.0" layoutX="66.0" layoutY="255.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+         <image>
+            <Image url="@../../files/images/UI/options/choice.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="options_choice_advanced" fitHeight="45.0" fitWidth="283.0" layoutX="66.0" layoutY="301.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+         <image>
+            <Image url="@../../files/images/UI/options/choice.png" />
+         </image>
+      </ImageView>
+      <ToggleButton fx:id="easy_toggle" alignment="CENTER_LEFT" layoutX="72.0" layoutY="214.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="276.0" text="Easy">
+         <toggleGroup>
+            <ToggleGroup fx:id="difficulty_choice" />
+         </toggleGroup>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <padding>
+            <Insets left="60.0" />
+         </padding>
+      </ToggleButton>
+      <ToggleButton fx:id="normal_toggle" alignment="CENTER_LEFT" layoutX="72.0" layoutY="261.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="276.0" selected="true" text="Normal" toggleGroup="$difficulty_choice">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <padding>
+            <Insets left="60.0" />
+         </padding>
+      </ToggleButton>
+      <ToggleButton fx:id="advanced_toggle" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="72.0" layoutY="305.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="276.0" text="Advanced" toggleGroup="$difficulty_choice">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <padding>
+            <Insets left="60.0" />
+         </padding>
+      </ToggleButton>
    </children>
 </AnchorPane>

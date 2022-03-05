@@ -17,7 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
@@ -44,15 +44,15 @@ public class BoardController extends Game implements IGlobalFunctions {
 	@FXML
 	private ScrollPane grid_anchor;
 	@FXML
-	private ChoiceBox<String> choice_question;
+	private ComboBox<String> choice_question;
 	@FXML
-	private ChoiceBox<String> choice_answer;
+	private ComboBox<String> choice_answer;
 	@FXML
-	private ChoiceBox<String> choice_question2;
+	private ComboBox<String> choice_question2;
 	@FXML
-	private ChoiceBox<String> choice_answer2;
+	private ComboBox<String> choice_answer2;
 	@FXML
-	private ChoiceBox<String> operator;
+	private ComboBox<String> operator;
 	@FXML
 	private Button guess_btn;
 	@FXML
@@ -286,7 +286,8 @@ public class BoardController extends Game implements IGlobalFunctions {
 				guess_text.setFill(Color.RED);
 			}
 		}
-		System.out.println("ITF : " + game.board.getBoard().get(game.board.getITF()).getid());
+		//Prints ITF to find
+		//System.out.println("ITF : " + game.board.getBoard().get(game.board.getITF()).getid());
 	}
 
 	public void finalGuess()

@@ -12,6 +12,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -31,7 +32,7 @@ public class SelectionController extends Game implements IGlobalFunctions {
 	@FXML
 	Button newgame_btn;
 	@FXML
-	ChoiceBox<String> choice_theme;
+	ComboBox<String> choice_theme;
 	@FXML
 	TextField choice_sizex;
 	@FXML
@@ -123,7 +124,7 @@ public class SelectionController extends Game implements IGlobalFunctions {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Error");
 		alert.setHeaderText(null);
-		alert.setContentText("Incorrect board size (probably too high).\nSet "+ game.getTheme() + " has " + game.board.getNbrofOTF() + " elements.");
+		alert.setContentText("Incorrect board size (probably too high)");
 		alert.showAndWait();
 	}
 

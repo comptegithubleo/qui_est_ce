@@ -8,35 +8,132 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class OptionsController extends Game implements IGlobalFunctions{
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+	private Stage stage;
+	private Scene scene;
+	private Parent root;
 
-    @FXML
-    ChoiceBox<String> choice_difficulty;
-    @FXML
-    Button apply;
+	@FXML
+	Button options_apply;
+	@FXML
+	Button options_back;
+	@FXML
+	ImageView options_background;
+	@FXML
+	ImageView options_checkmark;
+	@FXML
+	ImageView options_checkmark_checked;
+	@FXML
+	ImageView options_cross;
+	@FXML
+	ImageView options_choice_easy;
+	@FXML
+	ImageView options_choice_normal;
+	@FXML
+	ImageView options_choice_advanced;
+	@FXML
+	ToggleGroup difficulty_choice;
+	@FXML
+	ToggleButton easy_toggle;
+	@FXML
+	ToggleButton normal_toggle;
+	@FXML
+	ToggleButton advanced_toggle;
+	@FXML
+	Text dlc_text;
 
 
-    public void initialize() {
-        choice_difficulty.getItems().setAll("Easy", "Normal", "Advanced");
-		choice_difficulty.setValue(game.getDifficulty());
-    }
+	public void initialize() {
+		setImageView("files/images/UI/options/background.png", 900, 450, options_background);
+		setImageView("files/images/UI/options/checkmark.png", 140, 140, options_checkmark);
+		setImageView("files/images/UI/options/checkmark_checked.png", 140, 140, options_checkmark_checked);
+		setImageView("files/images/UI/options/cross.png", 140, 140, options_cross);
+		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_easy);
+		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_normal);
+		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_advanced);
+		
+		Font font_retro = Font.loadFont("file:files/fonts/Retro_Gaming.ttf", 20);
+		easy_toggle.setFont(font_retro);
+		normal_toggle.setFont(font_retro);
+		advanced_toggle.setFont(font_retro);
+		dlc_text.setFont(font_retro);
 
-    public void setDifficulty()
-    {
-        if (choice_difficulty.getValue() != null)
-        {
-        	game.setDifficulty(choice_difficulty.getValue());
-        }
-    }
+		switch (game.getDifficulty()) {
+			case "Easy":
+				toggleEasy();
+				break;
+			case "Normal":
+				toggleNormal();
+				break;
+			case "Advanced":
+				toggleAdvanced();
+				break;
+			default:
+				break;
+		}
 
-    public void switchScene_Menu(ActionEvent event) throws IOException {
-        switch_scene(event, "Menu", stage, scene);
-    }
+		options_apply.setDisable(true);
+		options_checkmark.setVisible(false);
+
+		easy_toggle.setOnAction(e -> {
+			toggleEasy();
+		});
+		normal_toggle.setOnAction(e -> {
+			toggleNormal();
+		});
+		advanced_toggle.setOnAction(e -> {
+			toggleAdvanced();
+		});
+}
+
+	public void toggleEasy()
+	{
+		options_apply.setDisable(false);
+		options_checkmark.setVisible(true);
+		difficulty_choice.selectToggle(easy_toggle);
+		options_choice_easy.setVisible(true);
+		options_choice_normal.setVisible(false);
+		options_choice_advanced.setVisible(false);
+	}
+	public void toggleNormal()
+	{
+		options_apply.setDisable(false);
+		options_checkmark.setVisible(true);
+		difficulty_choice.selectToggle(normal_toggle);
+		options_choice_easy.setVisible(false);
+		options_choice_normal.setVisible(true);
+		options_choice_advanced.setVisible(false);
+	}
+	public void toggleAdvanced()
+	{
+		options_apply.setDisable(false);
+		options_checkmark.setVisible(true);
+		difficulty_choice.selectToggle(advanced_toggle);
+		options_choice_easy.setVisible(false);
+		options_choice_normal.setVisible(false);
+		options_choice_advanced.setVisible(true);
+	}
+
+	public void apply()
+	{
+		ToggleButton tmp = (ToggleButton) difficulty_choice.getSelectedToggle();
+
+		game.setDifficulty(tmp.getText());
+		options_checkmark.setVisible(false);
+		options_apply.setDisable(true);
+	}
+
+	public void switchScene_Menu(ActionEvent event) throws IOException {
+		switch_scene(event, "Menu", stage, scene);
+	}
 
 }
