@@ -2,6 +2,7 @@
 
 ## Installation
 * Clone repository on your PC or download as ZIP and extract files
+* **Makefile must be changed if dependencies names does not match. JavaFX 17.0.2 and Jackson 1.13.2 versions were used when publishing**
 * Get dependencies :
   - [JavaFX](https://gluonhq.com/products/javafx/)
   - [Jackson-Databind](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind)
