@@ -803,6 +803,299 @@
 					}
 				}
 			]
+		},
+		"countries" : {
+			"objects" : [
+				{
+					"id" : "France",
+					"src" : "files/images/theme/countries/france.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "europe",
+						"hemisphere" : "northern",
+						"language": "french",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"yes"
+					}
+				},
+
+				{
+					"id" : "Congo",
+					"src" : "files/images/theme/countries/congo.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "africa",
+						"hemisphere" : "southern",
+						"language": "french",
+						"climate" : "tropical",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+
+				{
+					"id" : "United-Kingdom",
+					"src" : "files/images/theme/countries/uk.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "europe",
+						"hemisphere" : "northern",
+						"language": "english",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"yes"
+
+					}
+				},
+
+				{
+					"id" : "USA",
+					"src" : "files/images/theme/countries/usa.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "america",
+						"hemisphere" : "northern",
+						"language": "english",
+						"climate" : "continental",
+						"economic_typology" : "developed",
+						"OTAN_member":"yes"
+					}
+				},
+
+				{
+					"id" : "Algeria",
+					"src" : "files/images/theme/countries/algeria.jpeg",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "africa",
+						"hemisphere" : "northern",
+						"language": "arabic",
+						"climate" : "desert",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+
+				{
+					"id" : "Portugal",
+					"src" : "files/images/theme/countries/portugal.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "europe",
+						"hemisphere" : "northern",
+						"language": "portugese",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"yes"
+					}
+				},
+				{
+					"id" : "Brazil",
+					"src" : "files/images/theme/countries/brazil.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "america",
+						"hemisphere" : "southern",
+						"language": "portugese",
+						"climate" : "tropical",
+						"economic_typology" : "emerging",
+						"OTAN_member":"no"
+					}
+				},
+
+				{
+					"id" : "Japan",
+					"src" : "files/images/theme/countries/japan.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "asia",
+						"hemisphere" : "northern",
+						"language": "japanese",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "South_Africa",
+					"src" : "files/images/theme/countries/south_africa.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "africa",
+						"hemisphere" : "southern",
+						"language": "zoulou",
+						"climate" : "temperate",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "India",
+					"src" : "files/images/theme/countries/india.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "asia",
+						"hemisphere" : "northern",
+						"language": "indian",
+						"climate" : "tropical",
+						"economic_typology" : "emerging",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "Syria",
+					"src" : "files/images/theme/countries/syria.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "asia",
+						"hemisphere" : "northern",
+						"language": "arabic",
+						"climate" : "desert",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "China",
+					"src" : "files/images/theme/countries/china.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "asia",
+						"hemisphere" : "northern",
+						"language": "chinese",
+						"climate" : "tropical",
+						"economic_typology" : "emerging",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "Russia",
+					"src" : "files/images/theme/countries/russia.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "europe",
+						"hemisphere" : "northern",
+						"language": "russian",
+						"climate" : "continental",
+						"economic_typology" : "developed",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "Argentina",
+					"src" : "files/images/theme/countries/argentina.jpeg",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "america",
+						"hemisphere" : "southern",
+						"language": "spanish",
+						"climate" : "desert",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "Spain",
+					"src" : "files/images/theme/countries/spain.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "europe",
+						"hemisphere" : "northern",
+						"language": "spanish",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"yes"
+					}
+				},
+				{
+					"id" : "australia",
+					"src" : "files/images/theme/countries/australia.jpeg",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "oceania",
+						"hemisphere" : "southern",
+						"language": "english",
+						"climate" : "desert",
+						"economic_typology" : "developed",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "mexico",
+					"src" : "files/images/theme/countries/mexico.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "america",
+						"hemisphere" : "northern",
+						"language": "spanish",
+						"climate" : "desert",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "south_korea",
+					"src" : "files/images/theme/countries/korea.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "asia",
+						"hemisphere" : "northern",
+						"language": "korean",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "Madagascar",
+					"src" : "files/images/theme/countries/madagascar.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "africa",
+						"hemisphere" : "southern",
+						"language": "malgasy",
+						"climate" : "tropical",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "New_Zealand",
+					"src" : "files/images/theme/countries/new_zealand.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "oceania",
+						"hemisphere" : "southern",
+						"language": "english",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"no"
+					}
+				}
+
+
+			]
 		}
 	}
 }
