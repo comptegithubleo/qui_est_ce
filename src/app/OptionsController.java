@@ -51,21 +51,9 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	@FXML
 	Text dlc_text;
 
-
 	public void initialize() {
-		setImageView("files/images/UI/options/background.png", 900, 450, options_background);
-		setImageView("files/images/UI/options/checkmark.png", 140, 140, options_checkmark);
-		setImageView("files/images/UI/options/checkmark_checked.png", 140, 140, options_checkmark_checked);
-		setImageView("files/images/UI/options/cross.png", 140, 140, options_cross);
-		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_easy);
-		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_normal);
-		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_advanced);
-		
-		Font font_retro = Font.loadFont("file:files/fonts/Retro_Gaming.ttf", 20);
-		easy_toggle.setFont(font_retro);
-		normal_toggle.setFont(font_retro);
-		advanced_toggle.setFont(font_retro);
-		dlc_text.setFont(font_retro);
+
+		loadImg();
 
 		switch (game.getDifficulty()) {
 			case "Easy":
@@ -93,7 +81,19 @@ public class OptionsController extends Game implements IGlobalFunctions{
 		advanced_toggle.setOnAction(e -> {
 			toggleAdvanced();
 		});
-}
+	}
+
+	public void loadImg()
+	{
+		setImageView("files/images/UI/options/background.png", 900, 450, options_background);
+		setImageView("files/images/UI/options/checkmark.png", 140, 140, options_checkmark);
+		setImageView("files/images/UI/options/checkmark_checked.png", 140, 140, options_checkmark_checked);
+		setImageView("files/images/UI/options/cross.png", 140, 140, options_cross);
+		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_easy);
+		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_normal);
+		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_advanced);
+
+	}
 
 	public void toggleEasy()
 	{

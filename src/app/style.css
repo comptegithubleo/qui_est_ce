@@ -1,5 +1,6 @@
-/*===== HIDING BUTTONS ====*/
-#btn_play, #btn_menu, #btn_quit, #options_apply, #options_back, #easy_toggle, #normal_toggle, #advanced_toggle {
+/*===== HIDING INPUTS ====*/
+.button, .toggle-button {
+	-fx-font-family: "Retro Gaming";
 	-fx-border-color: transparent;
 	-fx-border-width: 0;
 	-fx-background-radius: 0;
@@ -7,23 +8,86 @@
 }
 
 /*===== MENU CSS ====*/
+#build_text {
+	-fx-font-family: "Retro Gaming";
+	-fx-font-size: 10px;
+}
 
 /*===== OPTIONS CSS ====*/
 #choice_difficulty {
 	-fx-background-color: red;
 	-fx-pref-width: 150;
 }
+.toggle-button {
+	-fx-font-size: 20px;
+}
+#dlc_text {
+	-fx-font-family: "Retro Gaming";
+	-fx-font-size: 20px;
+}
 
+/*===== SELECTION CSS ====*/
+#loadgame_text, #newgame_text
+{
+	-fx-font-family: "Retro Gaming";
+	-fx-font-size: 23px;
+}
+#choosetheme_text, #size_text
+{
+	-fx-font-family: "Retro Gaming";
+	-fx-font-size: 15px;
+}
+.list-view {
+	-fx-background-color: transparent;
+	-fx-text-fill: black;
+}
+#list .list-cell {
+	-fx-font-family: "Retro Gaming";
+	-fx-background-color: transparent;
+	-fx-text-fill: black;
+}
+#list .list-cell:hover {
+	-fx-text-fill: rgb(43, 43, 43);
+}
+#list .list-cell:selected {
+	-fx-background-color: rgb(43, 43, 43);
+	-fx-text-fill: rgb(224, 224, 224);
+}
+.scroll-pane {
+	-fx-background-color: transparent;
+}
+.scroll-pane > .viewport {
+	-fx-background-color: transparent;
+}
+
+.combo-box {
+	-fx-font-family: "Retro Gaming";
+	-fx-background-color: transparent;
+}
 
 /*===== BOARD CSS ====*/
 .board_grid {
 	-fx-background-color: red;
 }
-
 .eliminated {
 	-fx-opacity: 0.5;
 }
-
 .final_hover {
 	-fx-opacity: 1;
+}
+.anchor_board {
+	-fx-background-image: url("../../files/images/UI/board/background.png");
+	-fx-background-repeat: repeat;   
+	-fx-background-size: 420 240;
+	-fx-background-position: center center;
+}
+#guess_text, #easy_text {
+	-fx-font-family: "Retro Gaming";
+	-fx-font-size: 12px;
+}
+
+
+@font-face {
+	-fx-font-family: Retro Gaming;
+	src: url("/files/fonts/Retro_Gaming.ttf");
 }

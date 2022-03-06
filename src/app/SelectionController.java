@@ -17,6 +17,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class SelectionController extends Game implements IGlobalFunctions {
@@ -30,15 +33,33 @@ public class SelectionController extends Game implements IGlobalFunctions {
 	@FXML
 	ListView<String> list;
 	@FXML
+	ImageView selection_background;
+	@FXML
+	ImageView selection_web;
+	@FXML
+	ImageView selection_newgame;
+	@FXML
 	Button newgame_btn;
 	@FXML
 	ComboBox<String> choice_theme;
+	@FXML
+	Text loadgame_text;
+	@FXML
+	Text newgame_text;
+	@FXML
+	Text choosetheme_text;
+	@FXML
+	Text size_text;
 	@FXML
 	TextField choice_sizex;
 	@FXML
 	TextField choice_sizey;
 
 	public void initialize() throws IOException {
+
+		setImageView("files/images/UI/selection/background.png", 400, 500, selection_background);
+		setImageView("files/images/UI/selection/web.png", 400, 500, selection_web);
+		setImageView("files/images/UI/selection/newgame.png", 400, 250, selection_newgame);
 
 		File folder = new File("files/save");
 		File[] files = folder.listFiles();
@@ -53,9 +74,11 @@ public class SelectionController extends Game implements IGlobalFunctions {
 		game.getGamesetJson().at("/theme").fieldNames().forEachRemaining((theme) -> choice_theme.getItems().add(theme));
 
 		newgame_btn.setDisable(true);
+		selection_newgame.setVisible(false);
 
 		choice_theme.setOnAction(e -> {
 			if (choice_theme.getValue() != null) {
+				selection_newgame.setVisible(true);
 				newgame_btn.setDisable(false);
 			}
 		});

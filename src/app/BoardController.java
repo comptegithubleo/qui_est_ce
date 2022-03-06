@@ -26,6 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
@@ -42,37 +43,66 @@ public class BoardController extends Game implements IGlobalFunctions {
 	private boolean finalGuessOngoing = false;
 	
 	@FXML
-	private ScrollPane grid_anchor;
+	ScrollPane grid_anchor;
 	@FXML
-	private ComboBox<String> choice_question;
+	ComboBox<String> choice_question;
 	@FXML
-	private ComboBox<String> choice_answer;
+	ComboBox<String> choice_answer;
 	@FXML
-	private ComboBox<String> choice_question2;
+	ComboBox<String> choice_question2;
 	@FXML
-	private ComboBox<String> choice_answer2;
+	ComboBox<String> choice_answer2;
 	@FXML
-	private ComboBox<String> operator;
+	ComboBox<String> operator;
 	@FXML
-	private Button guess_btn;
+	Button guess_btn;
 	@FXML
-	private Button finalguess_btn;
+	Button finalguess_btn;
 	@FXML
-	private Text guess_text;
+	Text guess_text;
 	@FXML
-	private Text easy_text;
+	Text easy_text;
 	@FXML
-	private HBox advanced_hbox;
+	Pane advanced_pane;
+	@FXML
+	Pane board_pane;
+	@FXML
+	ImageView board_buttons;
+	@FXML
+	ImageView board_buttons_advanced;
+	@FXML
+	ImageView board_guess;
+	@FXML
+	ImageView board_final_guess;
+	@FXML
+	ImageView board_final_guess_grey;
 	
 	ObjectMapper mapper = new ObjectMapper();
 	
 	public void initialize() throws Exception {
+
+		initImg();
 
 		game.board.save();
 
 		createGrid();
 
 		populateChoicebox(game.board.getGlobalAttributes());
+	}
+
+	public void initImg()
+	{
+		ImageView image = new ImageView();
+		setImageView("files/images/UI/board/background_side.png", 840, 480, image);
+		image.fitWidthProperty().bind(board_pane.widthProperty());
+		image.fitHeightProperty().bind(board_pane.heightProperty());
+		board_pane.getChildren().add(image);
+
+		setImageView("files/images/UI/board/board_buttons.png", 500, 50, board_buttons);
+		setImageView("files/images/UI/board/board_buttons_advanced.png", 500, 50, board_buttons_advanced);
+		setImageView("files/images/UI/board/board_guess.png", 500, 50, board_guess);
+		setImageView("files/images/UI/board/board_final_guess.png", 500, 200, board_final_guess);
+		setImageView("files/images/UI/board/board_final_guess_grey.png", 500, 400, board_final_guess_grey);
 	}
 	
 	private void createGrid()
@@ -201,10 +231,15 @@ public class BoardController extends Game implements IGlobalFunctions {
 	public void populateChoicebox(HashMap<String, ArrayList<String>> attributes)
 	{
 		guess_btn.setDisable(true);
+		advanced_pane.setVisible(false);
+		board_buttons_advanced.setVisible(false);
+		board_guess.setVisible(false);
+		board_final_guess.setVisible(false);
 		
 		if (game.getDifficulty().equals("Advanced"))
 		{
-			advanced_hbox.setVisible(true);
+			advanced_pane.setVisible(true);
+			board_buttons_advanced.setVisible(true);
 			operator.getItems().addAll("or", "and");
 		}
 
@@ -223,6 +258,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 			}
 
 			guess_btn.setDisable(true);
+			board_guess.setVisible(false);
 		});
 
 		choice_question2.setOnAction(e -> {
@@ -240,6 +276,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 				easy_text.setText(game.board.getCompatibleList(choice_question.getValue(), choice_answer.getValue(), game.board.guess(choice_question.getValue(), choice_answer.getValue())).size() + " will be eliminated");
 			}
 			guess_btn.setDisable(false);
+			board_guess.setVisible(true);
 		});
 	}
 
@@ -267,10 +304,12 @@ public class BoardController extends Game implements IGlobalFunctions {
 			else {
 				if (game.board.guessAdvanced(choice_question.getValue(), choice_answer.getValue(), choice_question2.getValue(), choice_answer2.getValue(), operator.getValue()))
 				{
-					guess_text.setText("TRUE");
+					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " " + operator.getValue() + " " +
+					choice_question.getValue() + " : " + choice_answer.getValue() + " ? TRUE");
 					guess_text.setFill(Color.GREEN);
 				} else {
-					guess_text.setText("FALSE");
+					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " " + operator.getValue() + " " +
+					choice_question.getValue() + " : " + choice_answer.getValue() + " ? FALSE");
 					guess_text.setFill(Color.RED);
 				}
 			}
@@ -279,10 +318,10 @@ public class BoardController extends Game implements IGlobalFunctions {
 		{
 			if (game.board.guess(choice_question.getValue(), choice_answer.getValue()))
 			{
-				guess_text.setText("TRUE");
+				guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " ? TRUE");
 				guess_text.setFill(Color.GREEN);
 			} else {
-				guess_text.setText("FALSE");
+				guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " ? FALSE");
 				guess_text.setFill(Color.RED);
 			}
 		}
@@ -297,12 +336,16 @@ public class BoardController extends Game implements IGlobalFunctions {
 			choice_question.setDisable(false);
 			choice_answer.setDisable(false);
 			guess_btn.setDisable(false);
-			finalguess_btn.setText("Try Final Guess");
+			board_guess.setVisible(true);
+			board_final_guess.setVisible(false);
+			finalguess_btn.setText("Final Guess");
 			finalGuessOngoing = false;
 		}
 		else {
 			choice_question.setDisable(true);
 			choice_answer.setDisable(true);
+			board_guess.setVisible(false);
+			board_final_guess.setVisible(true);
 			guess_btn.setDisable(true);
 			finalguess_btn.setText("Back");
 			finalGuessOngoing = true;

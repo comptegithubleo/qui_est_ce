@@ -20,8 +20,10 @@ public class Game {
 	private String theme;
 	private boolean newGame;
 	private JsonNode gameset_json;
+	protected Font font;
 	private JsonNode theme_json;
 	protected Board board;
+	
 
 	protected static Game game = new Game();
 	
@@ -29,7 +31,7 @@ public class Game {
 
 	public Game(){
 		this.difficulty = "Normal";
-		
+		this.font = Font.loadFont("file:files/fonts/Retro_Gaming.ttf", 10);
 		try {
 			gameset_json = mapper.readTree(Paths.get("files/sheet/gameset.json").toFile());
 		} catch (IOException e) {

@@ -22,15 +22,15 @@ public class MenuController extends Game implements IGlobalFunctions {
 	private Parent root;
 
 	@FXML
-	private ImageView img_background = new ImageView();
+	 ImageView img_background = new ImageView();
 	@FXML
-	private ImageView img_flame = new ImageView();
+	 ImageView img_flame = new ImageView();
 	@FXML
-	private ImageView img_play = new ImageView();
+	 ImageView img_play = new ImageView();
 	@FXML
-	private ImageView img_menu = new ImageView();
+	 ImageView img_menu = new ImageView();
 	@FXML
-	private ImageView img_quit = new ImageView();
+	 ImageView img_quit = new ImageView();
 
 	@FXML
 	Text build_text;
@@ -43,9 +43,12 @@ public class MenuController extends Game implements IGlobalFunctions {
 	Button btn_quit = new Button();
 
 	public void initialize() {
-		Font font_retro = Font.loadFont("file:files/fonts/Retro_Gaming.ttf", 10);
-		build_text.setFont(font_retro);
 
+		initImgFont();
+	}
+
+	public void initImgFont()
+	{
 		setDifficulty("Normal");
 
 		setImageView("files/images/UI/menu/background.png", 700, 400, img_background);
