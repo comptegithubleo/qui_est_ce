@@ -10,3 +10,27 @@
   - [Jackson-Annotations](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations)
 * Place JavaFX and Jackson libraries in **lib** folder
 * Run `make all` (`make build` + `make run`) from qui_est_ce directory (where **makefile** is located)
+
+## JSON Datasets
+3 basic sets are already provided : **Animals**, **Human**, and **Countries**.
+JSON Structure :
+
+```
+    .
+    └── theme
+        ├── human
+        |   └── objects
+        |       ├───.
+        |       |   ├── id: name
+        |       |   ├── ...
+        |       |   └── attributes
+        |       |       ├── attribute1
+        |       |       └── ...
+        |       |
+        |       └── ...
+        |
+        ├── animals
+        |   └── ...
+        |   
+        └── ...
+```
