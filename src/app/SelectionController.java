@@ -11,14 +11,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -62,6 +60,10 @@ public class SelectionController extends Game implements IGlobalFunctions {
 		setImageView("files/images/UI/selection/newgame.png", 400, 250, selection_newgame);
 
 		File folder = new File("files/save");
+		if (!folder.exists())
+		{
+			folder.mkdir();
+		}
 		File[] files = folder.listFiles();
 		for (File file : files)
 		{

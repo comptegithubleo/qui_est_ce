@@ -2,7 +2,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -18,9 +17,6 @@ public class Main extends Application {
 	}
 
 	public static void main(String[] args) throws Exception {
-		
-		System.out.println("main launched");
-		System.out.println("__________________________________ \n");
 
 		launch(args);
 	}
