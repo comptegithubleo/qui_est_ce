@@ -1,20 +1,14 @@
 package generator_app;
 
 public class CreatedObject {
-    private String key;
-    private String value;
+    private String name;
 
-    public CreatedObject(String key, String value){
-        this.key=key;
-        this.value=value;
+    public CreatedObject(String name){
+        this.name=name;
     }
     
-    public String getKey() {
-        return key;
-    }
-
-    public String getValue() {
-        return value;
-    }
+   public String getName() {
+       return name;
+   }
 
 }

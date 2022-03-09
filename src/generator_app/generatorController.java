@@ -16,6 +16,8 @@ import java.util.ResourceBundle;
 
 import javax.swing.text.FieldView;
 
+import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
+
 import app.IGlobalFunctions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,52 +37,65 @@ public class generatorController implements IGlobalFunctions {
 
     //FXML Field attributes --
     @FXML
-    private TextField valueField;
+    private TextField objectNameField;
     @FXML
-    private TextField keyField;
+    private TextField themeName;
 
     //FXML Table View --
+        //tab
     @FXML
     private TableView<CreatedObject> tView;
+        //column
     @FXML
-    private TableColumn<CreatedObject, String> key;
-    @FXML
-    private TableColumn<CreatedObject, String> value;
+    private TableColumn<CreatedObject, String> objects;
 
     //CLASS attributes
-    private int count=0;
-    ObservableList<CreatedObject> list = FXCollections.observableArrayList();
+    protected ObservableList<CreatedObject> list = FXCollections.observableArrayList();
 
-    public void saveKeys(ActionEvent event){
-        //TODO to create the JSON file that correspond.
+
+    //Methods--------
+
+        //Retrieve values--------
+    public ObservableList<CreatedObject> getList() {
+        return list;
+    }
+    public String getThemeName() {
+        return themeName.getText();
+    }
+
+
+        //Objects management--------
+    public void saveObjects(ActionEvent event){
+        if (themeName.getText() == null || themeName.getText().trim().isEmpty()) {
+            System.out.println("error no theme name");
+       }
     }
 
     public void addObject(ActionEvent event){
+        if (objectNameField.getText() == null || objectNameField.getText().trim().isEmpty()) {
+           System.out.println("error no objects name");
+        }
+        else{
+             //we add the new object to the list of CreatedObjects
+             list.add(new CreatedObject(objectNameField.getText()));
 
-        //we add the new object to the list of CreatedObjects
-        list.add(new CreatedObject(valueField.getText(), keyField.getText()));
-
-        //we add the two values to the tab column
-        key.setCellValueFactory(new PropertyValueFactory<CreatedObject, String>("key"));
-        value.setCellValueFactory(new PropertyValueFactory<CreatedObject, String>("value"));
-
-        //we add the two values the the tab view
-        tView.setItems(list);
-        
-        //TODO suppress next two lines (used to see the instances)
-        System.out.println(list);
-        System.out.println(list.size());
-        
+             //we add the two values to the tab column
+             objects.setCellValueFactory(new PropertyValueFactory<CreatedObject, String>("name"));
+             objectNameField.clear();
+ 
+             //we add the two values the the tab view
+             tView.setItems(list);
+        }
     }
 
     public void removeObject(ActionEvent event){
         int row = tView.getSelectionModel().getSelectedIndex();
         
-        //Supress table and object because they are linked together
-        tView.getItems().remove(row);
+        if(row>=0){
+            //Supress table and object because they are linked together
+            tView.getItems().remove(row);
+        }
+        
 
-        //TODO suppress next two lines (used to see the instances)
-        System.out.println(list);
-        System.out.println(row);
     }
 }
