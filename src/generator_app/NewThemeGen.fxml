@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="generator_app.generatorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="generator_app.NewThemeGenCTRL">
    <children>
       <Text layoutX="12.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="alpha 1.1">
          <font>
@@ -17,7 +17,7 @@
          </font></Text>
       <Button fx:id="removeButton" layoutX="255.0" layoutY="213.0" mnemonicParsing="false" onAction="#removeObject" prefHeight="26.0" prefWidth="75.0" text="remove" />
       <Button fx:id="addButton" layoutX="255.0" layoutY="171.0" mnemonicParsing="false" onAction="#addObject" prefHeight="26.0" prefWidth="75.0" text="add" />
-      <Button fx:id="saveButton" layoutX="157.0" layoutY="343.0" mnemonicParsing="false" onAction="#saveObjects" prefHeight="47.0" prefWidth="275.0" text="Save" />
+      <Button fx:id="nextButton" layoutX="157.0" layoutY="343.0" mnemonicParsing="false" onAction="#saveObjects" prefHeight="47.0" prefWidth="275.0" text="Next step -&gt;" textFill="#77dd10" />
       <TextField fx:id="themeName" layoutX="24.0" layoutY="60.0" prefHeight="17.0" prefWidth="260.0" />
       <Text layoutX="24.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New theme name :" />
       <Text layoutX="22.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New objects to add" />

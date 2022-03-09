@@ -9,10 +9,11 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception
 	{
-		Parent root = FXMLLoader.load(getClass().getResource("generator_app/generator.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("generator_app/NewThemeGen.fxml"));
 		Scene scene = new Scene(root, 700, 400);
 		stage.setScene(scene);
 		stage.setResizable(false);
+		stage.setTitle("coucou");
 		stage.show();
 	}
 

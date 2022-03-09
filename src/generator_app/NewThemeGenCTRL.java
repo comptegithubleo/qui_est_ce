@@ -2,6 +2,8 @@ package generator_app;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -10,7 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -25,11 +29,14 @@ import javafx.event.ActionEvent;
 
 //CLASS------------------------------------------
 
-public class generatorController implements IGlobalFunctions {
+public class NewThemeGenCTRL implements IGlobalFunctions {
+    private Scene scene;
+    private Stage stage;
+    private Parent root;
 
     //FXML Buttons attributes --
     @FXML
-    private Button saveButton;
+    private Button nextButton;
     @FXML
     private Button removeButton;
     @FXML
@@ -65,9 +72,12 @@ public class generatorController implements IGlobalFunctions {
 
 
         //Objects management--------
-    public void saveObjects(ActionEvent event){
+    public void saveObjects(ActionEvent event) throws IOException{
         if (themeName.getText() == null || themeName.getText().trim().isEmpty()) {
             System.out.println("error no theme name");
+       }
+       else{
+           switch_scene_title(event, "SetAttributesGen", "Set Attributes", stage, scene);
        }
     }
 
