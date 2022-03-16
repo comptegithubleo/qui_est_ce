@@ -3,32 +3,21 @@ package generator_app;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+/*import javafx.scene.Parent;
+import javafx.scene.Scene;*/
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+//import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.security.KeyStore.Entry.Attribute;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.Iterator;
-
-import javax.swing.text.FieldView;
-
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 import app.IGlobalFunctions;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,9 +25,9 @@ import javafx.event.ActionEvent;
 //CLASS------------------------------------------
 
 public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
-    private Scene scene;
+    /*private Scene scene;
     private Stage stage;
-    private Parent root;
+    private Parent root;*/
     private int obNumber=0;
 
     //FXML Buttons attributes --
@@ -80,16 +69,17 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
 
 
         //Objects management--------
-    public void createTheme(ActionEvent event) throws IOException{
+    public void createTheme(ActionEvent event){
         //TODO change name of button by next button
-        if(NewThemeGenCTRL.getList().listIterator().hasNext()){
-            obNumber++;
+        obNumber++;
+        if(NewThemeGenCTRL.getList().size() > obNumber){
             objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getName());
             list.clear();
             tView.setItems(list);
         }
         else{
             //TODO create the JSON thanks to all the entered values and keys
+            create.setText("Create JSON");
             System.out.println("Fin de list");
         }
         
@@ -122,8 +112,9 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
     public void removeObject(ActionEvent event){
         int row = tView.getSelectionModel().getSelectedIndex();
         if(row>=0){
-            //Supress table and object because they are linked together
+            //Supress table and object (because they are linked together)
             tView.getItems().remove(row);
+
         }
     }
 

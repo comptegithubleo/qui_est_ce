@@ -1,10 +1,5 @@
 package generator_app;
 
-import java.util.ArrayList;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
 public class CreatedObject {
 
     //first window fields

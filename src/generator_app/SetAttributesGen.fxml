@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="generator_app.SetAttributesGenCTRL">
    <children>
-      <Text layoutX="12.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="alpha 1.1">
+      <Text layoutX="12.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="alpha 2.0">
          <font>
             <Font name="Menlo Regular" size="13.0" />
          </font></Text>
