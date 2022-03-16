@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 import app.IGlobalFunctions;
@@ -58,6 +59,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
 
     //CLASS attributes
     private ObservableList<CreatedAttr> list = FXCollections.observableArrayList();
+    private ObservableList<CreatedAttr> allAttrList = FXCollections.observableArrayList();
 
 
 //Methods--------
@@ -72,15 +74,28 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
     public void createTheme(ActionEvent event){
         //TODO change name of button by next button
         obNumber++;
+        boolean finish=false;
         if(NewThemeGenCTRL.getList().size() > obNumber){
             objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getName());
+            allAttrList.addAll(list);
             list.clear();
             tView.setItems(list);
+            System.out.println("coucou");
+            System.out.println(allAttrList);
         }
         else{
+            if(finish != true){
+                allAttrList.addAll(list);
+                System.out.println("On y passe !!");
+                System.out.println(allAttrList);
+            }
+            finish=true;
             //TODO create the JSON thanks to all the entered values and keys
             create.setText("Create JSON");
             System.out.println("Fin de list");
+            addButton.setDisable(true);
+            removeButton.setDisable(true);
+            
         }
         
     }
