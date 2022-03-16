@@ -1,5 +1,6 @@
 package generator_app;
 
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -19,6 +20,7 @@ import java.net.URL;
 import java.security.KeyStore.Entry.Attribute;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.Iterator;
 
 import javax.swing.text.FieldView;
 
@@ -37,7 +39,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
     private Scene scene;
     private Stage stage;
     private Parent root;
-    private int obNumber;
+    private int obNumber=0;
 
     //FXML Buttons attributes --
     @FXML
@@ -80,7 +82,17 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
         //Objects management--------
     public void createTheme(ActionEvent event) throws IOException{
         //TODO change name of button by next button
-        obNumber++;
+        if(NewThemeGenCTRL.getList().listIterator().hasNext()){
+            obNumber++;
+            objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getName());
+            list.clear();
+            tView.setItems(list);
+        }
+        else{
+            //TODO create the JSON thanks to all the entered values and keys
+            System.out.println("Fin de list");
+        }
+        
     }
 
 
@@ -96,8 +108,8 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
              list.add(new CreatedAttr(NewThemeGenCTRL.getList().get(obNumber).getName(),keyField.getText(), valueField.getText()));
 
              //we add the two values to the tab column
-             key.setCellValueFactory(new PropertyValueFactory<CreatedAttr, String>("value"));
-             value.setCellValueFactory(new PropertyValueFactory<CreatedAttr, String>("key"));
+             value.setCellValueFactory(new PropertyValueFactory<CreatedAttr, String>("value"));
+             key.setCellValueFactory(new PropertyValueFactory<CreatedAttr, String>("key"));
              keyField.clear();
              valueField.clear();
  
@@ -118,7 +130,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        objectNameText.setText(NewThemeGenCTRL.getList().get(0).getName());
+        objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getName());
         
     }
 }
