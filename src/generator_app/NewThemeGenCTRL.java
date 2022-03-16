@@ -57,13 +57,13 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
     private TableColumn<CreatedObject, String> objects;
 
     //CLASS attributes
-    protected ObservableList<CreatedObject> list = FXCollections.observableArrayList();
+    private static ObservableList<CreatedObject> list = FXCollections.observableArrayList();
 
 
     //Methods--------
 
         //Retrieve values--------
-    public ObservableList<CreatedObject> getList() {
+    public static ObservableList<CreatedObject> getList() {
         return list;
     }
     public String getThemeName() {
