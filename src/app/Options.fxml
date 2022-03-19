@@ -9,6 +9,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.OptionsController">
@@ -21,18 +22,21 @@
             <Image url="@../../files/images/UI/options/background.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="options_checkmark_checked" fitHeight="60.0" fitWidth="60.0" layoutX="726.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="114.0" />
-      <ImageView fx:id="options_checkmark" fitHeight="60.0" fitWidth="60.0" layoutX="726.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="114.0" />
-      <ImageView fx:id="options_cross" fitHeight="60.0" fitWidth="60.0" layoutX="806.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="34.0" />
-      <Button fx:id="options_apply" layoutX="726.0" layoutY="339.0" mnemonicParsing="false" onAction="#apply" prefHeight="60.0" prefWidth="60.0" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="114.0">
+      <Button fx:id="options_apply" layoutX="668.0" layoutY="354.0" mnemonicParsing="false" onAction="#apply" prefHeight="45.0" prefWidth="96.0" text="Apply" textFill="#7c7c7c" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="136.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
       </Button>
-      <Button fx:id="options_back" layoutX="806.0" layoutY="339.0" mnemonicParsing="false" onAction="#switchScene_Menu" prefHeight="60.0" prefWidth="60.0" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="34.0">
+      <Button fx:id="options_back" layoutX="777.0" layoutY="354.0" mnemonicParsing="false" onAction="#switchScene_Menu" prefHeight="45.0" prefWidth="96.0" text="Back" AnchorPane.bottomAnchor="51.0" AnchorPane.rightAnchor="27.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
+         <font>
+            <Font size="15.0" />
+         </font>
       </Button>
       <Text fx:id="dlc_text" layoutX="554.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No DLCs are out yet" />
       <ImageView fx:id="options_choice_easy" fitHeight="45.0" fitWidth="283.0" layoutX="67.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true" smooth="false">

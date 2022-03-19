@@ -92,7 +92,7 @@ public class SelectionController extends Game implements IGlobalFunctions {
 		game.setTheme(theme_name);
 		game.createExistingBoard(theme_name);
 		
-		switch_scene(event, "Board", stage, scene);
+		switch_scene(event, "Board", stage, scene, true);
 	}
 
 	public void switchScene_BoardNew(ActionEvent event) throws IOException {
@@ -137,7 +137,7 @@ public class SelectionController extends Game implements IGlobalFunctions {
 
 		if(game.createNewBoard(Integer.parseInt(choice_sizex.getText()), Integer.parseInt(choice_sizey.getText())))
 		{
-			switch_scene(event, "Board", stage, scene);
+			switch_scene(event, "Board", stage, scene, true);
 		}
 		else {
 			alertWrongSize();
@@ -163,6 +163,6 @@ public class SelectionController extends Game implements IGlobalFunctions {
 	}
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
-		switch_scene(event, "Menu", stage, scene);
+		switch_scene(event, "Menu", stage, scene, false);
 	}
 }
