@@ -26,12 +26,6 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	@FXML
 	ImageView options_background;
 	@FXML
-	ImageView options_checkmark;
-	@FXML
-	ImageView options_checkmark_checked;
-	@FXML
-	ImageView options_cross;
-	@FXML
 	ImageView options_choice_easy;
 	@FXML
 	ImageView options_choice_normal;
@@ -66,8 +60,8 @@ public class OptionsController extends Game implements IGlobalFunctions{
 				break;
 		}
 
+		options_apply.setStyle("-fx-text-fill: #757575");
 		options_apply.setDisable(true);
-		options_checkmark.setVisible(false);
 
 		easy_toggle.setOnAction(e -> {
 			toggleEasy();
@@ -83,9 +77,6 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	public void loadImg()
 	{
 		setImageView("files/images/UI/options/background.png", 900, 450, options_background);
-		setImageView("files/images/UI/options/checkmark.png", 140, 140, options_checkmark);
-		setImageView("files/images/UI/options/checkmark_checked.png", 140, 140, options_checkmark_checked);
-		setImageView("files/images/UI/options/cross.png", 140, 140, options_cross);
 		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_easy);
 		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_normal);
 		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_advanced);
@@ -95,7 +86,7 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	public void toggleEasy()
 	{
 		options_apply.setDisable(false);
-		options_checkmark.setVisible(true);
+		options_apply.setStyle("-fx-text-fill: #9c9102");
 		difficulty_choice.selectToggle(easy_toggle);
 		options_choice_easy.setVisible(true);
 		options_choice_normal.setVisible(false);
@@ -104,7 +95,7 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	public void toggleNormal()
 	{
 		options_apply.setDisable(false);
-		options_checkmark.setVisible(true);
+		options_apply.setStyle("-fx-text-fill: #9c9102");
 		difficulty_choice.selectToggle(normal_toggle);
 		options_choice_easy.setVisible(false);
 		options_choice_normal.setVisible(true);
@@ -113,7 +104,7 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	public void toggleAdvanced()
 	{
 		options_apply.setDisable(false);
-		options_checkmark.setVisible(true);
+		options_apply.setStyle("-fx-text-fill: #9c9102");
 		difficulty_choice.selectToggle(advanced_toggle);
 		options_choice_easy.setVisible(false);
 		options_choice_normal.setVisible(false);
@@ -125,12 +116,12 @@ public class OptionsController extends Game implements IGlobalFunctions{
 		ToggleButton tmp = (ToggleButton) difficulty_choice.getSelectedToggle();
 
 		game.setDifficulty(tmp.getText());
-		options_checkmark.setVisible(false);
+		options_apply.setStyle("-fx-text-fill: #757575");
 		options_apply.setDisable(true);
 	}
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
-		switch_scene(event, "Menu", stage, scene);
+		switch_scene(event, "Menu", stage, scene, false);
 	}
 
 }

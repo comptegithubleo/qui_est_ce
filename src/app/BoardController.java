@@ -352,6 +352,6 @@ public class BoardController extends Game implements IGlobalFunctions {
 	}
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
-		switch_scene(event, "Menu", stage, scene);
+		switch_scene(event, "Menu", stage, scene, false);
 	}
 }

@@ -12,8 +12,6 @@
       <ImageView fx:id="img_flame" fitHeight="400.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="img_background" fitHeight="400.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true" smooth="false" />
       <ImageView fx:id="img_play" fitHeight="72.0" fitWidth="405.0" layoutX="148.0" layoutY="244.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="img_menu" fitHeight="60.0" fitWidth="50.0" layoutX="150.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="img_quit" fitHeight="60.0" fitWidth="50.0" layoutX="500.0" layoutY="314.0" pickOnBounds="true" preserveRatio="true" />
 	<Button fx:id="btn_play" layoutX="250.0" layoutY="260.0" mnemonicParsing="false" onAction="#switchScene_Selection" prefHeight="40.0" prefWidth="200.0" text="Singleplayer" textFill="TRANSPARENT">
          <font>
             <Font size="15.0" />
@@ -21,17 +19,17 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="btn_menu" layoutX="150.0" layoutY="314.0" mnemonicParsing="false" onAction="#switchScene_Options" prefHeight="60.0" prefWidth="50.0" text="Options" textFill="TRANSPARENT">
+      <Button fx:id="btn_menu" layoutX="128.0" layoutY="324.0" mnemonicParsing="false" onAction="#switchScene_Options" prefHeight="40.0" prefWidth="93.0" text="Options" textFill="#faee07">
          <font>
-            <Font size="14.0" />
+            <Font size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btn_quit" layoutX="500.0" layoutY="314.0" mnemonicParsing="false" onAction="#quitGame" prefHeight="60.0" prefWidth="50.0" text="Quit" textFill="TRANSPARENT">
+      <Button fx:id="btn_quit" layoutX="483.0" layoutY="324.0" mnemonicParsing="false" onAction="#quitGame" prefHeight="40.0" prefWidth="93.0" text="Quit" textFill="#fa3a07">
          <font>
-            <Font size="14.0" />
+            <Font size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
