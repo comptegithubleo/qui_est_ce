@@ -9,15 +9,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="generator_app.SetAttributesGenCTRL">
+<AnchorPane fx:id="anchPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="generator_app.SetAttributesGenCTRL">
    <children>
-      <Text layoutX="12.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="alpha 2.0">
+      <Text layoutX="12.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="beta 1.0">
          <font>
             <Font name="Menlo Regular" size="13.0" />
          </font></Text>
-      <Button fx:id="removeButton" layoutX="255.0" layoutY="213.0" mnemonicParsing="false" onAction="#removeObject" prefHeight="26.0" prefWidth="75.0" text="remove" />
-      <Button fx:id="addButton" layoutX="255.0" layoutY="150.0" mnemonicParsing="false" onAction="#addObject" prefHeight="26.0" prefWidth="75.0" text="add" />
-      <Button fx:id="create" layoutX="157.0" layoutY="343.0" mnemonicParsing="false" onAction="#createTheme" prefHeight="47.0" prefWidth="275.0" text="Create theme !" textFill="RED" />
+      <Button fx:id="removeButton" layoutX="255.0" layoutY="213.0" mnemonicParsing="false" onAction="#removeAttribute" prefHeight="26.0" prefWidth="75.0" text="remove" />
+      <Button fx:id="addButton" layoutX="255.0" layoutY="150.0" mnemonicParsing="false" onAction="#addAttribute" prefHeight="26.0" prefWidth="75.0" text="add" />
+      <Button fx:id="nextButton" layoutX="157.0" layoutY="343.0" mnemonicParsing="false" onAction="#nextObject" prefHeight="47.0" prefWidth="275.0" text="Create theme !" textFill="RED" />
       <Text layoutX="43.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add key :" />
       <TableView fx:id="tView" layoutX="363.0" layoutY="93.0" prefHeight="227.0" prefWidth="200.0">
         <columns>

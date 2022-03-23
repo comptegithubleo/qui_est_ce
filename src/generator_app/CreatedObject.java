@@ -1,35 +1,37 @@
 package generator_app;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CreatedObject {
 
-    //first window fields
-    private String theme;
-    private String name;
+    private String id;
+    private String src;
     HashMap<String, String> attributes= new HashMap<>();
 
-    public CreatedObject(String name){
-        this.name=name;
+    //GETTERS AND SETTERS
+    public String getSrc() {
+        return src;
     }
-
-    public String getName() {
-        return name;
+    public void setSrc(String src) {
+        this.src = src;
     }
-
-    public String getTheme() {
-        return theme;
+    public CreatedObject(String id, String src){
+        this.id=id;
+        this.src=src;
     }
-
-    public void setName(String name) {
-        this.name = name;
+    public String getId() {
+      return id;
     }
-
-    public void setTheme(String theme) {
-        this.theme = theme;
+    public void setId(String id) {
+        this.id = id;
     }
-
+    public void setAttributes(HashMap<String, String> attributes) {
+        this.attributes = attributes;
+    }
+    public HashMap<String, String> getAttributes() {
+        return attributes;
+    }
+    //METHODS
     public void addAttributes(String key, String value) {
         this.attributes.put(key, value);
     }
@@ -38,13 +40,10 @@ public class CreatedObject {
         this.attributes.remove(key);
     }
 
-    public HashMap<String, String> getAttributes() {
-        return attributes;
-    }
-
+    //TO STRING METHOD
     @Override
     public String toString() {
-        return "theme :"+ theme + "name : "+name+ " attributes : "+this.attributes;
+        return "id : "+id+ " attributes : "+this.attributes;
     }
 
 }

@@ -2,59 +2,1099 @@
 	"theme": {
 
 		"human" : {
-			"objects" : [
-				{
-					"id" : "Thomas",
-					"src" : "image/HumanTheme/Thomas.png",
-
-					"attributes" :
-					{
-						"hair" : "blond",
-						"eyes color" : "black",
-						"glasses" : "true"
+			"objects" :[
+				{ 	"id" : "alfred",
+					"src" : "files/images/theme/human/Alfred.png ",
+					"eliminated" : false,
+					"attributes" : {
+					"cheveux" : "long",
+					"couleurchev" : "roux",
+					"genre" : "homme",
+					"barbe" : "non",
+					"moustache" : "oui",
+					"lunettes" : "non",
+					"chapeau" : "non"
+				}
+				},
+			
+				{ 	"id" : "anita",
+					"src" : "files/images/theme/human/Anita.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "long",
+						"couleurchev" : "blond",
+						"genre" : "femme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
 					}
 				},
-
-				{
-					"id" : "Mathilde",
-					"src" : "image/HumanTheme/Mathilde.png",
-
-					"attributes" :
-					{
-						"hair" : "brown",
-						"eyes color" : "blue",
-						"glasses" : "true"
+			
+				{ 	"id" : "anna",
+					"src" : "files/images/theme/human/Anna.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "brun",
+						"genre" : "femme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "charlie",
+					"src" : "files/images/theme/human/Charlie.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "blond",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "oui",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "clara",
+					"src" : "files/images/theme/human/Clara.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "roux",
+						"genre" : "femme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "oui",
+						"chapeau" : "oui"
+					}
+				},
+			
+				{ 	"id" : "eric",
+					"src" : "files/images/theme/human/Eric.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "blanc",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "felix",
+					"src" : "files/images/theme/human/Felix.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "blond",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "oui"
+					}
+				},
+			
+				{ 	"id" : "jeremie",
+					"src" : "files/images/theme/human/Jeremie.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "chatain",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "oui"
+					}
+				},
+			
+				{ 	"id" : "leon",
+					"src" : "files/images/theme/human/Leon.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "blond",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "oui",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "luc",
+					"src" : "files/images/theme/human/Luc.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "brun",
+						"genre" : "homme",
+						"barbe" : "oui",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "lucas",
+					"src" : "files/images/theme/human/Lucas.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "calvitie",
+						"couleurchev" : "roux",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "manu",
+					"src" : "files/images/theme/human/Manu.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "chatain",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "oui",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+				
+				{ 	"id" : "maria",
+					"src" : "files/images/theme/human/Maria.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "long",
+						"couleurchev" : "chatain",
+						"genre" : "femme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "oui"
+					}
+				},
+			
+				{ 	"id" : "mario",
+					"src" : "files/images/theme/human/Mario.png",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "blond",
+						"genre" : "homme",
+						"barbe" : "oui",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "martin",
+					"src" : "files/images/theme/human/Martin.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "blanc",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "oui"
+					}
+				},
+			
+				{ 	"id" : "max",
+					"src" : "files/images/theme/human/Max.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "brun",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "oui",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "omar",
+					"src" : "files/images/theme/human/Omar.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "roux",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "oscar",
+					"src" : "files/images/theme/human/Oscar.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "chatain",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "romeo",
+					"src" : "files/images/theme/human/Romeo.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "calvitie",
+						"couleurchev" : "chatain",
+						"genre" : "homme",
+						"barbe" : "oui",
+						"moustache" : "oui",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "samuel",
+					"src" : "files/images/theme/human/Samuel.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "calvitie",
+						"couleurchev" : "blanc",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "oui",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "simon",
+					"src" : "files/images/theme/human/Simon.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "court",
+						"couleurchev" : "blanc",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "oui",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "suzane",
+					"src" : "files/images/theme/human/Suzane.png",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "long",
+						"couleurchev" : "blanc",
+						"genre" : "femme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "timeo",
+					"src" : "files/images/theme/human/Timeo.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "calvitie",
+						"couleurchev" : "brun",
+						"genre" : "homme",
+						"barbe" : "non",
+						"moustache" : "non",
+						"lunettes" : "oui",
+						"chapeau" : "non"
+					}
+				},
+			
+				{ 	"id" : "tony",
+					"src" : "files/images/theme/human/Tony.png ",
+					"eliminated" : false,
+					"attributes" : {
+						"cheveux" : "calvitie",
+						"couleurchev" : "roux",
+						"genre" : "homme",
+						"barbe" : "oui",
+						"moustache" : "non",
+						"lunettes" : "non",
+						"chapeau" : "non"
 					}
 				}
+				
 			]
 		},
 
 		"animals" : {
 			"objects" : [
 				{
-					"id" : "Cat",
-					"src" : "image/AnimalsTheme/Cat.png",
-
+					"id" : "Chat",
+					"src" : "files/images/theme/animals/Chat.png",
+					"eliminated" : false,
 					"attributes" :
 					{
-						"eyes-color" : "green",
-						"fur color" : "white",
-						"fur" : "long"
+						"couleur_fourrure" : "grise et blanche",
+						"fourrure" : "longue",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "blanche",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "oui",
+						"marin" : "non"
 					}
 
 				},
 
 				{
-					"id" : "Dog",
-					"src" : "image/AnimalsTheme/Dog.png",
-
+					"id" : "Chauve_souris",
+					"src" : "files/images/theme/animals/Chauve_souris.png",
+					"eliminated" : false,
 					"attributes" :
 					{
-						"eyes-color" : "brown",
-						"fur color" : "brown",
-						"fur" : "shorts"
+						"couleur_fourrure" : "noire",
+						"fourrure" : "courte",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "noire",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "4",
+						"diurne" : "non",
+						"nocturne" : "oui",
+						"marin" : "non"
+					}
+
+				},
+
+				{
+					"id" : "Mouton",
+					"src" : "files/images/theme/animals/Mouton.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "blanche",
+						"fourrure" : "longue",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "beige",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "4",
+						"diurne" : "non",
+						"nocturne" : "oui",
+						"marin" : "non"
+					}
+
+				},
+
+				{
+					"id" : "Vache",
+					"src" : "files/images/theme/animals/Vache.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "noire et blanche",
+						"fourrure" : "courte",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "noir et blanche",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "oui",
+						"marin" : "non"
+					}
+
+				},
+
+				{
+					"id" : "Ours_polaire",
+					"src" : "files/images/theme/animals/Ours_polaire.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "blanche",
+						"fourrure" : "longue",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "blanche",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "oui",
+						"marin" : "oui"
+					}
+
+				},
+
+				{
+					"id" : "Grenouille",
+					"src" : "files/images/theme/animals/Grenouille.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "non",
+						"fourrure" : "non",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "verte et orange",
+						"mammifere" : "non",
+						"vivipare" : "non",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "oui",
+						"marin" : "oui"
+					}
+
+				},
+
+				{
+					"id" : "Elephant",
+					"src" : "files/images/theme/animals/Elephant.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "non",
+						"fourrure" : "non",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "grise",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "oui",
+						"marin" : "non"
+					}
+
+				},
+
+				{
+					"id" : "Pinguin",
+					"src" : "files/images/theme/animals/Pinguin.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "noire et blanche",
+						"fourrure" : "moyenne",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "noire",
+						"plume" : "oui",
+						"couleur_peau" : "noire et blanche",
+						"mammifere" : "non",
+						"vivipare" : "non",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "oui",
+						"marin" : "oui"
+					}
+
+				},
+
+				{
+					"id" : "Lapin",
+					"src" : "files/images/theme/animals/Lapin.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "grise et blanche",
+						"fourrure" : "moyenne",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "beige",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "non",
+						"marin" : "non"
+					}
+
+				},
+
+				{
+					"id" : "Rhinoceros",
+					"src" : "files/images/theme/animals/Rhinoceros.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "non",
+						"fourrure" : "non",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "grise",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "oui",
+						"marin" : "non"
+					}
+
+				},
+
+				{
+					"id" : "Perroquet",
+					"src" : "files/images/theme/animals/Perroquet.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "non",
+						"fourrure" : "non",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "multicolore",
+						"plume" : "oui",
+						"couleur_peau" : "white",
+						"mammifere" : "non",
+						"vivipare" : "non",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "non",
+						"marin" : "non"
+					}
+
+				},
+
+				{
+					"id" : "Serpent",
+					"src" : "files/images/theme/animals/Serpent.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "non",
+						"fourrure" : "non",
+						"couleur_ecaille" : "verte",
+						"ecaille" : "oui",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "verte",
+						"mammifere" : "non",
+						"vivipare" : "oui",
+						"membre(s)" : "0",
+						"diurne" : "oui",
+						"nocturne" : "oui",
+						"marin" : "non"
+					}
+
+				},
+
+				{
+					"id" : "Requin",
+					"src" : "files/images/theme/animals/Requin.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "non",
+						"fourrure" : "non",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "grise",
+						"mammifere" : "non",
+						"vivipare" : "oui",
+						"membre(s)" : "2",
+						"diurne" : "oui",
+						"nocturne" : "non",
+						"marin" : "oui"
+					}
+
+				},
+
+				{
+					"id" : "Baleine",
+					"src" : "files/images/theme/animals/Baleine.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "non",
+						"fourrure" : "non",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "grise et blanche",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "2",
+						"diurne" : "oui",
+						"nocturne" : "non",
+						"marin" : "oui"
+					}
+
+				},
+
+				{
+					"id" : "Dauphin",
+					"src" : "files/images/theme/animals/Dauphin.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "non",
+						"fourrure" : "non",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "grise",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "2",
+						"diurne" : "oui",
+						"nocturne" : "non",
+						"marin" : "oui"
+					}
+
+				},
+
+				{
+					"id" : "Hiboux",
+					"src" : "files/images/theme/animals/Hiboux.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "non",
+						"fourrure" : "non",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "marron",
+						"plume" : "oui",
+						"couleur_peau" : "marron",
+						"mammifere" : "non",
+						"vivipare" : "non",
+						"membre(s)" : "4",
+						"diurne" : "non",
+						"nocturne" : "oui",
+						"marin" : "non"
+					}
+
+				},
+
+				{
+					"id" : "Panda",
+					"src" : "files/images/theme/animals/Panda.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "noire et blanche",
+						"fourrure" : "longue",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "noir et blanche",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "oui",
+						"marin" : "non"
+					}
+
+				},
+
+				{
+					"id" : "Zebre",
+					"src" : "files/images/theme/animals/Zebre.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "noire et blanche",
+						"fourrure" : "moyenne",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "blanche",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "oui",
+						"marin" : "non"
+					}
+
+				},
+
+				{
+					"id" : "Crocodile",
+					"src" : "files/images/theme/animals/Crocodile.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "non",
+						"fourrure" : "non",
+						"couleur_ecaille" : "verte",
+						"ecaille" : "oui",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "verte",
+						"mammifere" : "non",
+						"vivipare" : "non",
+						"membre(s)" : "4",
+						"diurne" : "non",
+						"nocturne" : "oui",
+						"marin" : "oui"
+					}
+
+				},
+
+				{
+					"id" : "Chien",
+					"src" : "files/images/theme/animals/Chien.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"couleur_fourrure" : "marron",
+						"fourrure" : "moyenne",
+						"couleur_ecaille" : "non",
+						"ecaille" : "non",
+						"couleur_plume" : "non",
+						"plume" : "non",
+						"couleur_peau" : "beige",
+						"mammifere" : "oui",
+						"vivipare" : "oui",
+						"membre(s)" : "4",
+						"diurne" : "oui",
+						"nocturne" : "non",
+						"marin" : "non"
 					}
 				}
+			]
+		},
+		"countries" : {
+			"objects" : [
+				{
+					"id" : "France",
+					"src" : "files/images/theme/countries/france.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "europe",
+						"hemisphere" : "northern",
+						"language": "french",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"yes"
+					}
+				},
+
+				{
+					"id" : "Congo",
+					"src" : "files/images/theme/countries/congo.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "africa",
+						"hemisphere" : "southern",
+						"language": "french",
+						"climate" : "tropical",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+
+				{
+					"id" : "United-Kingdom",
+					"src" : "files/images/theme/countries/uk.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "europe",
+						"hemisphere" : "northern",
+						"language": "english",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"yes"
+
+					}
+				},
+
+				{
+					"id" : "USA",
+					"src" : "files/images/theme/countries/usa.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "america",
+						"hemisphere" : "northern",
+						"language": "english",
+						"climate" : "continental",
+						"economic_typology" : "developed",
+						"OTAN_member":"yes"
+					}
+				},
+
+				{
+					"id" : "Algeria",
+					"src" : "files/images/theme/countries/algeria.jpeg",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "africa",
+						"hemisphere" : "northern",
+						"language": "arabic",
+						"climate" : "desert",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+
+				{
+					"id" : "Portugal",
+					"src" : "files/images/theme/countries/portugal.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "europe",
+						"hemisphere" : "northern",
+						"language": "portugese",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"yes"
+					}
+				},
+				{
+					"id" : "Brazil",
+					"src" : "files/images/theme/countries/brazil.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "america",
+						"hemisphere" : "southern",
+						"language": "portugese",
+						"climate" : "tropical",
+						"economic_typology" : "emerging",
+						"OTAN_member":"no"
+					}
+				},
+
+				{
+					"id" : "Japan",
+					"src" : "files/images/theme/countries/japan.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "asia",
+						"hemisphere" : "northern",
+						"language": "japanese",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "South_Africa",
+					"src" : "files/images/theme/countries/south_africa.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "africa",
+						"hemisphere" : "southern",
+						"language": "zoulou",
+						"climate" : "temperate",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "India",
+					"src" : "files/images/theme/countries/india.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "asia",
+						"hemisphere" : "northern",
+						"language": "indian",
+						"climate" : "tropical",
+						"economic_typology" : "emerging",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "Syria",
+					"src" : "files/images/theme/countries/syria.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "asia",
+						"hemisphere" : "northern",
+						"language": "arabic",
+						"climate" : "desert",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "China",
+					"src" : "files/images/theme/countries/china.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "asia",
+						"hemisphere" : "northern",
+						"language": "chinese",
+						"climate" : "tropical",
+						"economic_typology" : "emerging",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "Russia",
+					"src" : "files/images/theme/countries/russia.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "europe",
+						"hemisphere" : "northern",
+						"language": "russian",
+						"climate" : "continental",
+						"economic_typology" : "developed",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "Argentina",
+					"src" : "files/images/theme/countries/argentina.jpeg",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "america",
+						"hemisphere" : "southern",
+						"language": "spanish",
+						"climate" : "desert",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "Spain",
+					"src" : "files/images/theme/countries/spain.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "europe",
+						"hemisphere" : "northern",
+						"language": "spanish",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"yes"
+					}
+				},
+				{
+					"id" : "australia",
+					"src" : "files/images/theme/countries/australia.jpeg",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "oceania",
+						"hemisphere" : "southern",
+						"language": "english",
+						"climate" : "desert",
+						"economic_typology" : "developed",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "mexico",
+					"src" : "files/images/theme/countries/mexico.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "america",
+						"hemisphere" : "northern",
+						"language": "spanish",
+						"climate" : "desert",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "south_korea",
+					"src" : "files/images/theme/countries/korea.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "asia",
+						"hemisphere" : "northern",
+						"language": "korean",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "Madagascar",
+					"src" : "files/images/theme/countries/madagascar.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "africa",
+						"hemisphere" : "southern",
+						"language": "malgasy",
+						"climate" : "tropical",
+						"economic_typology" : "developing",
+						"OTAN_member":"no"
+					}
+				},
+				{
+					"id" : "New_Zealand",
+					"src" : "files/images/theme/countries/new_zealand.png",
+					"eliminated" : false,
+					"attributes" :
+					{
+						"contient" : "oceania",
+						"hemisphere" : "southern",
+						"language": "english",
+						"climate" : "temperate",
+						"economic_typology" : "developed",
+						"OTAN_member":"no"
+					}
+				}
+
+
 			]
 		}
 	}

@@ -3,6 +3,7 @@ package generator_app;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Cursor;
 /*import javafx.scene.Parent;
 import javafx.scene.Scene;*/
 import javafx.scene.control.Button;
@@ -10,13 +11,21 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 //import javafx.stage.Stage;
 
-import java.lang.reflect.Method;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
-import java.util.HashMap;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import app.IGlobalFunctions;
 import javafx.collections.FXCollections;
@@ -36,7 +45,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
 
     //FXML Buttons attributes --
     @FXML
-    private Button create;
+    private Button nextButton;
     @FXML
     private Button removeButton;
     @FXML
@@ -53,32 +62,34 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
     //FXML Table View --
         //tab
     @FXML
-    private TableView<CreatedAttr> tView;
+    private TableView<ObservableAttribute> tView;
         //column
     @FXML
-    private TableColumn<CreatedAttr, String> key;
+    private TableColumn<ObservableAttribute, String> key;
     @FXML
-    private TableColumn<CreatedAttr, String> value;
+    private TableColumn<ObservableAttribute, String> value;
+
+    @FXML
+    private AnchorPane anchPane;
 
     //CLASS attributes
-    private ObservableList<CreatedAttr> list = FXCollections.observableArrayList();
-    private ObservableList<CreatedAttr> allAttrList = FXCollections.observableArrayList();
+    private ObservableList<ObservableAttribute> list = FXCollections.observableArrayList();
+    private ObservableList<ObservableAttribute> allAttrList = FXCollections.observableArrayList();
 
 
 //Methods--------
 
         //Retrieve values--------
-    public ObservableList<CreatedAttr> getList() {
+    public ObservableList<ObservableAttribute> getList() {
         return list;
     }
 
 
         //Objects management--------
-    public void createTheme(ActionEvent event){
-        //TODO change name of button by next button
+    public void nextObject(ActionEvent event){
         obNumber++;
         if(NewThemeGenCTRL.getList().size() > obNumber){
-            objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getName());
+            objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
             allAttrList.addAll(list);
             list.clear();
             tView.setItems(list);
@@ -94,11 +105,10 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
                 System.out.println(allAttrList);
                 finish=false;
             }
-            
-            //TODO create the JSON thanks to all the entered values and keys
-            create.setText("Create JSON");
 
-            create.setOnAction( new EventHandler<ActionEvent>() {
+            nextButton.setText("Create JSON");
+
+            nextButton.setOnAction( new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent e) {
                     Object source = e.getSource();
@@ -117,14 +127,8 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
         
     }
 
-    public void createJson(){
-        
 
-    }
-
-
-    public void addObject(ActionEvent event){
-        //TODO change name to "addAttribute" !
+    public void addAttribute(ActionEvent event){
         //conditions of fields not being empty
         if ((keyField.getText() == null || keyField.getText().trim().isEmpty()) || ((valueField.getText() == null || valueField.getText().trim().isEmpty())))
         {
@@ -133,15 +137,15 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
         }
         else{
              //we add the new attribute to the list of object of lists
-             list.add(new CreatedAttr(NewThemeGenCTRL.getList().get(obNumber).getName(),keyField.getText(), valueField.getText()));
+             list.add(new ObservableAttribute(NewThemeGenCTRL.getList().get(obNumber).getId(),keyField.getText(), valueField.getText()));
              
              //we add the attributes to a hashmap in a CreatedObject calss.
              NewThemeGenCTRL.getList().get(obNumber).addAttributes(keyField.getText(), valueField.getText());
 
 
              //we add the two values to the tab column
-             value.setCellValueFactory(new PropertyValueFactory<CreatedAttr, String>("value"));
-             key.setCellValueFactory(new PropertyValueFactory<CreatedAttr, String>("key"));
+             value.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("value"));
+             key.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("key"));
              keyField.clear();
              valueField.clear();
  
@@ -151,23 +155,52 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
     }
 
 
-    public void removeObject(ActionEvent event){
+    public void removeAttribute(ActionEvent event){
+
         int row = tView.getSelectionModel().getSelectedIndex();
         if(row>=0){
-            //Supress table and object (because they are linked together)
-            System.out.println("avant supp : " + NewThemeGenCTRL.getList().get(row).toString() );
-            NewThemeGenCTRL.getList().get(row).removeAttribute(tView.getItems().get(row).getKey());
+            NewThemeGenCTRL.getList().get(obNumber).removeAttribute(tView.getItems().get(row).getKey());
             tView.getItems().remove(row);
-            System.out.println("après supp : " + NewThemeGenCTRL.getList().get(row).toString() );
-
-            
         }
     }
 
+    public synchronized void createJson(){
+        //mouse loading mode :
+        nextButton.setCursor(Cursor.WAIT);
+
+        //creating JSON
+        System.out.println("fonction JSON activé");
+        ObjectMapper mapper= new ObjectMapper();
+        File file = new File("files/sheet/gameset.json");
+
+        JsonNode newNode = mapper.createObjectNode();
+        try{
+            JsonNode rootNode = mapper.readTree(file);
+        
+            ArrayList<CreatedObject> arr=new ArrayList<>();
+            for(CreatedObject co:NewThemeGenCTRL.getList()){
+                arr.add(co);
+            }
+
+            ArrayNode arrNode = mapper.valueToTree(arr);
+            ((ObjectNode)newNode).set("objects", arrNode);
+
+            //adding newNode the the rootNode
+            ((ObjectNode)(rootNode).path("theme")).set(NewThemeGenCTRL.getTheme(), newNode);
+
+            mapper.writeValue(Paths.get("files/sheet/gameset1.json").toFile(), rootNode);
+            //TODO change the path to "files/sheet/gameset.json" for it can ovewrite gameset.json file.
+        }
+        catch(IOException e){
+            e.printStackTrace();
+        }
+        nextButton.setCursor(Cursor.DEFAULT);
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getName());
+        objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
         
     }
 }

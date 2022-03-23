@@ -1,11 +1,11 @@
 package generator_app;
 
-public class CreatedAttr {
+public class ObservableAttribute {
     private String obName;
     private String key;
     private String value;
 
-    public CreatedAttr(String obName, String key, String value){
+    public ObservableAttribute(String obName, String key, String value){
         this.obName=obName;
         this.key=key;
         this.value=value;
