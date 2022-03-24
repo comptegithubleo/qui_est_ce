@@ -8,20 +8,21 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class OTF {
 
-	private String id;
-	private String src;
-	private Boolean eliminated;
-	
-	private HashMap<String, String> attributes = new HashMap<String, String>();
-	
-	public OTF(){}
-	
-	public OTF(String id, String src, HashMap<String, String> attributes){
-		this.id = id;
-		this.src = src;
-		this.attributes = attributes;
+	public Boolean eliminated=false;
+	public String id;
+	public String src;
+
+	public HashMap<String, String> attributes = new HashMap<String, String>();
+
+
+	public OTF(Boolean eliminated, String id, String src){
+		this.eliminated=false;
+		this.id=id;
+		this.src=src;
 	}
 
+	public OTF(){}
+	
 	public String getid(){
 		return id;
 	}

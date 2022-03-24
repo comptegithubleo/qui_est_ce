@@ -1,0 +1,29 @@
+{
+    "theme": "human",
+    "answer": "Thomas",
+    "size": [ 0,1 ],
+    
+    "date": "18:26:43 2022/02/14",
+    "objects": [
+        {
+            "eliminated": false,
+            "id": "Thomas",
+            "src": "image/HumanTheme/Thomas.png",
+            "attributes": {
+                "glasses": "true",
+                "hair": "blond",
+                "eyes color": "black"
+            }
+        },
+        {
+            "eliminated": false,
+            "id": "Mathilde",
+            "src": "image/HumanTheme/Mathilde.png",
+            "attributes": {
+                "glasses": "true",
+                "hair": "brown",
+                "eyes color": "blue"
+            }
+        }
+    ]
+}

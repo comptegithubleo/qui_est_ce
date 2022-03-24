@@ -15,3 +15,7 @@ qui_est_ce.jar
 .DS_Store
 .classpath
 .project
+<<<<<<< HEAD
+=======
+*.class
+>>>>>>> alexis

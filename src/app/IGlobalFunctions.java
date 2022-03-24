@@ -29,4 +29,18 @@ public interface IGlobalFunctions {
 		imageView.setImage(newImage);
 		imageView.setSmooth(false);
 	}
+	public default void switch_scene_title(ActionEvent event, String scene_name, String window_title, Stage stage, Scene scene) throws IOException
+	{
+		Parent root = FXMLLoader.load(getClass().getResource(scene_name + ".fxml"));
+		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+		scene = new Scene(root);
+		stage.setScene(scene);
+		stage.setResizable(false);
+
+		//just add this line
+		stage.setTitle(window_title);
+		
+		stage.show();
+	}
+	
 }

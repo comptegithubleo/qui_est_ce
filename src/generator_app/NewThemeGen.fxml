@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="generator_app.NewThemeGenCTRL">
+   <children>
+      <Text layoutX="13.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="beta 1.0">
+         <font>
+            <Font name="Menlo Regular" size="13.0" />
+         </font></Text>
+      <Button fx:id="removeButton" layoutX="255.0" layoutY="226.0" mnemonicParsing="false" onAction="#removeObject" prefHeight="26.0" prefWidth="75.0" text="remove" />
+      <Button fx:id="addButton" layoutX="255.0" layoutY="184.0" mnemonicParsing="false" onAction="#addObject" prefHeight="26.0" prefWidth="75.0" text="add" />
+      <Button fx:id="nextButton" layoutX="157.0" layoutY="343.0" mnemonicParsing="false" onAction="#saveObjects" prefHeight="47.0" prefWidth="275.0" text="Next step -&gt;" textFill="#77dd10" />
+      <TextField fx:id="themeName" layoutX="24.0" layoutY="60.0" prefHeight="17.0" prefWidth="260.0" />
+      <Text layoutX="24.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New theme name :" />
+      <Text layoutX="22.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New objects to add" />
+      <TableView fx:id="tView" layoutX="362.0" layoutY="126.0" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="objects" prefWidth="199.0" resizable="false" text="Objects" />
+        </columns>
+      </TableView>
+      <TextField fx:id="objectNameField" layoutX="46.0" layoutY="172.0" />
+      <Text layoutX="31.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object's name :" />
+      <Label layoutX="199.0" layoutY="14.0" text="THEME GENERATOR">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Label>
+      <Text layoutX="35.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select object's image :" wrappingWidth="161.0" />
+      <Button fx:id="imgSelector" layoutX="60.0" layoutY="263.0" mnemonicParsing="false" onAction="#selectImage" text="..." />
+      <ImageView fx:id="imageView" fitHeight="110.0" fitWidth="130.0" layoutX="106.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>
