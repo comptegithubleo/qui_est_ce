@@ -3,10 +3,12 @@ package generator_app;
 import javafx.fxml.FXML;
 //import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -39,6 +41,8 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
     private Button removeButton;
     @FXML
     private Button addButton;
+	@FXML
+	private Button back_to_menu;
 
     //image handling
     @FXML
@@ -90,8 +94,12 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
     }
 
     public void addObject(ActionEvent event){
-        if (objectNameField.getText() == null || objectNameField.getText().trim().isEmpty() || filePath.isEmpty() || filePath == null) {
-           System.out.println("error no objects id");
+        if (objectNameField.getText() == null || objectNameField.getText().trim().isEmpty() || filePath == null) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Object has no image, please provide one");
+			alert.showAndWait();
         }
         else{
 
@@ -137,4 +145,8 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
         
 
     }
+
+	public void switchScene_Menu(ActionEvent event) throws IOException {
+		switch_scene(event, "../app/Menu", stage, scene, false);
+	}
 }

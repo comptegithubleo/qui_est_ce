@@ -182,15 +182,15 @@ public class BoardController extends Game implements IGlobalFunctions {
 		if (o.getid() == game.board.getBoard().get(game.board.getITF()).getid())
 		{
 			alert.setTitle("Congratulations !");
-			alert.setHeaderText("You won ! Great job !");
+			alert.setHeaderText("You won ! Great job ! Save file will now be deleted.");
 		}
 		else
 		{
 			alert.setTitle("Uh Oh !");
-			alert.setHeaderText("You lost... Try again next time !");
+			alert.setHeaderText("You lost... Try again next time ! Save file will now be deleted.");
 		}
 		
-		ButtonType reset = new ButtonType("Delete save file.");
+		ButtonType reset = new ButtonType("Ok");
 
 		alert.getButtonTypes().clear();
 		alert.getButtonTypes().addAll(reset);

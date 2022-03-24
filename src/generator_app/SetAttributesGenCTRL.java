@@ -4,8 +4,8 @@ package generator_app;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
-/*import javafx.scene.Parent;
-import javafx.scene.Scene;*/
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
-//import javafx.stage.Stage;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,9 +37,9 @@ import javafx.event.EventHandler;
 //CLASS------------------------------------------
 
 public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
-    /*private Scene scene;
+    private Scene scene;
     private Stage stage;
-    private Parent root;*/
+    private Parent root;
     private int obNumber=0;
     private boolean finish=true;
 
@@ -50,6 +50,8 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
     private Button removeButton;
     @FXML
     private Button addButton;
+	@FXML
+	private Button back_to_menu;
     @FXML
     private Text objectNameText;
 
@@ -203,4 +205,8 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
         objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
         
     }
+
+	public void switchScene_Menu(ActionEvent event) throws IOException {
+		switch_scene(event, "../app/Menu", stage, scene, false);
+	}
 }

@@ -40,7 +40,7 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	@FXML
 	ToggleButton advanced_toggle;
 	@FXML
-	Text dlc_text;
+	Button gen_btn;
 
 	public void initialize() {
 
@@ -124,4 +124,7 @@ public class OptionsController extends Game implements IGlobalFunctions{
 		switch_scene(event, "Menu", stage, scene, false);
 	}
 
+	public void switchScene_Gen(ActionEvent event) throws IOException {
+		switch_scene(event, "../generator_app/NewThemeGen", stage, scene, false);
+	}
 }
