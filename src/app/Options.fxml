@@ -83,7 +83,7 @@
             <Insets left="60.0" />
          </padding>
       </ToggleButton>
-      <Button fx:id="gen_btn" layoutX="588.0" layoutY="147.0" mnemonicParsing="false" onAction="#switchScene_Gen" text="Create new theme" textFill="#eb7804">
+      <Button fx:id="gen_btn" layoutX="588.0" layoutY="147.0" mnemonicParsing="false" onAction="#switchScene_Gen" text="Open Generator" textFill="#eb7804">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

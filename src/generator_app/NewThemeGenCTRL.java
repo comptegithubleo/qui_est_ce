@@ -14,12 +14,21 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import main.OTF;
 
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import app.IGlobalFunctions;
 import javafx.collections.FXCollections;
@@ -72,6 +81,20 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
 
     //Methods--------
 
+	public void initialize() throws IllegalArgumentException, IOException
+	{
+		//if new gen, delete old tmp save. Else, load save
+		if (SelectionGeneratorController.getIsNewGen())
+		{
+			File file = new File("files/sheet/gen_tmp.json");
+			file.delete();
+			System.out.println("deleted");
+		}
+		else {
+			loadTMP();
+		}
+	}
+
         //Retrieve values--------
     public static ObservableList<CreatedObject> getList() {
         return list;
@@ -94,19 +117,27 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
     }
 
     public void addObject(ActionEvent event){
-        if (objectNameField.getText() == null || objectNameField.getText().trim().isEmpty() || filePath == null) {
+		if (filePath == null) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Error");
 			alert.setHeaderText(null);
 			alert.setContentText("Object has no image, please provide one");
 			alert.showAndWait();
         }
+		else if (objectNameField.getText() == null)
+		{
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Object has no name, please provide one");
+			alert.showAndWait();
+		}
         else{
 
              //we add the new object to the list of CreatedObjects
              CreatedObject coTemp= new CreatedObject(objectNameField.getText(), filePath);
              list.add(coTemp);
-             System.out.println();
+             System.out.println("added");
 
              //we add the two values to the tab column
              objects.setCellValueFactory(new PropertyValueFactory<CreatedObject, String>("id"));
@@ -115,6 +146,8 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
  
              //we add the two values the the tab view
              tView.setItems(list);
+
+			 saveTMP();
         }
     }
 
@@ -143,10 +176,46 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
             tView.getItems().remove(row);
         }
         
-
+		saveTMP();
     }
 
+	public void loadTMP() throws IllegalArgumentException, IOException
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode tmp_save = mapper.readTree(Paths.get("files/sheet/gen_tmp.json").toFile());
+		List <OTF> otfs = Arrays.asList(mapper.treeToValue(tmp_save.get("objects"), OTF[].class));
+		for (OTF otf : otfs)
+		{
+			System.out.println("adding id: "+otf.getid());
+			CreatedObject coTemp= new CreatedObject(otf.getid(), otf.getsrc());
+			NewThemeGenCTRL.list.add(coTemp);
+			objects.setCellValueFactory(new PropertyValueFactory<CreatedObject, String>("id"));
+		}
+		tView.getItems().addAll(NewThemeGenCTRL.list);
+		themeName.setText(tmp_save.at("/theme").asText());
+	}
+
+	public void saveTMP()
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		
+		JsonNode jsonNode = mapper.createObjectNode();
+		
+		((ObjectNode)jsonNode).put("theme" , this.themeName.getText());
+
+		ArrayNode listConvert = mapper.valueToTree(NewThemeGenCTRL.list);
+		((ObjectNode)jsonNode).set("objects", listConvert);
+
+		try {
+			mapper.writeValue(Paths.get("files/sheet/gen_tmp.json").toFile(), jsonNode);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void switchScene_Menu(ActionEvent event) throws IOException {
+		tView.getItems().clear();
+		System.out.println("cleared");
 		switch_scene(event, "../app/Menu", stage, scene, false);
 	}
 }

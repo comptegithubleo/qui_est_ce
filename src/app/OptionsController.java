@@ -125,6 +125,6 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	}
 
 	public void switchScene_Gen(ActionEvent event) throws IOException {
-		switch_scene(event, "../generator_app/NewThemeGen", stage, scene, false);
+		switch_scene(event, "../generator_app/SelectionGenerator", stage, scene, false);
 	}
 }

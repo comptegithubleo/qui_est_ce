@@ -36,7 +36,7 @@ import javafx.event.EventHandler;
 
 //CLASS------------------------------------------
 
-public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
+public class SetAttributesGenCTRL implements IGlobalFunctions {
     private Scene scene;
     private Stage stage;
     private Parent root;
@@ -60,12 +60,12 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
     private TextField keyField;
     @FXML
     private TextField valueField;
-
+	
     //FXML Table View --
-        //tab
+	//tab
     @FXML
     private TableView<ObservableAttribute> tView;
-        //column
+	//column
     @FXML
     private TableColumn<ObservableAttribute, String> key;
     @FXML
@@ -81,6 +81,9 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
 
 //Methods--------
 
+	public void initialize() {
+		objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
+	}
         //Retrieve values--------
     public ObservableList<ObservableAttribute> getList() {
         return list;
@@ -95,9 +98,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
             allAttrList.addAll(list);
             list.clear();
             tView.setItems(list);
-            System.out.println("coucou");
             System.out.println(allAttrList);
-
         }
         else{
 
@@ -154,6 +155,8 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
              //we are displaying the attribtues
              tView.setItems(list);
         }
+
+		saveTMP();
     }
 
 
@@ -164,7 +167,32 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
             NewThemeGenCTRL.getList().get(obNumber).removeAttribute(tView.getItems().get(row).getKey());
             tView.getItems().remove(row);
         }
+
+		saveTMP();
     }
+
+	public void saveTMP()
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode jsonNode = mapper.createObjectNode();
+		try {
+			jsonNode = mapper.readTree(Paths.get("files/sheet/gen_tmp.json").toFile());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
+		jsonNode.at("/" + objectNameText.getText());
+		for (ObservableAttribute attr : allAttrList)
+		{
+			((ObjectNode)jsonNode).put("attributes", attr.toString());
+		}
+
+		try {
+			mapper.writeValue(Paths.get("files/sheet/gen_tmp.json").toFile(), jsonNode);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
     public synchronized void createJson(){
         //mouse loading mode :
@@ -200,11 +228,6 @@ public class SetAttributesGenCTRL implements IGlobalFunctions,Initializable {
 
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
-        
-    }
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
 		switch_scene(event, "../app/Menu", stage, scene, false);
