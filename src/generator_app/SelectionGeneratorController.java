@@ -14,7 +14,7 @@ public class SelectionGeneratorController implements IGlobalFunctions {
 	private Scene scene;
 	private Stage stage;
 
-	private static boolean is_new_gen = true;
+	private static boolean is_new_gen;
 
 	@FXML
 	private Button existing_gen_btn;
@@ -38,6 +38,7 @@ public class SelectionGeneratorController implements IGlobalFunctions {
 	}
 
 	public void switchScene_newGen(ActionEvent event) throws IOException {
+		is_new_gen = true;
 		switch_scene(event, "NewThemeGen", stage, scene, false);
 	}
 	public void switchScene_existingGen(ActionEvent event) throws IOException {

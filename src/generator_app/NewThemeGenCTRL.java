@@ -186,7 +186,6 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
 		List <OTF> otfs = Arrays.asList(mapper.treeToValue(tmp_save.get("objects"), OTF[].class));
 		for (OTF otf : otfs)
 		{
-			System.out.println("adding id: "+otf.getid());
 			CreatedObject coTemp= new CreatedObject(otf.getid(), otf.getsrc());
 			NewThemeGenCTRL.list.add(coTemp);
 			objects.setCellValueFactory(new PropertyValueFactory<CreatedObject, String>("id"));
@@ -214,8 +213,7 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
 	}
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
-		tView.getItems().clear();
-		System.out.println("cleared");
+		list.clear();
 		switch_scene(event, "../app/Menu", stage, scene, false);
 	}
 }

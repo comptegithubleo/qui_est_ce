@@ -6,10 +6,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -20,6 +22,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -83,6 +87,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 
 	public void initialize() {
 		objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
+		loadAttributes();
 	}
         //Retrieve values--------
     public ObservableList<ObservableAttribute> getList() {
@@ -131,34 +136,51 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
     }
 
 
-    public void addAttribute(ActionEvent event){
+	public void addAttribute(ActionEvent event){
         //conditions of fields not being empty
         if ((keyField.getText() == null || keyField.getText().trim().isEmpty()) || ((valueField.getText() == null || valueField.getText().trim().isEmpty())))
         {
             //Error handling
-           System.out.println("error : keyField or valueField is empty");
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Error.");
+            alert.setHeaderText(null);
+            alert.setContentText("Please, make sure to type something in both key and value fields.");
+            
+            alert.showAndWait();
         }
         else{
-             //we add the new attribute to the list of object of lists
-             list.add(new ObservableAttribute(NewThemeGenCTRL.getList().get(obNumber).getId(),keyField.getText(), valueField.getText()));
-             
-             //we add the attributes to a hashmap in a CreatedObject calss.
-             NewThemeGenCTRL.getList().get(obNumber).addAttributes(keyField.getText(), valueField.getText());
+            boolean existingvalue = false;
+            for(ObservableAttribute o : list){
+                if (keyField.getText().equals(o.getKey())){
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Error.");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Watch out ! \nYou already created this key for this object.");
+            
+                    alert.showAndWait();
+                    existingvalue = true;
+                }
+            }
+            if(!existingvalue){
+                //we add the new attribute to the list of object of lists
+                list.add(new ObservableAttribute(NewThemeGenCTRL.getList().get(obNumber).getId(),keyField.getText(), valueField.getText()));
+                
+                //we add the attributes to a hashmap in a CreatedObject calss.
+                NewThemeGenCTRL.getList().get(obNumber).addAttributes(keyField.getText(), valueField.getText());
 
+                //we add the two values to the tab column
+                value.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("value"));
+                key.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("key"));
+                keyField.clear();
+                valueField.clear();
+    
+                //we are displaying the attribtues
+                tView.setItems(list);
 
-             //we add the two values to the tab column
-             value.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("value"));
-             key.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("key"));
-             keyField.clear();
-             valueField.clear();
- 
-             //we are displaying the attribtues
-             tView.setItems(list);
+				saveTMP();
+            }
         }
-
-		saveTMP();
     }
-
 
     public void removeAttribute(ActionEvent event){
 
@@ -166,30 +188,58 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
         if(row>=0){
             NewThemeGenCTRL.getList().get(obNumber).removeAttribute(tView.getItems().get(row).getKey());
             tView.getItems().remove(row);
+			
+			saveTMP();
         }
-
-		saveTMP();
     }
+
+	public void loadAttributes()
+	{
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			JsonNode rootNode = mapper.readTree(Paths.get("files/sheet/gen_tmp.json").toFile());
+			rootNode.path("objects").get(obNumber).get("attributes");
+
+
+			/*list.add(new ObservableAttribute(NewThemeGenCTRL.getList().get(obNumber).getId(),attribute.get(0).asText(), attribute.get(1).asText()));
+			
+			//we add the attributes to a hashmap in a CreatedObject calss.
+			NewThemeGenCTRL.getList().get(obNumber).addAttributes(attribute.get(0).asText(), attribute.get(1).asText());
+
+			//we add the two values to the tab column
+			value.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("value"));
+			key.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("key"));
+			keyField.clear();
+			valueField.clear();
+
+			//we are displaying the attribtues
+			tView.setItems(list);*/
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 	public void saveTMP()
 	{
-		ObjectMapper mapper = new ObjectMapper();
-		JsonNode jsonNode = mapper.createObjectNode();
 		try {
-			jsonNode = mapper.readTree(Paths.get("files/sheet/gen_tmp.json").toFile());
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+			ObjectMapper mapper = new ObjectMapper();
+			JsonNode rootNode = mapper.readTree(Paths.get("files/sheet/gen_tmp.json").toFile());
 
-		jsonNode.at("/" + objectNameText.getText());
-		for (ObservableAttribute attr : allAttrList)
-		{
-			((ObjectNode)jsonNode).put("attributes", attr.toString());
-		}
+			ArrayList<CreatedObject> arr=new ArrayList<>();
+			for(CreatedObject co:NewThemeGenCTRL.getList()){
+				arr.add(co);
+			}
+			
+			ArrayNode arrNode = mapper.valueToTree(arr);
 
-		try {
-			mapper.writeValue(Paths.get("files/sheet/gen_tmp.json").toFile(), jsonNode);
-		} catch (IOException e) {
+			((ObjectNode)(rootNode)).set("objects", arrNode);
+
+			mapper.writeValue(Paths.get("files/sheet/gen_tmp.json").toFile(), rootNode);
+		}
+		catch(IOException e){
 			e.printStackTrace();
 		}
 	}
@@ -230,6 +280,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
+		list.clear();
 		switch_scene(event, "../app/Menu", stage, scene, false);
 	}
 }
