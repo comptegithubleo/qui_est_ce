@@ -19,17 +19,22 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Map.Entry;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 
 import app.IGlobalFunctions;
 import javafx.collections.FXCollections;
@@ -104,6 +109,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
             list.clear();
             tView.setItems(list);
             System.out.println(allAttrList);
+			loadAttributes();
         }
         else{
 
@@ -198,23 +204,24 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			JsonNode rootNode = mapper.readTree(Paths.get("files/sheet/gen_tmp.json").toFile());
-			rootNode.path("objects").get(obNumber).get("attributes");
-
-
-			/*list.add(new ObservableAttribute(NewThemeGenCTRL.getList().get(obNumber).getId(),attribute.get(0).asText(), attribute.get(1).asText()));
 			
-			//we add the attributes to a hashmap in a CreatedObject calss.
-			NewThemeGenCTRL.getList().get(obNumber).addAttributes(attribute.get(0).asText(), attribute.get(1).asText());
+			for (JsonNode node : rootNode.path("objects").get(obNumber).get("attributes"))
+			{
+				list.add(new ObservableAttribute(NewThemeGenCTRL.getList().get(obNumber).getId(),node.textValue(), node.textValue()));
+					
+				//we add the attributes to a hashmap in a CreatedObject calss.
+				NewThemeGenCTRL.getList().get(obNumber).addAttributes(node.textValue(), node.textValue());
 
-			//we add the two values to the tab column
-			value.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("value"));
-			key.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("key"));
-			keyField.clear();
-			valueField.clear();
+				//we add the two values to the tab column
+				value.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("value"));
+				key.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("key"));
+				keyField.clear();
+				valueField.clear();
 
-			//we are displaying the attribtues
-			tView.setItems(list);*/
-
+				//we are displaying the attribtues
+				tView.setItems(list);
+			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -281,6 +288,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
 		list.clear();
+		tView.getItems().clear();
 		switch_scene(event, "../app/Menu", stage, scene, false);
 	}
 }

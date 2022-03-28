@@ -214,6 +214,7 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
 		list.clear();
+		tView.getItems().clear();
 		switch_scene(event, "../app/Menu", stage, scene, false);
 	}
 }
