@@ -137,7 +137,8 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
              //we add the new object to the list of CreatedObjects
              CreatedObject coTemp= new CreatedObject(objectNameField.getText(), filePath);
              list.add(coTemp);
-             System.out.println("added");
+             System.out.println("added + image : ");
+             System.out.println(coTemp.getSrc());
 
              //we add the two values to the tab column
              objects.setCellValueFactory(new PropertyValueFactory<CreatedObject, String>("id"));

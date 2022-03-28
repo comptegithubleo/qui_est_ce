@@ -13,10 +13,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Array;
@@ -80,8 +83,11 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
     @FXML
     private TableColumn<ObservableAttribute, String> value;
 
+    //Other FXML handle
     @FXML
     private AnchorPane anchPane;
+    @FXML
+    private ImageView obimg;
 
     //CLASS attributes
     private ObservableList<ObservableAttribute> list = FXCollections.observableArrayList();
@@ -91,6 +97,9 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 //Methods--------
 
 	public void initialize() {
+        Image img = new Image("file:"+NewThemeGenCTRL.getList().get(obNumber).getSrc());
+        obimg.setImage(img);
+        System.out.println(NewThemeGenCTRL.getList().get(obNumber).getSrc());
 		objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
 		loadAttributes();
 	}
@@ -104,6 +113,8 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
     public void nextObject(ActionEvent event){
         obNumber++;
         if(NewThemeGenCTRL.getList().size() > obNumber){
+            Image img = new Image("file:"+NewThemeGenCTRL.getList().get(obNumber).getSrc());
+            obimg.setImage(img);
             objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
             allAttrList.addAll(list);
             list.clear();
@@ -121,6 +132,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
             }
 
             nextButton.setText("Create JSON");
+            nextButton.setStyle("-fx-text-fill: red");
 
             nextButton.setOnAction( new EventHandler<ActionEvent>() {
                 @Override

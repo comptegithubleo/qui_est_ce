@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -15,9 +16,9 @@
          <font>
             <Font name="Menlo Regular" size="13.0" />
          </font></Text>
-      <Button fx:id="removeButton" layoutX="255.0" layoutY="213.0" mnemonicParsing="false" onAction="#removeAttribute" prefHeight="26.0" prefWidth="75.0" text="remove" />
+      <Button fx:id="removeButton" layoutX="255.0" layoutY="222.0" mnemonicParsing="false" onAction="#removeAttribute" prefHeight="26.0" prefWidth="75.0" text="remove" />
       <Button fx:id="addButton" layoutX="255.0" layoutY="150.0" mnemonicParsing="false" onAction="#addAttribute" prefHeight="26.0" prefWidth="75.0" text="add" />
-      <Button fx:id="nextButton" layoutX="157.0" layoutY="343.0" mnemonicParsing="false" onAction="#nextObject" prefHeight="47.0" prefWidth="275.0" text="Create theme !" textFill="RED" />
+      <Button fx:id="nextButton" layoutX="154.0" layoutY="344.0" mnemonicParsing="false" onAction="#nextObject" prefHeight="47.0" prefWidth="278.0" text="Next item -&gt;" textFill="#09d031" />
       <Text layoutX="43.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add key :" />
       <TableView fx:id="tView" layoutX="363.0" layoutY="93.0" prefHeight="227.0" prefWidth="200.0">
         <columns>
@@ -33,8 +34,8 @@
          </font>
       </Label>
       <TextField fx:id="valueField" layoutX="40.0" layoutY="222.0" prefHeight="25.0" prefWidth="162.0" />
-      <Text fx:id="objectNameText" fill="#1f77b5" layoutX="102.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object name" />
-      <Text layoutX="17.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object name :" />
-      <Button fx:id="back_to_menu" layoutX="454.0" layoutY="367.0" mnemonicParsing="false" onAction="#switchScene_Menu" text="Back to menu" />
+      <Text fx:id="objectNameText" fill="#00b2ff" layoutX="154.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object name" underline="true" />
+      <Button fx:id="back_to_menu" layoutX="454.0" layoutY="378.0" mnemonicParsing="false" onAction="#switchScene_Menu" prefHeight="27.0" prefWidth="121.0" text="Back to main menu" />
+      <ImageView fx:id="obimg" fitHeight="90.0" fitWidth="101.0" layoutX="43.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
