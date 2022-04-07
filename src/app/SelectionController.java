@@ -92,11 +92,7 @@ public class SelectionController extends Game implements IGlobalFunctions {
 		game.setTheme(theme_name);
 		game.createExistingBoard(theme_name);
 		
-<<<<<<< HEAD
-		switch_scene(event, "Board", stage, scene, true);
-=======
 		switch_scene(event, "/app/Board", stage, scene, true);
->>>>>>> refactoring navigability issues
 	}
 
 	public void switchScene_BoardNew(ActionEvent event) throws IOException {
@@ -141,11 +137,7 @@ public class SelectionController extends Game implements IGlobalFunctions {
 
 		if(game.createNewBoard(Integer.parseInt(choice_sizex.getText()), Integer.parseInt(choice_sizey.getText())))
 		{
-<<<<<<< HEAD
-			switch_scene(event, "Board", stage, scene, true);
-=======
 			switch_scene(event, "/app/Board", stage, scene, true);
->>>>>>> refactoring navigability issues
 		}
 		else {
 			alertWrongSize();
@@ -171,10 +163,6 @@ public class SelectionController extends Game implements IGlobalFunctions {
 	}
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
-<<<<<<< HEAD
-		switch_scene(event, "Menu", stage, scene, false);
-=======
 		switch_scene(event, "/app/Menu", stage, scene, false);
->>>>>>> refactoring navigability issues
 	}
 }

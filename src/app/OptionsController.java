@@ -121,18 +121,10 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	}
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
-<<<<<<< HEAD
-		switch_scene(event, "Menu", stage, scene, false);
-	}
-
-	public void switchScene_Gen(ActionEvent event) throws IOException {
-		switch_scene(event, "../generator_app/SelectionGenerator", stage, scene, false);
-=======
 		switch_scene(event, "/app/Menu", stage, scene, false);
 	}
 
 	public void switchScene_Gen(ActionEvent event) throws IOException {
 		switch_scene(event, "/generator_app/SelectionGenerator", stage, scene, false);
->>>>>>> refactoring navigability issues
 	}
 }

@@ -1,15 +1,11 @@
 package app;
 
-<<<<<<< HEAD
-import java.io.IOException;
-=======
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 
 import javax.print.DocFlavor.URL;
->>>>>>> refactoring navigability issues
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -24,13 +20,9 @@ public interface IGlobalFunctions {
 
 	public default void switch_scene(ActionEvent event, String scene_name, Stage stage, Scene scene, Boolean isResizeable) throws IOException
 	{
-<<<<<<< HEAD
-		Parent root = FXMLLoader.load(getClass().getResource(scene_name + ".fxml"));
-=======
 		Parent root;
 		java.net.URL url = getClass().getResource(scene_name + ".fxml");
 		root = FXMLLoader.load(url);
->>>>>>> refactoring navigability issues
 		stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 		scene = new Scene(root);
 		stage.setScene(scene);

@@ -9,11 +9,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception
 	{
-<<<<<<< HEAD
-		Parent root = FXMLLoader.load(getClass().getResource("app/Menu.fxml"));
-=======
 		Parent root = FXMLLoader.load(getClass().getResource("/app/Menu.fxml"));
->>>>>>> refactoring navigability issues
 		Scene scene = new Scene(root, 700, 400);
 		stage.setScene(scene);
 		stage.setResizable(false);

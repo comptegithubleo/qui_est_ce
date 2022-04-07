@@ -61,19 +61,11 @@ public class MenuController extends Game implements IGlobalFunctions {
 				alert.showAndWait();
 		}
 		else {
-<<<<<<< HEAD
-			switch_scene(event, "Selection", stage, scene, false);
-		}
-	}
-	public void switchScene_Options(ActionEvent event) throws IOException {
-		switch_scene(event, "Options", stage, scene, false);
-=======
 			switch_scene(event, "/app/Selection", stage, scene, false);
 		}
 	}
 	public void switchScene_Options(ActionEvent event) throws IOException {
 		switch_scene(event, "/app/Options", stage, scene, false);
->>>>>>> refactoring navigability issues
 	}
 	public void quitGame(ActionEvent event) {
 		Platform.exit();
