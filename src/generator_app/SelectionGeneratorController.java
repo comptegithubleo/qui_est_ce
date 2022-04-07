@@ -34,16 +34,28 @@ public class SelectionGeneratorController implements IGlobalFunctions {
 	}
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
+<<<<<<< HEAD
 		switch_scene(event, "../app/Menu", stage, scene, false);
+=======
+		switch_scene(event, "/app/Menu", stage, scene, false);
+>>>>>>> refactoring navigability issues
 	}
 
 	public void switchScene_newGen(ActionEvent event) throws IOException {
 		is_new_gen = true;
+<<<<<<< HEAD
 		switch_scene(event, "NewThemeGen", stage, scene, false);
 	}
 	public void switchScene_existingGen(ActionEvent event) throws IOException {
 		is_new_gen = false;
 		switch_scene(event, "NewThemeGen", stage, scene, false);
+=======
+		switch_scene(event, "/generator_app/NewThemeGen", stage, scene, false);
+	}
+	public void switchScene_existingGen(ActionEvent event) throws IOException {
+		is_new_gen = false;
+		switch_scene(event, "/generator_app/NewThemeGen", stage, scene, false);
+>>>>>>> refactoring navigability issues
 	}
 
 }

@@ -111,7 +111,11 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
        }
        else{
            theme=themeName.getText();
+<<<<<<< HEAD
            switch_scene_title(event, "SetAttributesGen", "Set Attributes", stage, scene);
+=======
+           switch_scene_title(event, "/generator_app/SetAttributesGen", "Set Attributes", stage, scene);
+>>>>>>> refactoring navigability issues
            
        }
     }
@@ -216,6 +220,10 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
 	public void switchScene_Menu(ActionEvent event) throws IOException {
 		list.clear();
 		tView.getItems().clear();
+<<<<<<< HEAD
 		switch_scene(event, "../app/Menu", stage, scene, false);
+=======
+		switch_scene(event, "/app/Menu", stage, scene, false);
+>>>>>>> refactoring navigability issues
 	}
 }

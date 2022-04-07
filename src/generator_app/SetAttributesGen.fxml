@@ -10,32 +10,56 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<<<<<<< HEAD
 <AnchorPane fx:id="anchPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="generator_app.SetAttributesGenCTRL">
+=======
+<AnchorPane fx:id="anchPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="416.0" prefWidth="589.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="generator_app.SetAttributesGenCTRL">
+>>>>>>> refactoring navigability issues
    <children>
       <Text layoutX="12.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="beta 1.0">
          <font>
             <Font name="Menlo Regular" size="13.0" />
          </font></Text>
+<<<<<<< HEAD
       <Button fx:id="removeButton" layoutX="255.0" layoutY="222.0" mnemonicParsing="false" onAction="#removeAttribute" prefHeight="26.0" prefWidth="75.0" text="remove" />
       <Button fx:id="addButton" layoutX="255.0" layoutY="150.0" mnemonicParsing="false" onAction="#addAttribute" prefHeight="26.0" prefWidth="75.0" text="add" />
       <Button fx:id="nextButton" layoutX="154.0" layoutY="344.0" mnemonicParsing="false" onAction="#nextObject" prefHeight="47.0" prefWidth="278.0" text="Next item -&gt;" textFill="#09d031" />
       <Text layoutX="43.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add key :" />
+=======
+      <Button fx:id="removeButton" layoutX="257.0" layoutY="298.0" mnemonicParsing="false" onAction="#removeAttribute" prefHeight="26.0" prefWidth="75.0" text="remove" />
+      <Button fx:id="addButton" layoutX="257.0" layoutY="228.0" mnemonicParsing="false" onAction="#addAttribute" prefHeight="26.0" prefWidth="75.0" text="add" />
+      <Button fx:id="nextButton" layoutX="157.0" layoutY="343.0" mnemonicParsing="false" onAction="#nextObject" prefHeight="47.0" prefWidth="275.0" text="Next object" textFill="RED" />
+      <Text layoutX="43.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add key :" />
+>>>>>>> refactoring navigability issues
       <TableView fx:id="tView" layoutX="363.0" layoutY="93.0" prefHeight="227.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="key" editable="false" prefWidth="102.03933715820312" sortable="false" text="Key" />
             <TableColumn fx:id="value" prefWidth="98.96063232421875" text="Value" />
         </columns>
       </TableView>
+<<<<<<< HEAD
       <TextField fx:id="keyField" layoutX="42.0" layoutY="153.0" />
       <Text layoutX="42.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add value :" />
+=======
+      <TextField fx:id="keyField" layoutX="42.0" layoutY="229.0" />
+      <Text layoutX="42.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add value :" />
+>>>>>>> refactoring navigability issues
       <Label layoutX="199.0" layoutY="14.0" text="THEME GENERATOR">
          <font>
             <Font size="21.0" />
          </font>
       </Label>
+<<<<<<< HEAD
       <TextField fx:id="valueField" layoutX="40.0" layoutY="222.0" prefHeight="25.0" prefWidth="162.0" />
       <Text fx:id="objectNameText" fill="#00b2ff" layoutX="154.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object name" underline="true" />
       <Button fx:id="back_to_menu" layoutX="454.0" layoutY="378.0" mnemonicParsing="false" onAction="#switchScene_Menu" prefHeight="27.0" prefWidth="121.0" text="Back to main menu" />
       <ImageView fx:id="obimg" fitHeight="90.0" fitWidth="101.0" layoutX="43.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" />
+=======
+      <TextField fx:id="valueField" layoutX="40.0" layoutY="298.0" prefHeight="25.0" prefWidth="171.0" />
+      <Text fx:id="objectNameText" fill="#1f77b5" layoutX="122.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object name" />
+      <Text layoutX="25.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Object name :" />
+      <Button fx:id="back_to_menu" layoutX="454.0" layoutY="367.0" mnemonicParsing="false" onAction="#switchScene_Menu" text="Back to menu" />
+      <ImageView fx:id="image" fitHeight="117.0" fitWidth="129.0" layoutX="211.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" />
+>>>>>>> refactoring navigability issues
    </children>
 </AnchorPane>

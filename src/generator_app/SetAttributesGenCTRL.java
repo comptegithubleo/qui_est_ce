@@ -2,7 +2,10 @@ package generator_app;
 
 
 import javafx.fxml.FXML;
+<<<<<<< HEAD
 import javafx.fxml.Initializable;
+=======
+>>>>>>> refactoring navigability issues
 import javafx.scene.Cursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,12 +16,16 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+<<<<<<< HEAD
 import javafx.scene.image.Image;
+=======
+>>>>>>> refactoring navigability issues
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+<<<<<<< HEAD
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
@@ -32,12 +39,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Map.Entry;
+=======
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+>>>>>>> refactoring navigability issues
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+<<<<<<< HEAD
 import com.fasterxml.jackson.databind.type.TypeFactory;
+=======
+>>>>>>> refactoring navigability issues
 
 import app.IGlobalFunctions;
 import javafx.collections.FXCollections;
@@ -86,8 +102,13 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
     //Other FXML handle
     @FXML
     private AnchorPane anchPane;
+<<<<<<< HEAD
     @FXML
     private ImageView obimg;
+=======
+	@FXML
+	private ImageView image;
+>>>>>>> refactoring navigability issues
 
     //CLASS attributes
     private ObservableList<ObservableAttribute> list = FXCollections.observableArrayList();
@@ -97,12 +118,25 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 //Methods--------
 
 	public void initialize() {
+<<<<<<< HEAD
         Image img = new Image("file:"+NewThemeGenCTRL.getList().get(obNumber).getSrc());
         obimg.setImage(img);
         System.out.println(NewThemeGenCTRL.getList().get(obNumber).getSrc());
 		objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
 		loadAttributes();
 	}
+=======
+		objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
+		updateImage();
+		loadAttributes();
+	}
+
+	public void updateImage()
+	{
+		String imagePath = NewThemeGenCTRL.getList().get(obNumber).getSrc();
+		setImageView(imagePath, 300, 300, image);
+	}
+>>>>>>> refactoring navigability issues
         //Retrieve values--------
     public ObservableList<ObservableAttribute> getList() {
         return list;
@@ -113,13 +147,20 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
     public void nextObject(ActionEvent event){
         obNumber++;
         if(NewThemeGenCTRL.getList().size() > obNumber){
+<<<<<<< HEAD
             Image img = new Image("file:"+NewThemeGenCTRL.getList().get(obNumber).getSrc());
             obimg.setImage(img);
+=======
+>>>>>>> refactoring navigability issues
             objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
             allAttrList.addAll(list);
             list.clear();
             tView.setItems(list);
             System.out.println(allAttrList);
+<<<<<<< HEAD
+=======
+			updateImage();
+>>>>>>> refactoring navigability issues
 			loadAttributes();
         }
         else{
@@ -140,6 +181,10 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
                     Object source = e.getSource();
                     if (source instanceof Button) {
                         //new method name
+<<<<<<< HEAD
+=======
+						nextButton.setDisable(true);
+>>>>>>> refactoring navigability issues
                         createJson();
                     }
                 }
@@ -216,6 +261,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			JsonNode rootNode = mapper.readTree(Paths.get("files/sheet/gen_tmp.json").toFile());
+<<<<<<< HEAD
 			
 			for (JsonNode node : rootNode.path("objects").get(obNumber).get("attributes"))
 			{
@@ -234,6 +280,24 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 				tView.setItems(list);
 			}
 			
+=======
+
+			rootNode.path("objects").get(obNumber).at("/attributes").fields().forEachRemaining(attribute -> {
+					list.add(new ObservableAttribute(NewThemeGenCTRL.getList().get(obNumber).getId(), attribute.getKey(), attribute.getValue().asText()));
+					//we add the attributes to a hashmap in a CreatedObject calss.
+					NewThemeGenCTRL.getList().get(obNumber).addAttributes(attribute.getKey(), attribute.getValue().asText());
+					
+					//we add the two values to the tab column
+					value.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("value"));
+					key.setCellValueFactory(new PropertyValueFactory<ObservableAttribute, String>("key"));
+					keyField.clear();
+					valueField.clear();
+					
+					//we are displaying the attribtues
+					tView.setItems(list);
+			});
+					
+>>>>>>> refactoring navigability issues
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -287,8 +351,12 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
             //adding newNode the the rootNode
             ((ObjectNode)(rootNode).path("theme")).set(NewThemeGenCTRL.getTheme(), newNode);
 
+<<<<<<< HEAD
             mapper.writeValue(Paths.get("files/sheet/gameset1.json").toFile(), rootNode);
             //TODO change the path to "files/sheet/gameset.json" for it can ovewrite gameset.json file.
+=======
+            mapper.writeValue(Paths.get("files/sheet/gameset.json").toFile(), rootNode);
+>>>>>>> refactoring navigability issues
         }
         catch(IOException e){
             e.printStackTrace();
@@ -297,10 +365,17 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 
     }
 
+<<<<<<< HEAD
 
 	public void switchScene_Menu(ActionEvent event) throws IOException {
 		list.clear();
 		tView.getItems().clear();
 		switch_scene(event, "../app/Menu", stage, scene, false);
+=======
+	public void switchScene_Menu(ActionEvent event) throws IOException {
+		NewThemeGenCTRL.getList().clear();
+		tView.getItems().clear();
+		switch_scene(event, "/app/Menu", stage, scene, false);
+>>>>>>> refactoring navigability issues
 	}
 }
