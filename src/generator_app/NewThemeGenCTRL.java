@@ -18,13 +18,10 @@ import main.OTF;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -137,8 +134,6 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
              //we add the new object to the list of CreatedObjects
              CreatedObject coTemp= new CreatedObject(objectNameField.getText(), filePath);
              list.add(coTemp);
-             System.out.println("added + image : ");
-             System.out.println(coTemp.getSrc());
 
              //we add the two values to the tab column
              objects.setCellValueFactory(new PropertyValueFactory<CreatedObject, String>("id"));

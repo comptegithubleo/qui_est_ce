@@ -1,11 +1,6 @@
 package app;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
-
-import javax.print.DocFlavor.URL;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

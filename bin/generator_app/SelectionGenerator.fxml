@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="generator_app.SelectionGeneratorController">
+   <children>
+      <Text layoutX="80.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generator Selection">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <Button layoutX="104.0" layoutY="126.0" mnemonicParsing="false" onAction="#switchScene_newGen" prefHeight="48.0" prefWidth="192.0" text="Create new theme" />
+      <Button fx:id="existing_gen_btn" layoutX="104.0" layoutY="192.0" mnemonicParsing="false" onAction="#switchScene_existingGen" prefHeight="48.0" prefWidth="192.0" text="Continue last theme" />
+      <Button layoutX="277.0" layoutY="262.0" mnemonicParsing="false" onAction="#switchScene_Menu" text="Back to menu" />
+   </children>
+</AnchorPane>

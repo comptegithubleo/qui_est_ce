@@ -21,11 +21,14 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import org.controlsfx.control.textfield.TextFields;
 
 import app.IGlobalFunctions;
 import javafx.collections.FXCollections;
@@ -79,7 +82,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 
     //CLASS attributes
     private ObservableList<ObservableAttribute> list = FXCollections.observableArrayList();
-    private ObservableList<ObservableAttribute> allAttrList = FXCollections.observableArrayList();
+    private HashMap<String, String> allAttrList = new HashMap<String, String>();
 
 
 //Methods--------
@@ -87,6 +90,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 	public void initialize() {
 		objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
 		updateImage();
+		populateAttributes();
 		loadAttributes();
 	}
 
@@ -106,7 +110,11 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
         obNumber++;
         if(NewThemeGenCTRL.getList().size() > obNumber){
             objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
-            allAttrList.addAll(list);
+            for (ObservableAttribute o : list)
+			{
+				allAttrList.put(o.getKey(), o.getValue());
+			}
+			TextFields.bindAutoCompletion(keyField, allAttrList.keySet());
             list.clear();
             tView.setItems(list);
             System.out.println(allAttrList);
@@ -116,7 +124,10 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
         else{
 
             if(finish){
-                allAttrList.addAll(list);
+                for (ObservableAttribute o : list)
+				{
+					allAttrList.put(o.getKey(), o.getValue());
+				}
                 System.out.println("On y passe !!");
                 System.out.println(allAttrList);
                 finish=false;
@@ -203,6 +214,29 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
         }
     }
 
+	public void populateAttributes()
+	{
+		try {
+			ObjectMapper mapper = new ObjectMapper();
+			JsonNode rootNode = mapper.readTree(Paths.get("files/sheet/gen_tmp.json").toFile());
+			
+			for (int i = 0; i < NewThemeGenCTRL.getList().size(); i++)
+			{
+				rootNode.path("objects").get(i).at("/attributes").fields().forEachRemaining(attribute -> {
+					allAttrList.put(attribute.getKey(), attribute.getValue().asText());
+				});
+			}
+			TextFields.bindAutoCompletion(keyField, allAttrList.keySet());
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		keyField.textProperty().addListener(e -> {
+			TextFields.bindAutoCompletion(valueField, allAttrList.get(keyField.getText()));
+		});
+	}
+	
 	public void loadAttributes()
 	{
 		ObjectMapper mapper = new ObjectMapper();
