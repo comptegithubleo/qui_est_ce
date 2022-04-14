@@ -1,3 +1,4 @@
+
 package app;
 
 import java.io.File;
@@ -358,11 +359,11 @@ public class BoardController extends Game implements IGlobalFunctions {
 				if (game.board.guessAdvanced(choice_question.getValue(), choice_answer.getValue(), choice_question2.getValue(), choice_answer2.getValue(), operator.getValue()))
 				{
 					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " " + operator.getValue() + " " +
-					choice_question.getValue() + " : " + choice_answer.getValue() + " ? TRUE");
+					choice_question2.getValue() + " : " + choice_answer2.getValue() + " ? TRUE");
 					guess_text.setFill(Color.GREEN);
 				} else {
 					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " " + operator.getValue() + " " +
-					choice_question.getValue() + " : " + choice_answer.getValue() + " ? FALSE");
+					choice_question2.getValue() + " : " + choice_answer2.getValue() + " ? FALSE");
 					guess_text.setFill(Color.RED);
 				}
 			}

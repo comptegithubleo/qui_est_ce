@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -19,12 +21,16 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.lang.Math;
 
 public class SelectionController extends Game implements IGlobalFunctions {
 
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
+	private double size;
+	private int sizey;
+	private int sizex;
 
 	@FXML
 	ScrollPane scrollpane;
@@ -84,6 +90,12 @@ public class SelectionController extends Game implements IGlobalFunctions {
 				newgame_btn.setDisable(false);
 			}
 		});
+
+		choice_theme.valueProperty().addListener(new ChangeListener<String>() {
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue){
+				autofill();
+			}
+		});
 	}
 
 	public void switchScene_BoardSave(ActionEvent event) throws Exception {
@@ -94,6 +106,28 @@ public class SelectionController extends Game implements IGlobalFunctions {
 		
 		switch_scene(event, "/app/Board", stage, scene, true);
 	}
+
+	public void autofill(){
+		size = 0;
+		game.getGamesetJson().at("/theme/" + choice_theme.getValue() +"/objects").iterator().forEachRemaining((object) -> size++);
+		if (Math.sqrt(size) == (int)Math.sqrt(size)){
+			sizex = (int)Math.sqrt(size);
+			sizey = (int)Math.sqrt(size);
+		}
+		else{
+			sizex = (int)Math.sqrt(size);
+			sizey = (int)Math.sqrt(size)+1;
+			while(sizex * sizey < size){
+				sizey++;
+			}
+
+
+		}
+		choice_sizex.setText(String.valueOf(sizex));
+		choice_sizey.setText(String.valueOf(sizey));
+	}
+
+	
 
 	public void switchScene_BoardNew(ActionEvent event) throws IOException {
 		if (choice_sizex.getText().isEmpty() || choice_sizey.getText().isEmpty())

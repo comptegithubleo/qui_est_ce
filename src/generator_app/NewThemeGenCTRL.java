@@ -85,7 +85,6 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
 		{
 			File file = new File("files/sheet/gen_tmp.json");
 			file.delete();
-			System.out.println("deleted");
 		}
 		else {
 			loadTMP();
@@ -101,17 +100,29 @@ public class NewThemeGenCTRL implements IGlobalFunctions {
         return theme;
     }
 
-        //Objects management--------
-    public void saveObjects(ActionEvent event) throws IOException{
-        if (themeName.getText() == null || themeName.getText().trim().isEmpty()) {
-            System.out.println("error no theme name");
-       }
-       else{
-           theme=themeName.getText();
-           switch_scene_title(event, "/generator_app/SetAttributesGen", "Set Attributes", stage, scene);
-           
-       }
-    }
+	//Objects management--------
+	public void saveObjects(ActionEvent event) throws IOException{
+		if (themeName.getText() == null || themeName.getText().trim().isEmpty()) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("You need to give a name to your theme.");
+			alert.showAndWait();
+		
+		}
+		else if (list.isEmpty()){
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Error");
+			alert.setHeaderText(null);
+			alert.setContentText("Your theme needs at least one object.");
+			alert.showAndWait();
+		}
+		else{
+			theme=themeName.getText();
+			switch_scene_title(event, "/generator_app/SetAttributesGen", "Set Attributes", stage, scene);
+			
+		}
+	}
 
     public void addObject(ActionEvent event){
 		if (filePath == null) {
