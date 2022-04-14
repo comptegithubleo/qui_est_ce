@@ -58,9 +58,9 @@
             </ImageView>
             <ComboBox fx:id="choice_question2" prefHeight="24.0" prefWidth="238.0" />
             <ComboBox fx:id="choice_answer2" layoutX="247.0" prefHeight="24.0" prefWidth="156.0" />
-            <ComboBox fx:id="operator" layoutX="416.0" prefHeight="24.0" prefWidth="96.0" />
          </children>
       </Pane>
+      <ComboBox fx:id="operator" layoutX="442.0" layoutY="313.0" prefHeight="24.0" prefWidth="96.0" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="442.0" />
       <ComboBox fx:id="choice_question" layoutX="25.0" layoutY="282.0" prefHeight="24.0" prefWidth="238.0" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="25.0" />
       <ComboBox fx:id="choice_answer" layoutX="271.0" layoutY="282.0" prefHeight="24.0" prefWidth="157.0" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="271.0" />
       <Button fx:id="guess_btn" layoutX="436.0" layoutY="282.0" mnemonicParsing="false" onAction="#guess" prefHeight="25.0" prefWidth="105.0" text="Guess" AnchorPane.bottomAnchor="93.0" AnchorPane.leftAnchor="436.0">

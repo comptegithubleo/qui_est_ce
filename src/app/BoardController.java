@@ -40,7 +40,8 @@ public class BoardController extends Game implements IGlobalFunctions {
 	private Scene scene;
 	private Parent root;
 	private boolean finalGuessOngoing = false;
-	
+	private boolean failState = false;
+
 	@FXML
 	ScrollPane grid_anchor;
 	@FXML
@@ -96,7 +97,6 @@ public class BoardController extends Game implements IGlobalFunctions {
 		image.fitWidthProperty().bind(board_pane.widthProperty());
 		image.fitHeightProperty().bind(board_pane.heightProperty());
 		board_pane.getChildren().add(image);
-
 		setImageView("files/images/UI/board/board_buttons.png", 500, 50, board_buttons);
 		setImageView("files/images/UI/board/board_buttons_advanced.png", 500, 50, board_buttons_advanced);
 		setImageView("files/images/UI/board/board_guess.png", 500, 50, board_guess);
@@ -150,11 +150,15 @@ public class BoardController extends Game implements IGlobalFunctions {
 
 		img.setOnMouseClicked(e -> {
 
-			if (finalGuessOngoing)
-			{
-				finalTry(o, e);
+			if (finalGuessOngoing) {
+				if (game.getDifficulty().equals("Double")){
+					doubleFinalTry(o,e);
+				}
+				else {
+					finalTry(o, e);
+				}
 			}
-			else {
+			else{
 				eliminate(o, img);
 				game.board.save();
 			}
@@ -173,6 +177,48 @@ public class BoardController extends Game implements IGlobalFunctions {
 				img.getStyleClass().remove("final_hover");
 			}
 		});
+	}
+
+	public void doubleFinalTry(OTF o, MouseEvent e){
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+
+		if (o.getid() == game.board.getBoard().get(game.board.getITF()).getid())
+		{
+			game.board.seto1state(true);
+			if(game.board.geto2state()){
+				finalTry(o, e);
+			}
+			else{
+				alert.setTitle("Nice !");
+				alert.setHeaderText("Only one remaining !");
+				ButtonType reset = new ButtonType("Ok");
+
+				alert.getButtonTypes().clear();
+				alert.getButtonTypes().addAll(reset);
+				Optional<ButtonType> result = alert.showAndWait();
+			}
+		}
+
+		else if (o.getid() == game.board.getBoard().get(game.board.getITF2()).getid())
+		{
+			game.board.seto2state(true);
+			if(game.board.geto1state()){
+				finalTry(o, e);
+			}
+			else{
+				alert.setTitle("Nice !");
+				alert.setHeaderText("Only one remaining !");
+				ButtonType reset = new ButtonType("Ok");
+
+				alert.getButtonTypes().clear();
+				alert.getButtonTypes().addAll(reset);
+				Optional<ButtonType> result = alert.showAndWait();
+			}
+		}
+		else
+		{
+			finalTry(o, e);
+		}
 	}
 
 	public void finalTry(OTF o, MouseEvent e)
@@ -234,12 +280,20 @@ public class BoardController extends Game implements IGlobalFunctions {
 		board_buttons_advanced.setVisible(false);
 		board_guess.setVisible(false);
 		board_final_guess.setVisible(false);
+		operator.setVisible(false);
 		
 		if (game.getDifficulty().equals("Advanced"))
 		{
 			advanced_pane.setVisible(true);
+			operator.setVisible(true);
 			board_buttons_advanced.setVisible(true);
 			operator.getItems().addAll("or", "and");
+		}
+
+		if (game.getDifficulty().equals("Double"))
+		{
+			operator.setVisible(true);
+			operator.getItems().addAll("At least one of them", "Both of them", "None of them");
 		}
 
 		for (String key : attributes.keySet())
@@ -313,6 +367,51 @@ public class BoardController extends Game implements IGlobalFunctions {
 				}
 			}
 		}
+
+		else if (game.getDifficulty().equals("Double")){
+			if (operator.getValue() == null || choice_question.getValue() == null || choice_answer.getValue() == null) {
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Error.");
+				alert.setHeaderText(null);
+				alert.setContentText("You're playing in Double mode ! \n Please choose a comparative operator and one question...");
+		
+				alert.showAndWait();
+			}
+
+			if (operator.getValue() == "Both of them"){
+				if (game.board.guess(choice_question.getValue(), choice_answer.getValue()) && game.board.guessDouble(choice_question.getValue(), choice_answer.getValue())){
+					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " True");
+					guess_text.setFill(Color.GREEN);
+				}
+				else {
+					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " False");
+					guess_text.setFill(Color.RED);
+				}
+			}
+
+			if (operator.getValue() == "At least one of them"){
+				if (game.board.guess(choice_question.getValue(), choice_answer.getValue()) || game.board.guessDouble(choice_question.getValue(), choice_answer.getValue())){
+					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " True");
+					guess_text.setFill(Color.GREEN);
+				}
+				else {
+					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " False");
+					guess_text.setFill(Color.RED);
+				}
+			}
+
+			if (operator.getValue() == "None of them"){
+				if (game.board.guess(choice_question.getValue(), choice_answer.getValue()) && game.board.guessDouble(choice_question.getValue(), choice_answer.getValue())){
+					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " False");
+					guess_text.setFill(Color.RED);
+				}
+				else {
+					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " True");
+					guess_text.setFill(Color.GREEN);
+				}
+			}
+		}
+
 		else
 		{
 			if (game.board.guess(choice_question.getValue(), choice_answer.getValue()))

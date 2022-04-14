@@ -45,9 +45,12 @@ public class Game {
 		List<OTF> saved_board = Arrays.asList(mapper.treeToValue(save_json.get("objects"), OTF[].class));
 		int[] size = mapper.treeToValue(save_json.get("size"), int[].class);
 		int ITF = mapper.treeToValue(save_json.get("answer"), Integer.class);
+		int ITF2 = mapper.treeToValue(save_json.get("answerD"), Integer.class);
+		boolean o1state = mapper.treeToValue(save_json.get("o1state"), Boolean.class);
+		boolean o2state = mapper.treeToValue(save_json.get("o2state"), Boolean.class);
 		String theme = mapper.treeToValue(save_json.get("theme"), String.class);
-
-		board = new Board(save_json, saved_board, theme, size, ITF);
+		
+		board = new Board(save_json, saved_board, theme, size, ITF, ITF2, o1state, o2state);
 	}
 	public boolean createNewBoard(int sizex, int sizey) throws JsonProcessingException
 	{

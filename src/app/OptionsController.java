@@ -31,6 +31,8 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	@FXML
 	ImageView options_choice_advanced;
 	@FXML
+	ImageView options_choice_double;
+	@FXML
 	ToggleGroup difficulty_choice;
 	@FXML
 	ToggleButton easy_toggle;
@@ -38,6 +40,8 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	ToggleButton normal_toggle;
 	@FXML
 	ToggleButton advanced_toggle;
+	@FXML
+	ToggleButton double_toggle;
 	@FXML
 	Button gen_btn;
 
@@ -55,6 +59,9 @@ public class OptionsController extends Game implements IGlobalFunctions{
 			case "Advanced":
 				toggleAdvanced();
 				break;
+			case "Double":
+				toggleDouble();
+				break;
 			default:
 				break;
 		}
@@ -71,6 +78,9 @@ public class OptionsController extends Game implements IGlobalFunctions{
 		advanced_toggle.setOnAction(e -> {
 			toggleAdvanced();
 		});
+		double_toggle.setOnAction(e -> {
+			toggleDouble();
+		});	
 	}
 
 	public void loadImg()
@@ -79,7 +89,7 @@ public class OptionsController extends Game implements IGlobalFunctions{
 		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_easy);
 		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_normal);
 		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_advanced);
-
+		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_double);
 	}
 
 	public void toggleEasy()
@@ -90,6 +100,7 @@ public class OptionsController extends Game implements IGlobalFunctions{
 		options_choice_easy.setVisible(true);
 		options_choice_normal.setVisible(false);
 		options_choice_advanced.setVisible(false);
+		options_choice_double.setVisible(false);
 	}
 	public void toggleNormal()
 	{
@@ -99,6 +110,7 @@ public class OptionsController extends Game implements IGlobalFunctions{
 		options_choice_easy.setVisible(false);
 		options_choice_normal.setVisible(true);
 		options_choice_advanced.setVisible(false);
+		options_choice_double.setVisible(false);
 	}
 	public void toggleAdvanced()
 	{
@@ -108,6 +120,17 @@ public class OptionsController extends Game implements IGlobalFunctions{
 		options_choice_easy.setVisible(false);
 		options_choice_normal.setVisible(false);
 		options_choice_advanced.setVisible(true);
+		options_choice_double.setVisible(false);
+	}
+	public void toggleDouble()
+	{
+		options_apply.setDisable(false);
+		options_apply.setStyle("-fx-text-fill: #9c9102");
+		difficulty_choice.selectToggle(double_toggle);
+		options_choice_easy.setVisible(false);
+		options_choice_normal.setVisible(false);
+		options_choice_advanced.setVisible(false);
+		options_choice_double.setVisible(true);
 	}
 
 	public void apply()

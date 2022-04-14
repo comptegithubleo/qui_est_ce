@@ -53,6 +53,11 @@
             <Image url="@../../files/images/UI/options/choice.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="options_choice_double" fitHeight="45.0" fitWidth="283.0" layoutX="65.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+         <image>
+            <Image url="@../../files/images/UI/options/choice.png" />
+         </image>
+      </ImageView>
       <ToggleButton fx:id="easy_toggle" alignment="CENTER_LEFT" layoutX="72.0" layoutY="214.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="276.0" text="Easy">
          <toggleGroup>
             <ToggleGroup fx:id="difficulty_choice" />
@@ -83,7 +88,18 @@
             <Insets left="60.0" />
          </padding>
       </ToggleButton>
-      <Button fx:id="gen_btn" layoutX="588.0" layoutY="147.0" mnemonicParsing="false" onAction="#switchScene_Gen" text="Open Generator" textFill="#eb7804">
+      <ToggleButton fx:id="double_toggle" alignment="CENTER_LEFT" contentDisplay="CENTER" layoutX="72.0" layoutY="358.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="276.0" text="Double" toggleGroup="$difficulty_choice">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <padding>
+            <Insets left="60.0" />
+         </padding>
+      </ToggleButton>
+      <Button fx:id="gen_btn" layoutX="588.0" layoutY="157.0" mnemonicParsing="false" onAction="#switchScene_Gen" text="Open Generator" textFill="#eb7804">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>

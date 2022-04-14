@@ -24,19 +24,25 @@ public class Board {
 	public List<OTF> board = new ArrayList<OTF>();
 	private String theme;
 	private int ITF;
+	private int ITF2;
 	private int nbrofOTF;
+	private boolean o1state;
+	private boolean o2state;
 	private int[] size;
 	private HashMap<String, ArrayList<String>> global_attributes = new HashMap<String, ArrayList<String>>();
 
 	public Board(){}
-	public Board(JsonNode save_json, List<OTF> saved_board, String theme, int[] size, int ITF) throws IOException, Exception
+	public Board(JsonNode save_json, List<OTF> saved_board, String theme, int[] size, int ITF, int ITF2, boolean o1state, boolean o2state) throws IOException, Exception
 	{
 		this.board = saved_board;
 		
 		this.size = size;
 		this.nbrofOTF = this.size[0] * this.size[1];
 		this.ITF = ITF;
+		this.ITF2 = ITF2;
 		this.theme = theme;
+		this.o1state = o1state;
+		this.o2state = o2state;
 
 		populateGlobalAttributes();
 	}
@@ -56,9 +62,11 @@ public class Board {
 
 		Random rand = new Random();
 		this.ITF = rand.nextInt(board.size());
-
+		do{
+			this.ITF2 = rand.nextInt(board.size());
+		}while (ITF==ITF2);
 		populateGlobalAttributes();
-	}
+		}
 
 	public void setBoardEliminated(int index){
 		this.board.get(index).setEliminated(true);
@@ -70,6 +78,30 @@ public class Board {
 
 	public int getITF(){
 		return ITF;
+	}
+
+	public void setITF2(int ITF2){
+		this.ITF2 = ITF2;
+	}
+
+	public int getITF2(){
+		return ITF2;
+	}
+
+	public void seto1state(boolean o1state){
+		this.o1state = o1state;
+	}
+
+	public boolean geto1state(){
+		return o1state;
+	}
+
+	public void seto2state(boolean o2state){
+		this.o2state = o2state;
+	}
+
+	public boolean geto2state(){
+		return o2state;
 	}
 
 	public int getNbrofOTF(){
@@ -131,6 +163,17 @@ public class Board {
 			else { return false; }
 		}
 
+	}
+
+	public boolean guessDouble(String question, String guess){
+		if (this.board.get(ITF2).getattributes().containsKey(question))
+		{
+			if(this.board.get(ITF2).getattributes().get(question).equals(guess))
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public ArrayList<Integer> getCompatibleList(String question, String answer, boolean check){
@@ -212,6 +255,9 @@ public class Board {
 		//saving theme and answer to JSON as (-> "key" : "value")
 		((ObjectNode)jsonNode).put("theme" , this.theme);
 		((ObjectNode)jsonNode).put("answer" , this.ITF);
+		((ObjectNode)jsonNode).put("answerD" , this.ITF2);
+		((ObjectNode)jsonNode).put("o1state" , o1state);
+		((ObjectNode)jsonNode).put("o2state" , o2state);
 
 		//saving the size array into JSON
 		ArrayNode sizeConvert = mapper.valueToTree(this.size);
