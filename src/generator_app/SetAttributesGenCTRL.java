@@ -45,6 +45,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
     private Parent root;
     private int obNumber=0;
     private boolean finish=true;
+    private boolean listempty = false;
 
     //FXML Buttons attributes --
     @FXML
@@ -92,6 +93,10 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 		updateImage();
 		populateAttributes();
 		loadAttributes();
+
+        if(!(NewThemeGenCTRL.getList().size()-1 > obNumber)){
+            createJsonfonction();
+        }
 	}
 
 	public void updateImage()
@@ -108,7 +113,8 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
         //Objects management--------
     public void nextObject(ActionEvent event){
         obNumber++;
-        if(NewThemeGenCTRL.getList().size() > obNumber){
+        System.out.println("test");
+        if(NewThemeGenCTRL.getList().size()-1 > obNumber){
             objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
             for (ObservableAttribute o : list)
 			{
@@ -122,36 +128,40 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 			loadAttributes();
         }
         else{
-
-            if(finish){
-                for (ObservableAttribute o : list)
-				{
-					allAttrList.put(o.getKey(), o.getValue());
-				}
-                finish=false;
-            }
-
-            nextButton.setText("Create JSON");
-            nextButton.setStyle("-fx-text-fill: red");
-
-            nextButton.setOnAction( new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    Object source = e.getSource();
-                    if (source instanceof Button) {
-                        //new method name
-						nextButton.setDisable(true);
-                        createJson();
-                    }
-                }
-            });
-            addButton.setDisable(true);
-            removeButton.setDisable(true);
-            
+            createJsonfonction();
         }
+        
         
     }
 
+
+    public void createJsonfonction(){
+        if(finish){
+            for (ObservableAttribute o : list)
+            {
+                allAttrList.put(o.getKey(), o.getValue());
+            }
+            finish=false;
+        }
+
+        nextButton.setText("Create JSON");
+        nextButton.setStyle("-fx-text-fill: red");
+
+        nextButton.setOnAction( new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                Object source = e.getSource();
+                if (source instanceof Button) {
+                    //new method name
+                    addButton.setDisable(true);
+                    removeButton.setDisable(true);
+                    nextButton.setDisable(true);
+                    createJson();
+                }
+            }
+        });
+
+    }
 
 	public void addAttribute(ActionEvent event){
         //conditions of fields not being empty
