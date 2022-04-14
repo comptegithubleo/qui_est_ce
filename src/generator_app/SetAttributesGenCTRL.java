@@ -45,7 +45,6 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
     private Parent root;
     private int obNumber=0;
     private boolean finish=true;
-    private boolean listempty = false;
 
     //FXML Buttons attributes --
     @FXML
