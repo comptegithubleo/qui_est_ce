@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
@@ -48,6 +49,7 @@ public class OptionsController extends Game implements IGlobalFunctions{
 	public void initialize() {
 
 		loadImg();
+		setTooltips();
 
 		switch (game.getDifficulty()) {
 			case "Easy":
@@ -80,7 +82,7 @@ public class OptionsController extends Game implements IGlobalFunctions{
 		});
 		double_toggle.setOnAction(e -> {
 			toggleDouble();
-		});	
+		});
 	}
 
 	public void loadImg()
@@ -90,6 +92,14 @@ public class OptionsController extends Game implements IGlobalFunctions{
 		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_normal);
 		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_advanced);
 		setImageView("files/images/UI/options/choice.png", 180 , 30, options_choice_double);
+	}
+
+	public void setTooltips()
+	{
+		easy_toggle.setTooltip(new Tooltip("Easy: One question, displays how many objects will be eliminated beforehand."));
+		normal_toggle.setTooltip(new Tooltip("Normal: One question only."));
+		advanced_toggle.setTooltip(new Tooltip("Advanced : Two questions, with logical operators."));
+		double_toggle.setTooltip(new Tooltip("Double: One question, two objects to find, with additionnal operators."));
 	}
 
 	public void toggleEasy()

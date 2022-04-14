@@ -1,3 +1,8 @@
+/*===== GLOBAL CHANGES ====*/
+.tooltip {
+	-fx-font-size: 13px;
+}
+
 /*===== HIDING INPUTS ====*/
 .button, .toggle-button {
 	-fx-font-family: "Retro Gaming";
@@ -21,9 +26,8 @@
 .toggle-button {
 	-fx-font-size: 20px;
 }
-#dlc_text {
+#options_text {
 	-fx-font-family: "Retro Gaming";
-	-fx-font-size: 20px;
 }
 
 /*===== SELECTION CSS ====*/

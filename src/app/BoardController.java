@@ -20,6 +20,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
+import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,7 +43,6 @@ public class BoardController extends Game implements IGlobalFunctions {
 	private Scene scene;
 	private Parent root;
 	private boolean finalGuessOngoing = false;
-	private boolean failState = false;
 
 	@FXML
 	ScrollPane grid_anchor;
@@ -276,6 +277,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 
 	public void populateChoicebox(HashMap<String, ArrayList<String>> attributes)
 	{
+		finalguess_btn.setTooltip(new Tooltip("Toggle button. When enabled, clicking on object will start your final guess. To abort, click on the button again."));
 		guess_btn.setDisable(true);
 		advanced_pane.setVisible(false);
 		board_buttons_advanced.setVisible(false);
