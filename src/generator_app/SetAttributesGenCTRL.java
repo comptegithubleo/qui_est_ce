@@ -108,7 +108,7 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
         //Objects management--------
     public void nextObject(ActionEvent event){
         obNumber++;
-        if(NewThemeGenCTRL.getList().size() > obNumber){
+        if(NewThemeGenCTRL.getList().size()-1 > obNumber){
             objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
             for (ObservableAttribute o : list)
 			{
@@ -140,13 +140,13 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
                     Object source = e.getSource();
                     if (source instanceof Button) {
                         //new method name
+                        addButton.setDisable(true);
+                        removeButton.setDisable(true);
 						nextButton.setDisable(true);
                         createJson();
                     }
                 }
             });
-            addButton.setDisable(true);
-            removeButton.setDisable(true);
             
         }
         
