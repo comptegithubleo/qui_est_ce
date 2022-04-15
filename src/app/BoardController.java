@@ -65,6 +65,8 @@ public class BoardController extends Game implements IGlobalFunctions {
 	@FXML
 	Text easy_text;
 	@FXML
+	Text difficulty_text;
+	@FXML
 	Pane advanced_pane;
 	@FXML
 	Pane board_pane;
@@ -94,6 +96,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 
 	public void initImg()
 	{
+		difficulty_text.setText("Playing in " + game.getDifficulty() + " mode");
 		ImageView image = new ImageView();
 		setImageView("files/images/UI/board/background_side.png", 840, 480, image);
 		image.fitWidthProperty().bind(board_pane.widthProperty());
@@ -205,7 +208,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 		{
 			game.board.seto2state(true);
 			if(game.board.geto1state()){
-				finalTry(o, e);
+				finalTry(game.board.getBoard().get(game.board.getITF()), e);
 			}
 			else{
 				alert.setTitle("Nice !");

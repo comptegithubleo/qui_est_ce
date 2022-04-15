@@ -28,7 +28,7 @@ public class MenuController extends Game implements IGlobalFunctions {
 	 ImageView img_play = new ImageView();
 
 	@FXML
-	Text build_text;
+	Text menu_text;
 
 	@FXML
 	Button btn_play = new Button();
@@ -40,6 +40,7 @@ public class MenuController extends Game implements IGlobalFunctions {
 	public void initialize() {
 
 		initImgFont();
+		menu_text.setText("Current Game Mode: " + game.getDifficulty());
 	}
 
 	public void initImgFont()

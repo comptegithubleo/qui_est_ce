@@ -111,10 +111,9 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 
         //Objects management--------
     public void nextObject(ActionEvent event){
-        obNumber++;
-        System.out.println("test");
-        if(NewThemeGenCTRL.getList().size()-1 > obNumber){
-            objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
+		obNumber++;
+		if(NewThemeGenCTRL.getList().size() > obNumber){
+			objectNameText.setText(NewThemeGenCTRL.getList().get(obNumber).getId());
             for (ObservableAttribute o : list)
 			{
 				allAttrList.put(o.getKey(), o.getValue());
@@ -122,15 +121,12 @@ public class SetAttributesGenCTRL implements IGlobalFunctions {
 			TextFields.bindAutoCompletion(keyField, allAttrList.keySet());
             list.clear();
             tView.setItems(list);
-            System.out.println(allAttrList);
 			updateImage();
 			loadAttributes();
         }
         else{
-            createJsonfonction();
+			createJsonfonction();
         }
-        
-        
     }
 
 

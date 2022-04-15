@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.OptionsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="900.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.OptionsController">
    <children>
       <ImageView fx:id="options_background" fitHeight="450.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" smooth="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <viewport>
@@ -115,6 +115,11 @@
       <Text id="options_text" fill="#363636" layoutX="67.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose your difficulty">
          <font>
             <Font size="22.0" />
+         </font>
+      </Text>
+      <Text id="options_text" fill="#686868" layoutX="67.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hover the difficulties for more information" AnchorPane.leftAnchor="67.0" AnchorPane.topAnchor="187.78955078125">
+         <font>
+            <Font size="11.0" />
          </font>
       </Text>
    </children>
