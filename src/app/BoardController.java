@@ -21,7 +21,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
-import javafx.scene.control.Tooltip;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -57,6 +56,8 @@ public class BoardController extends Game implements IGlobalFunctions {
 	@FXML
 	ComboBox<String> operator;
 	@FXML
+	ComboBox<String> operator_double;
+	@FXML
 	Button guess_btn;
 	@FXML
 	Button finalguess_btn;
@@ -69,11 +70,15 @@ public class BoardController extends Game implements IGlobalFunctions {
 	@FXML
 	Pane advanced_pane;
 	@FXML
+	Pane double_pane;
+	@FXML
 	Pane board_pane;
 	@FXML
 	ImageView board_buttons;
 	@FXML
 	ImageView board_buttons_advanced;
+	@FXML
+	ImageView board_buttons_double;
 	@FXML
 	ImageView board_guess;
 	@FXML
@@ -104,6 +109,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 		board_pane.getChildren().add(image);
 		setImageView("files/images/UI/board/board_buttons.png", 500, 50, board_buttons);
 		setImageView("files/images/UI/board/board_buttons_advanced.png", 500, 50, board_buttons_advanced);
+		setImageView("files/images/UI/board/board_buttons_double.png", 250, 50, board_buttons_double);
 		setImageView("files/images/UI/board/board_guess.png", 500, 50, board_guess);
 		setImageView("files/images/UI/board/board_final_guess.png", 500, 200, board_final_guess);
 		setImageView("files/images/UI/board/board_final_guess_grey.png", 500, 400, board_final_guess_grey);
@@ -283,6 +289,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 		finalguess_btn.setTooltip(new Tooltip("Toggle button. When enabled, clicking on object will start your final guess. To abort, click on the button again."));
 		guess_btn.setDisable(true);
 		advanced_pane.setVisible(false);
+		double_pane.setVisible(false);
 		board_buttons_advanced.setVisible(false);
 		board_guess.setVisible(false);
 		board_final_guess.setVisible(false);
@@ -298,8 +305,8 @@ public class BoardController extends Game implements IGlobalFunctions {
 
 		if (game.getDifficulty().equals("Double"))
 		{
-			operator.setVisible(true);
-			operator.getItems().addAll("At least one of them", "Both of them", "None of them");
+			double_pane.setVisible(true);
+			operator_double.getItems().addAll("At least one of them", "Both of them", "None of them");
 		}
 
 		for (String key : attributes.keySet())
@@ -350,6 +357,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 			}
 
 			createGrid();
+			game.board.save();
 		}
 		else if (game.getDifficulty().equals("Advanced")) {
 			if (operator.getValue() == null || choice_question2.getValue() == null || choice_answer2.getValue() == null) {
@@ -375,7 +383,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 		}
 
 		else if (game.getDifficulty().equals("Double")){
-			if (operator.getValue() == null || choice_question.getValue() == null || choice_answer.getValue() == null) {
+			if (operator_double.getValue() == null || choice_question.getValue() == null || choice_answer.getValue() == null) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Error.");
 				alert.setHeaderText(null);
@@ -384,7 +392,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 				alert.showAndWait();
 			}
 
-			if (operator.getValue() == "Both of them"){
+			if (operator_double.getValue() == "Both of them"){
 				if (game.board.guess(choice_question.getValue(), choice_answer.getValue()) && game.board.guessDouble(choice_question.getValue(), choice_answer.getValue())){
 					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " True");
 					guess_text.setFill(Color.GREEN);
@@ -395,7 +403,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 				}
 			}
 
-			if (operator.getValue() == "At least one of them"){
+			if (operator_double.getValue() == "At least one of them"){
 				if (game.board.guess(choice_question.getValue(), choice_answer.getValue()) || game.board.guessDouble(choice_question.getValue(), choice_answer.getValue())){
 					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " True");
 					guess_text.setFill(Color.GREEN);
@@ -406,7 +414,7 @@ public class BoardController extends Game implements IGlobalFunctions {
 				}
 			}
 
-			if (operator.getValue() == "None of them"){
+			if (operator_double.getValue() == "None of them"){
 				if (game.board.guess(choice_question.getValue(), choice_answer.getValue()) && game.board.guessDouble(choice_question.getValue(), choice_answer.getValue())){
 					guess_text.setText(choice_question.getValue() + " : " + choice_answer.getValue() + " False");
 					guess_text.setFill(Color.RED);
@@ -430,7 +438,8 @@ public class BoardController extends Game implements IGlobalFunctions {
 			}
 		}
 		//Prints ITF to find
-		//System.out.println("ITF : " + game.board.getBoard().get(game.board.getITF()).getid());
+		System.out.println("ITF : " + game.board.getBoard().get(game.board.getITF()).getid());
+		System.out.println("ITF2 : " + game.board.getBoard().get(game.board.getITF2()).getid());
 	}
 
 	public void finalGuess()
